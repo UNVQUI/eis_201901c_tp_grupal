@@ -2,9 +2,6 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
 
-// Old plugin mechanism
-apply plugin: 'org.junit.platform.gradle.plugin' // Depends on external dependencies for build script
-
 configurations {
     cucumberRuntime {
         extendsFrom testRuntime
@@ -28,19 +25,13 @@ dependencies {
     testCompile 'io.cucumber:cucumber-java8:4.3.0'
     testCompile 'io.cucumber:cucumber-junit:4.3.0'
 
-    testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '4.12.2'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.2'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.2'
-}
-
-test {
-    finalizedBy jacocoTestReport
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
 
 // Code coverage
 jacoco {
     toolVersion = '0.8.3'
-    applyTo junitPlatformTest
 }
 
 jacocoTestReport {
@@ -51,20 +42,8 @@ jacocoTestReport {
     }
 }
 
-check.dependsOn jacocoTestReport
-
 repositories {
     mavenCentral()
 }
 
-buildscript {
-
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
-    }
-
-}
+check.dependsOn jacocoTestReport
