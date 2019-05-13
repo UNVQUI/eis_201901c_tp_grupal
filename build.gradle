@@ -46,7 +46,8 @@ jacoco {
 jacocoTestReport {
     reports {
         xml.enabled true
-        html.enabled true
+        html.enabled false
+        xml.destination "${buildDir}/reports/jacoco/report.xml"
     }
 }
 
@@ -67,12 +68,3 @@ buildscript {
     }
 
 }
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
-}
-
-check.dependsOn jacocoTestReport
