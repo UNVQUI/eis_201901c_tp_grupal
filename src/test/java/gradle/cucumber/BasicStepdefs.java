@@ -7,9 +7,10 @@ import org.junit.Assert;
 public class BasicStepdefs {
     private Bomberman bomberman = new Bomberman();
     private Cell emptyCell = new Cell();
-    private Cell cellWithWall = new Cell(true);
+    private Cell cellWithWall = new Cell(CellContent.WALL);
+    private Cell cellWithEnemy = new Cell(CellContent.ENEMY);
 
-    @When("^the cell is empty")
+    @When("^Bomberman moves to an empty cell")
     public void bombermanMovesToEmptyCell(){
         bomberman.moveTo(emptyCell);
     }
@@ -19,7 +20,7 @@ public class BasicStepdefs {
         Assert.assertTrue(bomberman.isAtCell(emptyCell));
     }
 
-    @When("^the cell has a wall")
+    @When("^Bomberman moves to a cell that has a wall")
     public void bombermanMovesToCellWithWall(){
         bomberman.moveTo(cellWithWall);
     }
@@ -28,5 +29,18 @@ public class BasicStepdefs {
     public void bombermanStaysInPosition(){
         Assert.assertFalse(bomberman.isAtCell(cellWithWall));
     }
+
+
+    @When("^Bomberman moves to a cell with an enemy")
+    public void bombermanMovesToCellWithAnEnemy(){
+        bomberman.moveTo(cellWithEnemy);
+    }
+
+    @Then("^Bomberman dies")
+    public void bombermanDies(){
+        Assert.assertTrue(bomberman.isDead());
+    }
+
+
 
 }
