@@ -18,4 +18,8 @@ public class Bomberman {
     public void die() {
         isDead = true;
     }
+
+    public void dropBomb(BombermanGrid grid) {
+        grid.bombDropped(this.location);
+    }
 }

@@ -11,3 +11,5 @@ Feature: Bomberman moves to a cell
   Scenario: the cell has an enemy
     When Bomberman moves to a cell with an enemy
     Then Bomberman dies
+
+

@@ -1,14 +1,22 @@
 package gradle.cucumber;
 
 public class Cell {
-    public final CellContent content;
+    public CellContent content;
+    final int x;
+    final int y;
 
     public Cell() {
-        this(CellContent.EMPTY);
+        this(CellContent.EMPTY, 0, 0);
     }
 
     public Cell(CellContent content) {
+        this(content, 0, 0);
+    }
+
+    public Cell(CellContent content, int xLocation, int yLocation) {
         this.content = content;
+        this.x = xLocation;
+        this.y = yLocation;
     }
 
     public void locateBomberman(Bomberman bomberman) {
@@ -22,8 +30,12 @@ public class Cell {
         return this.content == CellContent.ENEMY;
     }
 
-    private boolean isEmpty(){
+    boolean isEmpty(){
         return this.content == CellContent.EMPTY;
+    }
+
+    public void empty() {
+        this.content = CellContent.EMPTY;
     }
 }
 
