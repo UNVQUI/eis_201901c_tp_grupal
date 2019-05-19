@@ -1,8 +1,7 @@
 package gradle.cucumber;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 public class BasicStepdefs {
@@ -48,15 +47,8 @@ public class BasicStepdefs {
         Assert.assertTrue(bomberman.isDead());
     }
 
-    @When("^Bomberman drops a bomb at (\\d+) cell distance to a melanin wall")
-    public void bombermanDropsBombNearMelaninWall(int distance){
-        int bombermanLocation = 5;
-
-        cellLeft = new Cell(CellContent.WALL, bombermanLocation-distance, 5);
-        cellRight = new Cell(CellContent.WALL, bombermanLocation+distance, 5);
-        cellUp = new Cell(CellContent.WALL, 5, bombermanLocation+distance);
-        cellDown = new Cell(CellContent.WALL, 5, bombermanLocation-distance);
-
+    @When("^Bomberman drops a bomb")
+    public void bombermanDropsBomb(){
         Cell bombermanCell = new Cell(CellContent.EMPTY, 5, 5);
         BombermanGrid grid = new BombermanGrid(10, 10);
 
@@ -69,6 +61,25 @@ public class BasicStepdefs {
         bomberman.moveTo(bombermanCell);
 
         bomberman.dropBomb(grid);
+    }
+    @When("^Bomberman is at (\\d+) cell distance to a melanin wall")
+    public void bombermanDropsBombNearMelaninWall(int distance){
+        int bombermanLocation = 5;
+
+        cellLeft = new Cell(CellContent.WALL, bombermanLocation-distance, 5);
+        cellRight = new Cell(CellContent.WALL, bombermanLocation+distance, 5);
+        cellUp = new Cell(CellContent.WALL, 5, bombermanLocation+distance);
+        cellDown = new Cell(CellContent.WALL, 5, bombermanLocation-distance);
+    }
+
+    @When("^Bomberman is at (\\d+) cell distance to an enemy")
+    public void bombermanDropsBombNearEnemy(int distance){
+        int bombermanLocation = 5;
+
+        cellLeft = new Cell(CellContent.ENEMY, bombermanLocation-distance, 5, new Enemy());
+        cellRight = new Cell(CellContent.ENEMY, bombermanLocation+distance, 5, new Enemy());
+        cellUp = new Cell(CellContent.ENEMY, 5, bombermanLocation+distance, new Enemy());
+        cellDown = new Cell(CellContent.ENEMY, 5, bombermanLocation-distance, new Enemy());
     }
 
     @Then("^The wall is destroyed")
@@ -87,4 +98,19 @@ public class BasicStepdefs {
         Assert.assertFalse(cellDown.isEmpty());
     }
 
+    @Then("^The enemy is killed")
+    public void surroundingEnemiesKilled(){
+        Assert.assertTrue(cellLeft.enemy.isDead());
+        Assert.assertTrue(cellRight.enemy.isDead());
+        Assert.assertTrue(cellUp.enemy.isDead());
+        Assert.assertTrue(cellDown.enemy.isDead());
+    }
+
+    @Then("^The enemy is not killed")
+    public void surroundingEnemiesNotKilled(){
+        Assert.assertFalse(cellLeft.enemy.isDead());
+        Assert.assertFalse(cellRight.enemy.isDead());
+        Assert.assertFalse(cellUp.enemy.isDead());
+        Assert.assertFalse(cellDown.enemy.isDead());
+    }
 }

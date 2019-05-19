@@ -4,6 +4,7 @@ public class Cell {
     public CellContent content;
     final int x;
     final int y;
+    Enemy enemy;
 
     public Cell() {
         this(CellContent.EMPTY, 0, 0);
@@ -17,6 +18,11 @@ public class Cell {
         this.content = content;
         this.x = xLocation;
         this.y = yLocation;
+    }
+
+    public Cell(CellContent content, int xLocation, int yLocation, Enemy enemy) {
+        this(content, xLocation, yLocation);
+        this.enemy = enemy;
     }
 
     public void locateBomberman(Bomberman bomberman) {
@@ -35,6 +41,8 @@ public class Cell {
     }
 
     public void empty() {
+        if (hasEnemy())
+            this.enemy.kill();
         this.content = CellContent.EMPTY;
     }
 }
