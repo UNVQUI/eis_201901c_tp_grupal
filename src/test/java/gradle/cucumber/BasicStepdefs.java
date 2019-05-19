@@ -1,11 +1,20 @@
 package gradle.cucumber;
 
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
+import org.junit.Assert;
 
 public class BasicStepdefs {
+    private Bomberman bomberman = new Bomberman();
+    private Cell emptyCell = new Cell();
 
-    @When("^I run a failing step")
-    public void I_run_a_failing_step() throws Throwable {
-        new Production().doWork();
+    @When("^the cell is empty")
+    public void bombermanMovesToEmptyCell(){
+        bomberman.moveTo(emptyCell);
+    }
+
+    @Then("^Bomberman changes its position")
+    public void bombermanChangesItsPosition(){
+        Assert.assertTrue(bomberman.isAtCell(emptyCell));
     }
 }
