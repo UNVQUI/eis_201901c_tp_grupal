@@ -6,6 +6,7 @@ import java.util.List;
 public class BombermanGrid {
     private final int width;
     private final int length;
+    private static final int bombRadious = 3;
     private List<Cell> cells = new ArrayList<>();
 
     public BombermanGrid(int horizontalSize, int verticalSize){
@@ -18,6 +19,17 @@ public class BombermanGrid {
     }
 
     public void bombDropped(Cell location) {
-        cells.stream().filter(cell -> Math.abs(cell.x - location.x)<=3 || Math.abs(cell.y - location.y)<=3).forEach(Cell::empty);
+        cells.stream().filter(cell ->
+                isReachedByBombHorizontal(cell, location) &&
+                isReachedByBombVertical(cell, location))
+                .forEach(Cell::empty);
+    }
+
+    private boolean isReachedByBombHorizontal(Cell cell, Cell bombCell){
+        return Math.abs(cell.x - bombCell.x)<=bombRadious;
+    }
+
+    private boolean isReachedByBombVertical(Cell cell, Cell bombCell){
+        return Math.abs(cell.y - bombCell.y)<=bombRadious;
     }
 }

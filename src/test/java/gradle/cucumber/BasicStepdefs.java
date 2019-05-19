@@ -79,4 +79,12 @@ public class BasicStepdefs {
         Assert.assertTrue(cellDown.isEmpty());
     }
 
+    @Then("^The wall is not destroyed")
+    public void surroundingWallsNotDestroyed(){
+        Assert.assertFalse(cellLeft.isEmpty());
+        Assert.assertFalse(cellRight.isEmpty());
+        Assert.assertFalse(cellUp.isEmpty());
+        Assert.assertFalse(cellDown.isEmpty());
+    }
+
 }
