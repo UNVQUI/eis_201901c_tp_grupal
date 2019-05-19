@@ -41,14 +41,21 @@ public class Cell {
     }
 
     public void empty() {
-        if (hasEnemy())
-            this.enemy.kill();
-        this.content = CellContent.EMPTY;
+        if (!hasSteelWall()) {
+            if (hasEnemy())
+                this.enemy.kill();
+            this.content = CellContent.EMPTY;
+        }
+    }
+
+    private boolean hasSteelWall() {
+        return this.content == CellContent.STEEL_WALL;
     }
 }
 
 enum CellContent{
     EMPTY,
     WALL,
-    ENEMY
+    ENEMY,
+    STEEL_WALL
 }

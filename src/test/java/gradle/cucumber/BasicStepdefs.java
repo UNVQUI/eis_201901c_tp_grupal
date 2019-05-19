@@ -82,6 +82,16 @@ public class BasicStepdefs {
         cellDown = new Cell(CellContent.ENEMY, 5, bombermanLocation-distance, new Enemy());
     }
 
+    @When("^Bomberman is at (\\d+) cell distance to a steel wall")
+    public void bombermanDropsBombNearSteelWall(int distance){
+        int bombermanLocation = 5;
+
+        cellLeft = new Cell(CellContent.STEEL_WALL, bombermanLocation-distance, 5);
+        cellRight = new Cell(CellContent.STEEL_WALL, bombermanLocation+distance, 5);
+        cellUp = new Cell(CellContent.STEEL_WALL, 5, bombermanLocation+distance);
+        cellDown = new Cell(CellContent.STEEL_WALL, 5, bombermanLocation-distance);
+    }
+
     @Then("^The wall is destroyed")
     public void surroundingWallsDestroyed(){
         Assert.assertTrue(cellLeft.isEmpty());
