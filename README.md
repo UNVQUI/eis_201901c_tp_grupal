@@ -13,13 +13,13 @@ tEjercitar la escritura de código en ambientes colaborativos utilizando una met
 
 ### Integrantes
 
-Nro | Nombre      | Legajo | Mail
-----|-------------|--------|------
-1   |             |        |
-2   |             |        |
-3   |             |        |
-4   |             |        |
-5   | Jose Cassano|  34798 |cassanojoseluis@gmail.com
+Nro | Nombre       | Legajo | Mail
+----|------------- |--------|------
+1   |              |        |
+2   |              |        |
+3   |              |        |
+4   |NicolasAlvarez|  33073 |nicolas.alv3@gmail.com
+5   | Jose Cassano |  34798 |cassanojoseluis@gmail.com
 
 ### Entrega
 
