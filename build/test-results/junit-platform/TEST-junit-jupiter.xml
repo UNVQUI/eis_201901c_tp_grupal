@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JUnit Jupiter" tests="0" skipped="0" failures="0" errors="0" time="0.01" hostname="nicolas" timestamp="2019-05-19T19:45:24">
+<testsuite name="JUnit Jupiter" tests="0" skipped="0" failures="0" errors="0" time="0.013" hostname="nicolas" timestamp="2019-05-19T20:35:18">
 <properties>
 <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
 <property name="file.encoding" value="UTF-8"/>
