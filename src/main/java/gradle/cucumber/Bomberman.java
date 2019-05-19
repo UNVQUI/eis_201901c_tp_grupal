@@ -4,7 +4,8 @@ public class Bomberman {
     private Cell location;
 
     public void moveTo(Cell cell) {
-        this.location = cell;
+        if (!cell.hasWall)
+            this.location = cell;
     }
 
     public boolean isAtCell(Cell cell) {
