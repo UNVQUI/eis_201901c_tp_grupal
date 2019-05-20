@@ -123,4 +123,27 @@ public class BasicStepdefs {
         Assert.assertFalse(cellUp.enemy.isDead());
         Assert.assertFalse(cellDown.enemy.isDead());
     }
+
+    @When("^Proto Max Jr is at (\\d+) cell distance to Bomberman")
+    public void protoMaxJrNearBomberman(int distance){
+        int bombermanLocation = 5;
+
+        cellLeft = new Cell(CellContent.ENEMY, bombermanLocation-distance, bombermanLocation, new ProtoMaxJr());
+        cellRight = new Cell(CellContent.ENEMY, bombermanLocation+distance, bombermanLocation, new ProtoMaxJr());
+        cellUp = new Cell(CellContent.ENEMY, bombermanLocation, bombermanLocation+distance, new ProtoMaxJr());
+        cellDown = new Cell(CellContent.ENEMY, bombermanLocation, bombermanLocation-distance, new ProtoMaxJr());
+    }
+
+    @Then("^Proto Max Jr deads")
+    public void protoMaxJrIsDead(){
+        Assert.assertTrue(cellLeft.enemy.isDead());
+        Assert.assertTrue(cellRight.enemy.isDead());
+        Assert.assertTrue(cellUp.enemy.isDead());
+        Assert.assertTrue(cellDown.enemy.isDead());
+    }
+
+    @Then("^Bomberman can jump walls")
+    public void canJumpWalls(){
+        Assert.assertTrue(bomberman.canJumpWalls);
+    }
 }

@@ -9,4 +9,7 @@ public class Enemy {
     public boolean isDead() {
         return !alive;
     }
+    public void wasKilledBy(Bomberman bomberman){
+
+    }
 }
