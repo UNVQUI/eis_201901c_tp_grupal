@@ -1,39 +1,45 @@
 import Bomberman.*;
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.Test;
 
 public class BombermanTest extends TestCase {
+
+    private Mapa mapa;
+    @Before
+    public void setUp(){
+
+        this.mapa = new Mapa();
+
+    }
+
     @Test
     public void testWhenBombermanInCoordinate1x1yMovesToTheNorthenCellHisNewCoordinateIs1x2y(){
-        Bomberman bomberman = new Bomberman();
 
-        bomberman.move(new North());
+        mapa.moverBomberman(new North());
 
-        assertEquals(bomberman.getCoordinate(),new Coordinate(1,2));
+        assertEquals(mapa.getPosicionBomberman(),new Coordinate(1,2));
     }
+
+
     @Test
     public void testWhenBombermanInCoordinate1x1MovesToTheSouthernCellHisNewCoordinateIs1x0y(){
-        Bomberman bomberman = new Bomberman();
+        mapa.moverBomberman(new South());
 
-        bomberman.move(new South());
-
-        assertEquals(bomberman.getCoordinate(),new Coordinate(1,0));
+        assertEquals(mapa.getPosicionBomberman(),new Coordinate(1,0));
     }
     @Test
     public void testWhenBombermanInCoordinate1x1MovesToTheEasternCellHisNewCoordinateIs2x1y(){
-        Bomberman bomberman = new Bomberman();
+        mapa.moverBomberman(new East());
 
-        bomberman.move(new East());
-
-        assertEquals(bomberman.getCoordinate(),new Coordinate(2,1));
+        assertEquals(mapa.getPosicionBomberman(),new Coordinate(2,1));
     }
     @Test
     public void testWhenBombermanInCoordinate1x1MovesToTheWesternCellHisNewCoordinateIs0x1y(){
-        Bomberman bomberman = new Bomberman();
 
-        bomberman.move(new West());
+        mapa.moverBomberman(new West());
 
-        assertEquals(bomberman.getCoordinate(),new Coordinate(0,1));
+        assertEquals(mapa.getPosicionBomberman(),new Coordinate(0,1));
     }
 
 }

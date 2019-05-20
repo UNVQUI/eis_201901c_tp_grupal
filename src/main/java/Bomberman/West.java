@@ -5,4 +5,11 @@ public class West extends Direction {
     public void moveCoordinate(Coordinate coordinate) {
         coordinate.decrementX();
     }
+
+    @Override
+    public Coordinate giveNextCoordinate(Coordinate coordinate){
+        Coordinate newCoordinate = coordinate;
+        newCoordinate.decrementX();
+        return newCoordinate;
+    }
 }
