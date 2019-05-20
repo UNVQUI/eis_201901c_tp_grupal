@@ -5,4 +5,11 @@ public class East extends Direction {
     public void moveCoordinate(Coordinate coordinate) {
         coordinate.incrementX();
     }
+
+    @Override
+    public Coordinate giveNextCoordinate(Coordinate coordinate){
+        Coordinate newCoordinate = coordinate;
+        newCoordinate.incrementX();
+        return newCoordinate;
+    }
 }
