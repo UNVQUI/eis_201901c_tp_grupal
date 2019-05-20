@@ -40,4 +40,11 @@ public class Coordinate {
     public void decrementX() {
         this.x--;
     }
+
+    public Integer getX(){
+        return x;
+    }
+    public Integer getY(){
+        return y;
+    }
 }
