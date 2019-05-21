@@ -2,6 +2,7 @@ package gradle.cucumber;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BombermanGrid {
     private final int width;
@@ -18,11 +19,13 @@ public class BombermanGrid {
         this.cells.add(cell);
     }
 
-    public void bombDropped(Cell location) {
+    public List<Enemy> bombDropped(Cell location) {
+        List<Enemy> enemies = cells.stream().filter(cell -> cell.enemy!=null).map(cell-> cell.enemy).collect(Collectors.toList());
         cells.stream().filter(cell ->
                 isReachedByBombHorizontal(cell, location) &&
-                isReachedByBombVertical(cell, location))
+                        isReachedByBombVertical(cell, location))
                 .forEach(Cell::empty);
+        return enemies;
     }
 
     private boolean isReachedByBombHorizontal(Cell cell, Cell bombCell){
