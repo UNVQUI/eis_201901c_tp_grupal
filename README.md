@@ -16,7 +16,7 @@ tEjercitar la escritura de código en ambientes colaborativos utilizando una met
 Nro | Nombre       		| Legajo | Mail
 ----|-------------------|--------|------
 1   |              		|        |
-2   |              		|        |
+2   |Uriel Quevedo 		|  36062 |quevedouriel3@gmail.com
 3   |Lautaro Laghezza	|  --    |lautariver35@gmail.com
 4   |NicolasAlvarez		|  33073 |nicolas.alv3@gmail.com
 5   | Jose Cassano 		|  34798 |cassanojoseluis@gmail.com
