@@ -1,4 +1,4 @@
 package bomberman;
 
-public class Enemy {
+public class Enemy implements CellEntity {
 }

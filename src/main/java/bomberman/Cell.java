@@ -1,7 +1,13 @@
 package bomberman;
 
 public class Cell {
-    public void put(Object entityToSet) {
+    private CellEntity entity;
 
+    public void put(CellEntity entity) {
+        if (this.entity == null) this.entity = entity;
+    }
+
+    public boolean has(CellEntity entity) {
+        return entity.equals(this.entity);
     }
 }
