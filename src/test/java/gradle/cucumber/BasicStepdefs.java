@@ -152,8 +152,38 @@ public class BasicStepdefs {
         Assert.assertTrue(bomberman.canJumpWalls);
     }
 
+
     @Then("^Bomberman cant jump walls")
-    public void cantJumpWalls(){
+    public void cantJumpWalls() {
         Assert.assertTrue(!bomberman.canJumpWalls);
+    }
+
+    @When("^Bagulaa is at (\\d+) cell distance to Bomberman")
+    public void bagulaaNearBomberman(int distance){
+        int bombermanLocation = 5;
+
+        cellLeft = new Cell(CellContent.ENEMY, bombermanLocation-distance, bombermanLocation, new Bagulaa());
+        cellRight = new Cell(CellContent.ENEMY, bombermanLocation+distance, bombermanLocation, new Bagulaa());
+        cellUp = new Cell(CellContent.ENEMY, bombermanLocation, bombermanLocation+distance, new Bagulaa());
+        cellDown = new Cell(CellContent.ENEMY, bombermanLocation, bombermanLocation-distance, new Bagulaa());
+    }
+
+    @Then("^Bagulaa deads")
+    public void bagulaaIsDead(){
+        Assert.assertTrue(cellLeft.enemy.isDead());
+        Assert.assertTrue(cellRight.enemy.isDead());
+        Assert.assertTrue(cellUp.enemy.isDead());
+        Assert.assertTrue(cellDown.enemy.isDead());
+    }
+
+    @Then("^Bomberman activate superBomb")
+    public void activateSuperBombAndBombRadiousIs5(){
+        BombermanGrid grid = new BombermanGrid(10, 10);
+        grid.setSuperBombRadious(5);
+        int radious = grid.getSuperBombRadious();
+        Assert.assertTrue(bomberman.activateSuperBomb);
+        Assert.assertEquals(5, radious);
+
+
     }
 }

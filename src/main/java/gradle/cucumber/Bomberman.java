@@ -6,6 +6,7 @@ public class Bomberman {
 
     public Cell location;
     public boolean canJumpWalls;
+    public boolean activateSuperBomb;
     private Boolean isDead = false;
 
     public void moveTo(Cell cell) {
@@ -32,4 +33,10 @@ public class Bomberman {
     public void activateWallsJump() {
         canJumpWalls = true;
     }
+
+    public void activateSuperBomb() {
+        activateSuperBomb = true;
+    }
+
+
 }

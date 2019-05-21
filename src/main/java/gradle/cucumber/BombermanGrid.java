@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class BombermanGrid {
     private final int width;
     private final int length;
-    private static final int bombRadious = 3;
+    private  int bombRadious = 3;
     private List<Cell> cells = new ArrayList<>();
 
     public BombermanGrid(int horizontalSize, int verticalSize){
@@ -39,4 +39,13 @@ public class BombermanGrid {
     private boolean isReachedByBombVertical(Cell cell, Cell bombCell){
         return Math.abs(cell.y - bombCell.y)<=bombRadious;
     }
+
+    public void setSuperBombRadious(int n){
+        this.bombRadious = n;
+    }
+
+    public int getSuperBombRadious(){
+        return this.bombRadious;
+    }
+
 }
