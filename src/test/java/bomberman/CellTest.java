@@ -33,9 +33,9 @@ public class CellTest {
     }
 
     @Test
-    public void puttingBombermanInAnCellWithAWallShouldNotIncludeIt() {
+    public void movingBombermanInAnCellWithAWallShouldNotMoveIt() {
         cell.put(wall);
-        cell.put(bomberman);
+        bomberman.moveTo(cell);
         assertFalse(cell.has(bomberman));
     }
 }
