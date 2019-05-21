@@ -142,8 +142,18 @@ public class BasicStepdefs {
         Assert.assertTrue(cellDown.enemy.isDead());
     }
 
+    @Then("^Proto Max Jr is alive")
+    public void protoMaxJrIsAlive(){
+        Assert.assertTrue(!cellLeft.enemy.isDead() || !cellRight.enemy.isDead() || !cellDown.enemy.isDead() || !cellUp.enemy.isDead() );
+    }
+
     @Then("^Bomberman can jump walls")
     public void canJumpWalls(){
         Assert.assertTrue(bomberman.canJumpWalls);
+    }
+
+    @Then("^Bomberman cant jump walls")
+    public void cantJumpWalls(){
+        Assert.assertTrue(!bomberman.canJumpWalls);
     }
 }

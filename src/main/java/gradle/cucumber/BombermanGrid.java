@@ -20,11 +20,15 @@ public class BombermanGrid {
     }
 
     public List<Enemy> bombDropped(Cell location) {
-        List<Enemy> enemies = cells.stream().filter(cell -> cell.enemy!=null).map(cell-> cell.enemy).collect(Collectors.toList());
-        cells.stream().filter(cell ->
+
+        List<Cell> cellsAffected = cells.stream().filter(cell ->
                 isReachedByBombHorizontal(cell, location) &&
-                        isReachedByBombVertical(cell, location))
-                .forEach(Cell::empty);
+                        isReachedByBombVertical(cell, location)).collect(Collectors.toList());
+
+        List<Enemy> enemies = cellsAffected.stream().filter(cell -> cell.enemy!=null).map(cell-> cell.enemy).collect(Collectors.toList());
+
+        cellsAffected.forEach(Cell::empty);
+
         return enemies;
     }
 
