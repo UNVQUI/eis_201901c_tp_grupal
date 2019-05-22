@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Bomberman movement" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-05-21T19:06:52" hostname="Nico-note" time="0.063">
-  <properties/>
-  <testcase name="Bomberman moves to an empty cell" classname="Bomberman movement" time="0.043"/>
-  <testcase name="Bomberman moves into a wall" classname="Bomberman movement" time="0.003"/>
-  <testcase name="Bomberman moves into an enemy" classname="Bomberman movement" time="0.014"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
