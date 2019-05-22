@@ -6,14 +6,11 @@ import java.util.List;
 public class Mapa {
 
     //MAPA TIENE QUE POSEER POR LO MENOS 1 CELDA
-
-    private Coordinate posicionBomberman;
     private List<List<Celda>> mapa; //Lista de Celdas
 
     //Crea un mapa por default de 5x5 con todas las celdas vacias
     public Mapa(){
         this.mapa = this.crearUnMapa(5,5);
-        this.posicionBomberman = new Coordinate(1,1);
     }
 
     private List<List<Celda>> crearUnMapa(int largo,int alto){
@@ -46,20 +43,7 @@ public class Mapa {
         return this.mapa.get(longitud).get(altura);
     }
 
-    public Celda getCeldaBomberman(){
-        return this.getCelda(this.posicionBomberman);
-    }
-
-    public void moverBomberman(Direction dir){
-
-        Coordinate nextCoord = dir.giveNextCoordinate(this.posicionBomberman);
-        if(this.getCelda(nextCoord).estaVacia()){
-            this.posicionBomberman = nextCoord;
-        }
-
-    }
-
-    public Coordinate getPosicionBomberman(){
-        return this.posicionBomberman;
+    public void colocarItem(Item item, Coordinate coordenada) {
+        this.getCelda(coordenada).setItem(item);
     }
 }

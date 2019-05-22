@@ -15,25 +15,52 @@ public class BombermanStepdefs {
     private Juego juego;
     private Mapa mapa;
 
-    @Given("^Un Juego que contiene mapa con Bomberman en su celda inicial")
+    @Given("^Un Juego con bomberman en una celda")
     public void crearJuegoMapaConBombermanEnUnaCeldaInicial(){
-        bomberman = new Bomberman();
-        mapa = new Mapa();
-        juego = new Juego(bomberman,mapa);
-        oldCoordinate = this.cloneCoordinate(mapa.getPosicionBomberman());
+        juego = new Juego();
+        bomberman = this.juego.getBomberman();
+        mapa = this.juego.getMapa();
+        oldCoordinate = this.cloneCoordinate(this.juego.getPosicionBomberman());
     }
 
     @When("^Bomberman se mueve hacia la celda vacia Norte")
     public void bombermanSeMueveHaciaLaCeldaVaciaNorte() {
         Direction actualDirection = new North();
-        mapa.moverBomberman(actualDirection);
+        this.juego.moverBomberman(actualDirection);
     }
 
     @Then("^Bomberman cambia su posicion")
     public void bombermanCambiaSuPosicion() {
-        Coordinate positionNow = mapa.getPosicionBomberman();
+        Coordinate positionNow = this.juego.getPosicionBomberman();
 
         assertNotEquals(oldCoordinate,positionNow);
+    }
+
+    @When("^Bomberman intenta moverse al Norte habiendo una pared$")
+    public void bombermanIntentaMoverseAlNorteHabiendoUnaPared() throws Throwable {
+        this.colocarUnItemYMoverloAUnaDireccion(new North(), new Pared());
+    }
+
+    @Then("^Bomberman se queda en el lugar$")
+    public void bombermarEstaEnLaPosicionPasada() throws Throwable {
+        assertEquals(this.oldCoordinate, this.juego.getPosicionBomberman());
+    }
+
+    @When("^Bomberman intenta moverse al Norte habiendo un enemigo$")
+    public  void bombermanIntentaMoverseAlNorteHabiendoEnemigo() throws  Throwable {
+        this.colocarUnItemYMoverloAUnaDireccion(new North(), new Enemigo());
+    }
+
+    @Then("^Bomberman muere$")
+    public void bombermanEstaMuerto(){
+        assertTrue(this.bomberman.siEstaMuerto());
+    }
+
+    private void colocarUnItemYMoverloAUnaDireccion(Direction direccion, Item item) {
+        Coordinate posicionActual = this.juego.getPosicionBomberman();
+        this.oldCoordinate = posicionActual;
+        this.mapa.colocarItem(item, direccion.giveNextCoordinate(posicionActual));
+        this.juego.moverBomberman(direccion);
     }
 
     private Coordinate cloneCoordinate(Coordinate actual) {

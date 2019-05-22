@@ -2,14 +2,21 @@ package Bomberman;
 
 public class Celda {
 
-    private EstadoCelda estadoCelda;
-
+    private Item item;
 
     public Celda(){
-        this.estadoCelda = new CeldaVacia();
+        this.item = new Vacio();
     }
 
-    public boolean estaVacia(){
-        return estadoCelda.estaVacia();
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public void moverABomberman(Juego juego, Coordinate hacia) {
+        this.item.bombermanSeMueve(juego, hacia);
+    }
+
+    public Item getItem() {
+        return item;
     }
 }
