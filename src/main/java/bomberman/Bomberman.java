@@ -1,8 +1,9 @@
 package bomberman;
 
 public class Bomberman implements CellEntity{
-    Cell actualCell = new Cell();
-    Boolean alive = true;
+
+    private Cell actualCell = new Cell();
+    private Boolean alive = true;
 
     public Bomberman() {
         actualCell.put(this);
@@ -30,5 +31,13 @@ public class Bomberman implements CellEntity{
 
     public void kill() {
         this.alive = false;
+    }
+
+    public void dropBomb(Bomb bomb){
+        actualCell.put(bomb);
+    }
+
+    public Cell getActualCell() {
+        return actualCell;
     }
 }

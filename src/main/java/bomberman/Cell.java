@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
+
     private List<CellEntity> entityList = new ArrayList<CellEntity>();
 
     public void put(CellEntity entity) {
@@ -24,4 +25,6 @@ public class Cell {
     private void remove(CellEntity entity) {
         entityList.remove(entity);
     }
+
+    public List<CellEntity> getEntities(){ return entityList; }
 }

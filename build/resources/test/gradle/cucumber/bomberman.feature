@@ -14,4 +14,3 @@ Feature: Bomberman movement
     Given Enemy in contingent cell
     When Bomberman moves to contingent cell
     Then Bomberman is dead
-
