@@ -5,6 +5,13 @@ import java.util.List;
 
 public class Cell {
     private List<CellEntity> entityList = new ArrayList<CellEntity>();
+    private GameMap map;
+
+    public Cell() {}
+
+    public Cell(GameMap map) {
+        this.map = map;
+    }
 
     public void put(CellEntity entity) {
         entityList.add(entity);
@@ -23,5 +30,9 @@ public class Cell {
 
     private void remove(CellEntity entity) {
         entityList.remove(entity);
+    }
+
+    public Cell cellAt(Direction direction) {
+        return map.getCellAt(new Position(1, 0));
     }
 }
