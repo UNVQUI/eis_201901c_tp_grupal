@@ -15,8 +15,4 @@ public class Celda {
     public void moverABomberman(Juego juego, Coordinate hacia) {
         this.item.bombermanSeMueve(juego, hacia);
     }
-
-    public Item getItem() {
-        return item;
-    }
 }
