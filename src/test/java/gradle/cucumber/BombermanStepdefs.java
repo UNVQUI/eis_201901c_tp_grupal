@@ -1,9 +1,12 @@
 package gradle.cucumber;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import Bomberman.*;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -14,6 +17,7 @@ public class BombermanStepdefs {
     private Coordinate oldCoordinate;
     private Juego juego;
     private Mapa mapa;
+    private List<Celda> celdasAlRededorDeAlgo;
 
     @Given("^Un Juego con bomberman en una celda")
     public void crearJuegoMapaConBombermanEnUnaCeldaInicial(){
@@ -52,10 +56,34 @@ public class BombermanStepdefs {
     }
 
     @Then("^Bomberman muere$")
-    public void bombermanEstaMuerto(){
+    public void bombermanEstaMuerto() throws  Throwable {
         assertTrue(this.bomberman.siEstaMuerto());
     }
 
+    @When("^Bomberman pone una bomba rodeado de paredes de melamina$")
+    public void bombermanPonerUnaBombaYEstaRodeadoDeParadesDeMelamina() throws  Throwable {
+        Coordinate posicionActual = this.juego.getPosicionBomberman();
+        this.mapa.colocarItemAlRededorDe(new Pared(), posicionActual);
+        this.celdasAlRededorDeAlgo = this.mapa.getCeldasAlRededorDe(posicionActual);
+
+        assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
+
+        this.juego.bombermanPonerBomba();
+    }
+
+    @And("^Pasa \"([^\"]*)\" ticks$")
+    public void pasan3Ticks(String integerValue) throws Throwable {
+        this.juego.correnNTicks(Integer.parseInt(integerValue));
+    }
+
+    @Then("^La Bomba explota rompiendo paredes de melamina en un radio de 3 casilleros$")
+    public void lasParedesDeLaminaNoExistenMas() throws Throwable {
+        assertTrue(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
+    }
+
+    private boolean checkearSiLasCeldasAlRededorDeAlgoEstanVacias() {
+        return this.celdasAlRededorDeAlgo.stream().allMatch( c -> c.estaVacio());
+    }
     private void colocarUnItemYMoverloAUnaDireccion(Direction direccion, Item item) {
         Coordinate posicionActual = this.juego.getPosicionBomberman();
         this.oldCoordinate = posicionActual;

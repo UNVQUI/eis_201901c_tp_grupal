@@ -15,11 +15,11 @@ Feature: Bomberman
        When Bomberman intenta moverse al Norte habiendo un enemigo
        Then Bomberman muere
 
-    #Scenario: Bomberman pone una bomba y destruye paredes de melamina
-    #   Given Un Juego con bomberman en una celda
-    #   When Bomberman pone una bomba rodeado de paredes de melamina
-    #   And Pasa "3" ticks
-    #   Then La Bomba explota rompiendo paredes de melamina en un radio de 3 casilleros
+    Scenario: Bomberman pone una bomba y destruye paredes de melamina
+       Given Un Juego con bomberman en una celda
+       When Bomberman pone una bomba rodeado de paredes de melamina
+       And Pasa "3" ticks
+       Then La Bomba explota rompiendo paredes de melamina en un radio de 3 casilleros
 
     #Scenario: Bomberman pone una bomba y mata al enemigo que entra en su onda expansiva
     #   Given Un Juego con bomberman en una celda

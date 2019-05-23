@@ -5,4 +5,9 @@ public class Pared implements Item{
     public void bombermanSeMueve(Juego juego, Coordinate coordenadaAIr) {
 
     }
+
+    @Override
+    public boolean estaVacio() {
+        return false;
+    }
 }

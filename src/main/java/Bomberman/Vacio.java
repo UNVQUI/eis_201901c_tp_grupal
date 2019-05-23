@@ -6,4 +6,9 @@ public class Vacio implements Item {
     public void bombermanSeMueve(Juego juego, Coordinate coordenadaAIr) {
         juego.setPosicionBomberman(coordenadaAIr);
     }
+
+    @Override
+    public boolean estaVacio() {
+        return true;
+    }
 }

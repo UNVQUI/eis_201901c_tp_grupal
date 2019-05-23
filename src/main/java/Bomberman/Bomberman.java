@@ -15,4 +15,10 @@ public class Bomberman {
     public void morir() {
         this.estaVivo = false;
     }
+
+    public void accionBomba(Juego juego) {
+        if(this.estaVivo){
+            juego.bombermanDejaUnaBomba();
+        }
+    }
 }
