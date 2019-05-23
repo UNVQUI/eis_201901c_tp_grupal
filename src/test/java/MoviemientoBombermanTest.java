@@ -25,6 +25,6 @@ public class MoviemientoBombermanTest extends TestCase {
         this.mapa.colocarItem(new Enemigo(), coordendaAlNorte);
         this.juego.moverBomberman(direction);
 
-        assertEquals(true, this.juego.getBomberman().siEstaMuerto());
+        assertTrue(this.juego.getBomberman().siEstaMuerto());
     }
 }

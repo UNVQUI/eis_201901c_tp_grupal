@@ -27,9 +27,9 @@ public class BombermanStepdefs {
         oldCoordinate = this.cloneCoordinate(this.juego.getPosicionBomberman());
     }
 
-    @When("^Bomberman se mueve hacia la celda vacia Norte")
-    public void bombermanSeMueveHaciaLaCeldaVaciaNorte() {
-        Direction actualDirection = new North();
+    @When("^Bomberman se mueve hacia la celda vacia (Este|Oeste|Sur|Norte)")
+    public void bombermanSeMueveHaciaLaCeldaVaciaNorte(String dirString) {
+        Direction actualDirection = this.castDirection(dirString);
         this.juego.moverBomberman(actualDirection);
     }
 
@@ -40,9 +40,10 @@ public class BombermanStepdefs {
         assertNotEquals(oldCoordinate,positionNow);
     }
 
-    @When("^Bomberman intenta moverse al Norte habiendo una pared$")
-    public void bombermanIntentaMoverseAlNorteHabiendoUnaPared() throws Throwable {
-        this.colocarUnItemYMoverloAUnaDireccion(new North(), new Pared());
+    @When("^Bomberman intenta moverse al (Este|Oeste|Sur|Norte) habiendo una pared$")
+    public void bombermanIntentaMoverseAlNorteHabiendoUnaPared(String dirString) throws Throwable {
+        Direction dir = this.castDirection(dirString);
+        this.colocarUnItemYMoverloAUnaDireccion(dir, new Pared());
     }
 
     @Then("^Bomberman se queda en el lugar$")
@@ -85,9 +86,10 @@ public class BombermanStepdefs {
         this.bombermanPoneBombaYEstaRodeadoDe(new ParedAcero());
     }
 
-    @Then("^La Bomba explita sin romper esas paredes de acero$")
+    @Then("^La Bomba explota sin romper esas paredes de acero$")
     public void noSeRompeNingunaParedDeAcero() throws  Throwable {
         assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
+
     }
 
     private void bombermanPoneBombaYEstaRodeadoDe(Item item) {
@@ -113,35 +115,6 @@ public class BombermanStepdefs {
     private Coordinate cloneCoordinate(Coordinate actual) {
         return new Coordinate(actual.getX(),actual.getY());
     }
-
-    /*
-    @Given("^Bomberman")
-    public void newBomberman() throws Throwable {
-        bomberman = new Bomberman();
-        oldCoordinate = this.cloneCoordinate(mapa.getCoordinate());
-    }
-
-    @When("^Lo muevo de celda hacia el (Norte|Sur|Este|Oeste)")
-    public void moveToNextCell(String direccion) throws Throwable
-    {
-        Direction actualDirection = this.castDirection(direccion);
-        bomberman.move(actualDirection);
-    }
-
-
-
-    @Then("^bomberman esta en la proxima celda al (Norte|Sur|Este|Oeste)")
-    public void getCoordinate(String direction) throws Throwable {
-        Coordinate actual = bomberman.getCoordinate();
-        Coordinate expected = this.getExpectedCoordinate(direction,oldCoordinate);
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-
-
-
-
 
     private Coordinate getExpectedCoordinate(String direction,Coordinate actual) {
         switch(direction) {
@@ -180,6 +153,6 @@ public class BombermanStepdefs {
                 throw new IllegalStateException("Unexpected value: " + direccion);
         }
     }
-*/
+
 
 }

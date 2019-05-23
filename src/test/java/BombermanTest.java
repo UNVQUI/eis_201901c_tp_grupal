@@ -5,13 +5,11 @@ import org.junit.Test;
 
 public class BombermanTest extends TestCase {
 
-    private Mapa mapa;
     private Juego juego;
     @Before
     public void setUp(){
 
         this.juego = new Juego();
-        this.mapa = this.juego.getMapa();
 
     }
 
