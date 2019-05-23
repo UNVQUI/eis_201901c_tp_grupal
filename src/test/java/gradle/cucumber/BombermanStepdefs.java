@@ -61,14 +61,8 @@ public class BombermanStepdefs {
     }
 
     @When("^Bomberman pone una bomba rodeado de paredes de melamina$")
-    public void bombermanPonerUnaBombaYEstaRodeadoDeParadesDeMelamina() throws  Throwable {
-        Coordinate posicionActual = this.juego.getPosicionBomberman();
-        this.mapa.colocarItemAlRededorDe(new Pared(), posicionActual);
-        this.celdasAlRededorDeAlgo = this.mapa.getCeldasAlRededorDe(posicionActual);
-
-        assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
-
-        this.juego.bombermanPonerBomba();
+    public void bombermanPoneUnaBombaYEstaRodeadoDeParadesDeMelamina() throws  Throwable {
+        this.bombermanPoneBombaYEstaRodeadoDe(new Pared());
     }
 
     @And("^Pasa \"([^\"]*)\" ticks$")
@@ -76,9 +70,24 @@ public class BombermanStepdefs {
         this.juego.correnNTicks(Integer.parseInt(integerValue));
     }
 
-    @Then("^La Bomba explota rompiendo paredes de melamina en un radio de 3 casilleros$")
+    @Then("^La Bomba explota dejando vacio las celdas en un radio de 3 casilleros$")
     public void lasParedesDeLaminaNoExistenMas() throws Throwable {
         assertTrue(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
+    }
+
+    @When("^Bomberman pone una bomba rodeado de enemigos$")
+    public void bombermanPoneUnaBombaYEstaRodeadoDeEnemigos() throws Throwable {
+        this.bombermanPoneBombaYEstaRodeadoDe(new Enemigo());
+    }
+
+    private void bombermanPoneBombaYEstaRodeadoDe(Item item) {
+        Coordinate posicionActual = this.juego.getPosicionBomberman();
+        this.mapa.colocarItemAlRededorDe(item, posicionActual);
+        this.celdasAlRededorDeAlgo = this.mapa.getCeldasAlRededorDe(posicionActual);
+
+        assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
+
+        this.juego.bombermanPonerBomba();
     }
 
     private boolean checkearSiLasCeldasAlRededorDeAlgoEstanVacias() {
