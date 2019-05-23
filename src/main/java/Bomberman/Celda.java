@@ -40,6 +40,6 @@ public class Celda {
     }
 
     public void explotar() {
-        this.item = new Vacio();
+        this.item.explote(this);
     }
 }

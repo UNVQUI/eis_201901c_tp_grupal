@@ -1,6 +1,6 @@
 package Bomberman;
 
-public class Vacio implements Item {
+public class Vacio extends Item {
 
     @Override
     public void bombermanSeMueve(Juego juego, Coordinate coordenadaAIr) {

@@ -1,13 +1,6 @@
 package Bomberman;
 
-public class Pared implements Item{
+public class Pared extends Item{
     @Override
-    public void bombermanSeMueve(Juego juego, Coordinate coordenadaAIr) {
-
-    }
-
-    @Override
-    public boolean estaVacio() {
-        return false;
-    }
+    public void bombermanSeMueve(Juego juego, Coordinate coordenadaAIr) {}
 }

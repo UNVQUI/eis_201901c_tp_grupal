@@ -80,6 +80,16 @@ public class BombermanStepdefs {
         this.bombermanPoneBombaYEstaRodeadoDe(new Enemigo());
     }
 
+    @When("^Bomberman pone una bomba rodeada de paredes de acero$")
+    public void bomberPoneUnaBombaYEstaRodeadoDeParedesDeAcero() throws  Throwable {
+        this.bombermanPoneBombaYEstaRodeadoDe(new ParedAcero());
+    }
+
+    @Then("^La Bomba explita sin romper esas paredes de acero$")
+    public void noSeRompeNingunaParedDeAcero() throws  Throwable {
+        assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
+    }
+
     private void bombermanPoneBombaYEstaRodeadoDe(Item item) {
         Coordinate posicionActual = this.juego.getPosicionBomberman();
         this.mapa.colocarItemAlRededorDe(item, posicionActual);
