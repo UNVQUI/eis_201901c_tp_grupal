@@ -183,7 +183,5 @@ public class BasicStepdefs {
         int radious = grid.getSuperBombRadious();
         Assert.assertTrue(bomberman.activateSuperBomb);
         Assert.assertEquals(5, radious);
-
-
     }
 }
