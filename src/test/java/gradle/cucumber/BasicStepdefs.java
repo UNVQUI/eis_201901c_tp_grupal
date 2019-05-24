@@ -134,8 +134,26 @@ public class BasicStepdefs {
         cellDown = new Cell(CellContent.ENEMY, bombermanLocation, bombermanLocation-distance, new ProtoMaxJr());
     }
 
+    @When("^Proto Max Units is at (\\d+) cell distance to Bomberman")
+    public void protoMaxUnitsNearBomberman(int distance){
+        int bombermanLocation = 5;
+
+        cellLeft = new Cell(CellContent.ENEMY, bombermanLocation-distance, bombermanLocation, new ProtoMaxUnit());
+        cellRight = new Cell(CellContent.ENEMY, bombermanLocation+distance, bombermanLocation, new ProtoMaxUnit());
+        cellUp = new Cell(CellContent.ENEMY, bombermanLocation, bombermanLocation+distance, new ProtoMaxUnit());
+        cellDown = new Cell(CellContent.ENEMY, bombermanLocation, bombermanLocation-distance, new ProtoMaxUnit());
+    }
+
     @Then("^Proto Max Jr deads")
     public void protoMaxJrIsDead(){
+        Assert.assertTrue(cellLeft.enemy.isDead());
+        Assert.assertTrue(cellRight.enemy.isDead());
+        Assert.assertTrue(cellUp.enemy.isDead());
+        Assert.assertTrue(cellDown.enemy.isDead());
+    }
+
+    @Then("^Proto Max Units deads")
+    public void protoMaxUnitsIsDead(){
         Assert.assertTrue(cellLeft.enemy.isDead());
         Assert.assertTrue(cellRight.enemy.isDead());
         Assert.assertTrue(cellUp.enemy.isDead());
@@ -150,6 +168,11 @@ public class BasicStepdefs {
     @Then("^Bomberman can jump walls")
     public void canJumpWalls(){
         Assert.assertTrue(bomberman.canJumpWalls);
+    }
+
+    @Then("^Bomberman can drop multiple bombs")
+    public void canDropMultipleBombs(){
+        Assert.assertTrue(bomberman.canDropMultipleBombs);
     }
 
     @Then("^Bomberman cant jump walls")
