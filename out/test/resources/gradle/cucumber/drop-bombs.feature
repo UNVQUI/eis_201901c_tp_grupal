@@ -40,3 +40,13 @@ Feature: Bomberman drops a bomb
     When Bomberman is at 4 cell distance to an enemy
     And Bomberman drops a bomb
     Then The enemy is not killed
+
+  Scenario: the expansive wave reaches a steel wall
+    When Bomberman is at 1 cell distance to a steel wall
+    And Bomberman drops a bomb
+    Then The wall is not destroyed
+
+  Scenario: the expansive wave reaches a steel wall
+    When Bomberman is at 4 cell distance to a steel wall
+    And Bomberman drops a bomb
+    Then The wall is not destroyed
