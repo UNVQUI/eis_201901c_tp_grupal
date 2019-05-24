@@ -165,14 +165,26 @@ public class BasicStepdefs {
         Assert.assertTrue(!cellLeft.enemy.isDead() || !cellRight.enemy.isDead() || !cellDown.enemy.isDead() || !cellUp.enemy.isDead() );
     }
 
+    @Then("^Proto Max Units is alive")
+    public void protoMaxUnitIsAlive(){
+        Assert.assertTrue(!cellLeft.enemy.isDead() || !cellRight.enemy.isDead() || !cellDown.enemy.isDead() || !cellUp.enemy.isDead() );
+    }
+
     @Then("^Bomberman can jump walls")
     public void canJumpWalls(){
         Assert.assertTrue(bomberman.canJumpWalls);
     }
 
-    @Then("^Bomberman can drop multiple bombs")
-    public void canDropMultipleBombs(){
-        Assert.assertTrue(bomberman.canDropMultipleBombs);
+    @Then("^Bomberman either can jump walls or Bomber can drop multiple bombs")
+    public void eitherCanJumpWallNorDropMultipleBombs(){
+        Assert.assertTrue( bomberman.canJumpWalls || bomberman.canDropMultipleBombs );
+        Assert.assertFalse( bomberman.canJumpWalls && bomberman.canDropMultipleBombs );
+    }
+
+    @Then("^Bomberman neither can jump walls nor Bomber can drop multiple bombs")
+    public void neitherCanJumpWallNorDropMultipleBombs(){
+        Assert.assertFalse( bomberman.canJumpWalls || bomberman.canDropMultipleBombs );
+        Assert.assertFalse( bomberman.canJumpWalls && bomberman.canDropMultipleBombs );
     }
 
     @Then("^Bomberman cant jump walls")

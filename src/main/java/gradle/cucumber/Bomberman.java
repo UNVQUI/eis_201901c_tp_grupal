@@ -37,4 +37,9 @@ public class Bomberman {
     public void activateMultipleBombs() {
         canDropMultipleBombs = true;
     }
+
+    public void clean() {
+        canJumpWalls = false;
+        canDropMultipleBombs = false;
+    }
 }
