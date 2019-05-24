@@ -3,6 +3,8 @@ package Bomberman;
 public class Bomberman {
 
     private Boolean estaVivo;
+    private Direction dondeMira;
+    private EstadoPoder miPoder = new EstadoPoderNoPuedeNada();
 
     public Bomberman () {
         this.estaVivo = true;
@@ -18,7 +20,13 @@ public class Bomberman {
 
     public void accionBomba(Juego juego) {
         if(this.estaVivo){
-            juego.bombermanDejaUnaBomba();
+            this.miPoder.accionBomba(juego);
+        }
+    }
+
+    public void obtenerPoder(EstadoPoder estadoPoder){
+        if(this.estaVivo) {
+            this.miPoder = estadoPoder;
         }
     }
 }

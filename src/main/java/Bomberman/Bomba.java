@@ -12,6 +12,12 @@ public class Bomba {
         this.ticks = 3;
     }
 
+    public Bomba(Coordinate posicionBomba, Juego juego,int ticks){
+        this.coordenada = posicionBomba;
+        this.juego = juego;
+        this.ticks = ticks;
+    }
+
     public void decrecerTicks(int t) {
         this.ticks -= t;
         if(this.ticks <= 0) {

@@ -1,5 +1,7 @@
 package Bomberman;
 
+import java.util.List;
+
 public class Celda {
 
     private Item item;
@@ -42,4 +44,25 @@ public class Celda {
     public void explotar() {
         this.item.explote(this);
     }
+
+    public boolean estaEnElSegmento(List<Coordinate> segmento){
+
+        return segmento.contains(this.coordenada);
+    }
+
+    public Coordinate getCoordenada(){
+        return this.coordenada;
+    }
+
+    public boolean hayPoder(){ return this.item.hayPoder();}
+
+    public boolean hayPoderLanzarBombas(){return this.item.hayPoderLanzarBombas();}
+
+    public boolean hayPoderSaltarPared(){return this.item.hayPoderSaltarPared();}
+
+    public boolean hayPoderSaltarYLanzar(){return this.item.hayPoderSaltarYLanzar();}
+
+    public boolean hayPoderSoltarVariasBombas(){return this.item.hayPoderSoltarVariasBombas();}
+
+    public boolean hayEnemigo(){return this.item.hayEnemigo();}
 }

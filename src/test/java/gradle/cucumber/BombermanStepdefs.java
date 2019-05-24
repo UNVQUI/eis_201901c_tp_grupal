@@ -5,6 +5,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import Bomberman.*;
+import cucumber.api.java.mk_latn.No;
 
 import java.util.List;
 
@@ -91,6 +92,22 @@ public class BombermanStepdefs {
         assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
 
     }
+    @When("^Bomberman pone una bomba con \"([^\"]*)\" al lado$")
+    public void bombermanPoneUnaBombaConUnTipoDeEnemigoAlLado(String enemigoString){
+        Enemigo enemigo = this.castEnemigo(enemigoString);
+        this.bombermanPoneBombaYEstaRodeadoDe(enemigo);
+    }
+    @Then("^La Bomba explota donde estaba \"([^\"]*)\" soltando poder \"([^\"]*)\" en la celda")
+    public void seMuereEnemigoYDejaCeldaConPoder(String enemigoStr,String poderStr){
+        Poder poder = this.castPoder(poderStr);
+        Enemigo enemigo= this.castEnemigo(enemigoStr);
+        Coordinate coordenadaDondeEstabaEnemigo = new North().giveNextCoordinate(juego.getPosicionBomberman());
+        Celda celdaDondeEstabaEnemigo = this.mapa.getCelda(coordenadaDondeEstabaEnemigo);
+        assertTrue(celdaDondeEstabaEnemigo.hayPoder());
+        assertFalse(celdaDondeEstabaEnemigo.hayEnemigo());
+        assertTrue(celdaDondeEstabaEnemigo.hayPoderLanzarBombas());
+
+    }
 
     private void bombermanPoneBombaYEstaRodeadoDe(Item item) {
         Coordinate posicionActual = this.juego.getPosicionBomberman();
@@ -151,6 +168,36 @@ public class BombermanStepdefs {
                 return new West();
             default:
                 throw new IllegalStateException("Unexpected value: " + direccion);
+        }
+    }
+
+    private Enemigo castEnemigo(String enemigo) {
+        switch(enemigo) {
+            case "Enemigo":
+                return new Enemigo();
+            case "Bagulaa":
+                return new Bagulaa();
+            case "ProtoMaxJr":
+                return new ProtoMaxJr();
+            case "ProtoMaxUnits":
+                return new ProtoMaxUnits();
+            default:
+                throw new IllegalStateException("Unexpected value: " + enemigo);
+        }
+    }
+
+    private Poder castPoder(String poder) {
+        switch(poder) {
+            case "lanzarBombas":
+                return new PoderLanzarBombas();
+            case "saltarPared":
+                return new PoderSaltarPared();
+            case "saltarYLanzar":
+                return new PoderSaltarYLanzar();
+            case "SoltarVariasBombas":
+                return new PoderSoltarVariasBombas();
+            default:
+                throw new IllegalStateException("Unexpected value: " + poder);
         }
     }
 

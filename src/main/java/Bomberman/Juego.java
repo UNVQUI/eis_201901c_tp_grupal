@@ -8,6 +8,7 @@ public class Juego {
     private Bomberman bomberman;
     private Mapa mapa;
     private Coordinate posicionBomberman;
+    private Direction dondeMiraBomberman;
     private List<Bomba> bombas;
 
     public Juego(){
@@ -15,6 +16,7 @@ public class Juego {
         this.bomberman = new Bomberman();
         this.mapa = new Mapa();
         this.posicionBomberman = new Coordinate(1,1);
+        this.dondeMiraBomberman = new North();
     }
 
     public Mapa getMapa() {
@@ -26,8 +28,11 @@ public class Juego {
     }
 
     public void moverBomberman(Direction dir){
-        Coordinate nextCoord = dir.giveNextCoordinate(this.getPosicionBomberman());
-        this.mapa.getCelda(nextCoord).moverABomberman(this, nextCoord);
+        //REFACTOR SI SE LLEGA
+        if(! this.bomberman.siEstaMuerto()){
+            Coordinate nextCoord = dir.giveNextCoordinate(this.getPosicionBomberman());
+            this.mapa.getCelda(nextCoord).moverABomberman(this, nextCoord);
+        }
     }
 
     public Celda getCeldaBomberman(){
@@ -58,4 +63,28 @@ public class Juego {
         List<Celda> celdasAExplotar = this.mapa.getCeldasAlRededorDe(bomba.getCoordenada());
         celdasAExplotar.forEach(celda -> celda.explotar());
     }
+
+    public void darPoderABomberman(Poder poder){
+
+        bomberman.obtenerPoder(poder.crearEstadoPoder());
+    }
+
+    public void bombermanLanzaUnaBomba(int alcance, int velocidadExplosion){
+
+        List<Celda> segmentoDeCeldas = this.mapa.getSegmentoDeCeldas(this.dondeMiraBomberman,this.posicionBomberman,alcance);
+
+        Coordinate dondeCaeBomba = mapa.obtenerCeldaMasLejanaDelSegmento(this.posicionBomberman,segmentoDeCeldas).getCoordenada();
+
+        this.bombas.add(new Bomba(dondeCaeBomba,this,velocidadExplosion));
+
+    }
+
+    public void cambiarDondeMiraBomberman(Direction dir){
+        //REFACTORIZAR
+        if(!bomberman.siEstaMuerto()){
+            this.dondeMiraBomberman = dir;
+        }
+
+    }
+
 }
