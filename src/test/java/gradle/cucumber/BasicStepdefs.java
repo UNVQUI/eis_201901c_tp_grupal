@@ -1,5 +1,7 @@
 package gradle.cucumber;
 
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
 
@@ -16,4 +18,5 @@ public class BasicStepdefs {
     public void all_run(){
         assertTrue(true);
     }
+
 }
