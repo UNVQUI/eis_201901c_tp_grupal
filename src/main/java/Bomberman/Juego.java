@@ -63,7 +63,7 @@ public class Juego {
 
     public void estallarBomba(Bomba bomba) {
         List<Celda> celdasAExplotar = this.mapa.getCeldasAlRededorDe(bomba.getCoordenada());
-        celdasAExplotar.forEach(celda -> celda.explotar());
+        celdasAExplotar.forEach(celda -> celda.explotar(this));
     }
 
     public void darPoderABomberman(Poder poder){

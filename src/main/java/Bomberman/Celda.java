@@ -6,6 +6,7 @@ public class Celda {
 
     private Item item;
     private Coordinate coordenada;
+    private Poder poder;
 
     public Celda(Coordinate coordenada){
         this.item = new Vacio();
@@ -17,7 +18,7 @@ public class Celda {
     }
 
     public void moverABomberman(Juego juego, Coordinate hacia) {
-        this.item.bombermanSeMueve(juego, hacia);
+        juego.getBomberman().moverse(this.item,juego,hacia);
     }
 
     public boolean esLaCoordenadaCorrecta(Coordinate c) {
@@ -41,8 +42,8 @@ public class Celda {
         return this.item.estaVacio();
     }
 
-    public void explotar() {
-        this.item.explote(this);
+    public void explotar(Juego juego) {
+        this.item.explote(this,juego);
     }
 
     public boolean estaEnElSegmento(List<Coordinate> segmento){
@@ -65,4 +66,5 @@ public class Celda {
     public boolean hayPoderSoltarVariasBombas(){return this.item.hayPoderSoltarVariasBombas();}
 
     public boolean hayEnemigo(){return this.item.hayEnemigo();}
+
 }

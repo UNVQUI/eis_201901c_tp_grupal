@@ -39,4 +39,8 @@ public class Bomberman {
     public boolean tienePoderSaltarYLanzarBombas(){return miPoder.tienePoderSaltarYLanzarBombas();}
 
     public boolean tienePoderSoltarVariasBombas(){return miPoder.tienePoderSoltarVariasBombas();}
+
+    public void moverse(Item item, Juego juego, Coordinate hacia) {
+        miPoder.moverme(item,juego,hacia);
+    }
 }

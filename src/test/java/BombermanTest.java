@@ -41,5 +41,23 @@ public class BombermanTest extends TestCase {
 
         assertEquals(this.juego.getPosicionBomberman(),new Coordinate(0,1));
     }
+    @Test
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanSaltaUnaPardDeMetal(){
+        Enemigo protoMaxJr = new ProtoMaxJr();
+        Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
+        Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionViejaDeBomberman);
+        Coordinate coordenadaAlSurDeBomberman = new South().giveNextCoordinate(posicionViejaDeBomberman);
+
+        juego.getMapa().colocarItem(protoMaxJr,coordenadaAlNorteDeBomberman);
+
+        juego.bombermanDejaUnaBomba();
+        juego.getMapa().colocarItem(new ParedAcero(),coordenadaAlSurDeBomberman);
+        juego.correnNTicks(4);
+
+        juego.moverBomberman(new South());
+
+        assertEquals(juego.getPosicionBomberman(),coordenadaAlSurDeBomberman);
+        assertTrue(juego.getMapa().getCelda(coordenadaAlNorteDeBomberman).estaVacio());
+    }
 
 }
