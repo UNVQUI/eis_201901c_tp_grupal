@@ -1,5 +1,6 @@
 package bomberman;
 
+import bomberman.errors.CouldNotJump;
 import bomberman.errors.PowerNotFound;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ public class Bomberman implements CellEntity{
 
     private Cell actualCell = new Cell();
     private Boolean alive = true;
-    private List<BagulaaPower> powers = new ArrayList<>();
+    private List<CellEntity> powers = new ArrayList<>();
 
     public Bomberman() {
         actualCell.put(this);
@@ -57,7 +58,7 @@ public class Bomberman implements CellEntity{
         return actualCell;
     }
 
-    public void getPower(BagulaaPower power) {
+    public void getPower(CellEntity power) {
         this.powers.add(power);
     }
 
@@ -75,7 +76,18 @@ public class Bomberman implements CellEntity{
         return bomb;
     }
 
-    public boolean hasPower(BagulaaPower newPower) {
+    public boolean hasPower(CellEntity newPower) {
         return powers.stream().anyMatch(power -> power.equals(newPower));
+    }
+
+    public void jumpTo(Direction oneDirection) {
+        if (!hasPower(new ProtoMaxJrPower())) {
+            throw new PowerNotFound();
+        }
+        Cell destinyCell = this.actualCell.cellAt(oneDirection).cellAt(oneDirection);
+        if (destinyCell.blocksMovement()) {
+            throw new CouldNotJump();
+        }
+        moveTo(destinyCell);
     }
 }

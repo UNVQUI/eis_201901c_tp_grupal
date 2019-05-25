@@ -23,10 +23,14 @@ public class Cell {
     }
 
     public void moveToHere(Cell origin, Bomberman bomberman) {
-        if (entityList.stream().anyMatch(CellEntity::blocksMovement)) return;
+        if (blocksMovement()) return;
         origin.remove(bomberman);
         this.put(bomberman);
         entityList.forEach(entity -> entity.interactWith(bomberman));
+    }
+
+    boolean blocksMovement() {
+        return entityList.stream().anyMatch(CellEntity::blocksMovement);
     }
 
     void remove(CellEntity entity) {
