@@ -27,19 +27,18 @@ public class Bomb implements CellEntity{
 
     public void explode(Cell cell){
         cell.burnFromExplosion();
-        Arrays
-            .stream(Direction.values())
-            .forEach(direction -> {
-                try {
-                    Integer wavelength = 3;
-                    Cell directionCell = cell;
-                    while (wavelength > 0) {
-                        directionCell = directionCell.cellAt(direction);
-                        wavelength -= 1;
-                        directionCell.burnFromExplosion();
-                    }
-                } catch (CellNotFound error){}
-            });
+        for (Direction direction : Direction.values()) {
+            try {
+                int wavelength = 3;
+                Cell directionCell = cell;
+                while (wavelength > 0) {
+                    directionCell = directionCell.cellAt(direction);
+                    wavelength -= 1;
+                    directionCell.burnFromExplosion();
+                }
+            } catch (CellNotFound error) {
+            }
+        }
     }
 
     public void tick(Cell cell){
