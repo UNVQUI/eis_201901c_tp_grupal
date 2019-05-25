@@ -6,6 +6,13 @@ import java.util.List;
 public class Cell {
 
     private List<CellEntity> entityList = new ArrayList<CellEntity>();
+    private GameMap map;
+
+    public Cell() {}
+
+    public Cell(GameMap map) {
+        this.map = map;
+    }
 
     public void put(CellEntity entity) {
         entityList.add(entity);
@@ -27,4 +34,12 @@ public class Cell {
     }
 
     public List<CellEntity> getEntities(){ return entityList; }
+
+    public Cell cellAt(Direction direction) {
+        return map.getCellAt(direction.add(getPosition()));
+    }
+
+    private Position getPosition(){
+        return map.getPositionFrom(this);
+    }
 }

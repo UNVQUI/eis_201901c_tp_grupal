@@ -20,6 +20,7 @@ task cucumber() {
 }
 
 dependencies {
+    compile 'com.google.guava:guava:27.1-jre'
     testCompile 'org.assertj:assertj-core:3.9.0'
 
     testCompile 'io.cucumber:cucumber-java8:4.3.0'
