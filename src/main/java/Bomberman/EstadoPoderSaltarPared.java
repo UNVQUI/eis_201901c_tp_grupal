@@ -9,4 +9,9 @@ public class EstadoPoderSaltarPared extends EstadoPoder {
 
     @Override
     public boolean tienePoderSaltarPared(){return true;}
+
+    @Override
+    public void moverme( Item item ,Juego juego, Coordinate hacia) {
+        juego.setPosicionBomberman(hacia);
+    }
 }

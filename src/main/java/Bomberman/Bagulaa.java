@@ -9,7 +9,7 @@ public class Bagulaa extends Enemigo {
     }
 
     @Override
-    public void explote(Celda celda) {
+    public void explote(Celda celda, Juego juego) {
         celda.setItem(this.poder);
     }
 }

@@ -13,7 +13,7 @@ public class Vacio extends Item {
     }
 
     @Override
-    public void explote(Celda celda){
+    public void explote(Celda celda, Juego juego){
 
     }
 }

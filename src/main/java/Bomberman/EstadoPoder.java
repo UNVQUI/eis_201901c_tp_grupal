@@ -13,4 +13,9 @@ public abstract class EstadoPoder {
     public boolean tienePoderSaltarYLanzarBombas(){return this.tienePoderLanzarBombas() && this.tienePoderSaltarPared();}
 
     public boolean tienePoderSoltarVariasBombas(){return false;}
+
+    public void moverme(Item item ,Juego juego, Coordinate hacia){
+        item.bombermanSeMueve(juego,hacia);
+    }
+
 }
