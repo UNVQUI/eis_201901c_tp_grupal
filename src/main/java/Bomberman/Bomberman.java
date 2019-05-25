@@ -2,8 +2,8 @@ package Bomberman;
 
 public class Bomberman {
 
+    //REFACTOR SI SE LLEGA A UN ESTADOVIVO()
     private Boolean estaVivo;
-    private Direction dondeMira;
     private EstadoPoder miPoder = new EstadoPoderNoPuedeNada();
 
     public Bomberman () {

@@ -9,7 +9,7 @@ public class Mapa {
     //MAPA TIENE QUE POSEER POR LO MENOS 1 CELDA
     private List<Celda> mapa; //Lista de Celdas
 
-    //Crea un mapa por default de 5x5 con todas las celdas vacias
+    //Crea un mapa por default de 10x10 con todas las celdas vacias
     public Mapa(){
         this.mapa = this.crearUnMapa(10,10);
     }

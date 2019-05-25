@@ -96,8 +96,4 @@ public class Juego {
     public boolean noHayBombasActivas(){
         return this.bombas.isEmpty();
     }
-
-    public List<Bomba> getBombas(){
-        return this.bombas;
-    }
 }

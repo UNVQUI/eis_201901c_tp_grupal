@@ -23,7 +23,5 @@ public class Bomba {
         return this.coordenada;
     }
 
-    public int getTicks(){return ticks;}
-
     public boolean yaExploto(){return ticks <= 0;}
 }
