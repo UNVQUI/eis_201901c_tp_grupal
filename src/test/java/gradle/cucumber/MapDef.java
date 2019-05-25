@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MapDef implements En {
@@ -43,14 +43,20 @@ public class MapDef implements En {
                 gameMap.getEntityCell(entities.get(entityPointer)));
         When("Bomberman moves to-{int},{int}-", (Integer x, Integer y) ->
                 bomberman.moveTo(gameMap.getCellAt(new Position(x, y))));
-        Then("Bomberman has BagulaaPower", () ->
-                assertTrue(bomberman.hasPower(new BagulaaPower())));
-        And("Bomberman gets BagulaaPower", () ->
-                bomberman.getPower(new BagulaaPower()));
+        Then("Bomberman has {word}", (String thing) ->
+                assertTrue(bomberman.hasPower(getCellEntityFromString(thing))));
+        And("Bomberman gets {word}", (String thing) ->
+                bomberman.getPower(getCellEntityFromString(thing)));
         When("Bomberman throws Bomb to {word} -{int}- cells away as {word}",
                 (String direction, Integer distance, String entityPointer) -> {
             bomb = bomberman.dropBomb(Direction.valueOf(direction), distance);
             entities.put(entityPointer, bomb);
+        });
+        When("Bomberman jump to {word}", (String direction) -> {
+            bomberman.jumpTo(Direction.valueOf(direction));
+        });
+        Then("Bomberman is at-{int},{int}-", (Integer x, Integer y) -> {
+            assertEquals(new Position(x, y),gameMap.getPositionFrom(bomberman));
         });
     }
 
@@ -64,6 +70,8 @@ public class MapDef implements En {
         if(type.equals("SteelWall")) return new SteelWall();
         if(type.equals("Bagulaa")) return new Bagulaa();
         if(type.equals("BagulaaPower")) return new BagulaaPower();
+        if(type.equals("ProtoMaxJr")) return new ProtoMaxJr();
+        if(type.equals("ProtoMaxJrPower")) return new ProtoMaxJrPower();
         throw new RuntimeException(type + " Entity not defined in step definition");
     }
 }

@@ -23,6 +23,9 @@ public class GameMap {
     public Position getPositionFrom(Cell cell) {
         return map.inverse().get(cell);
     }
+    public Position getPositionFrom(CellEntity cellEntity) {
+        return getPositionFrom(getEntityCell(cellEntity));
+    }
 
     public Cell getEntityCell(CellEntity entity) {
         return map.values().stream()
