@@ -62,7 +62,7 @@ public class Bomberman implements CellEntity{
     }
 
     public Bomb dropBomb(Direction direction, int distance) {
-        if (powers.stream().noneMatch(power -> power.equals(new BagulaaPower()))) {
+        if (!hasPower(new BagulaaPower())) {
             throw new PowerNotFound();
         }
         Bomb bomb = new Bomb();
@@ -73,5 +73,9 @@ public class Bomberman implements CellEntity{
         }
         directionCell.put(bomb);
         return bomb;
+    }
+
+    public boolean hasPower(BagulaaPower newPower) {
+        return powers.stream().anyMatch(power -> power.equals(newPower));
     }
 }
