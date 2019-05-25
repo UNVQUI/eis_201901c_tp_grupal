@@ -22,4 +22,15 @@ public class GameMapTest {
     public void cellAtPos10HasCellAtPos00OnItsLeft() {
         assertEquals(map.getCellAt(new Position(0, 0)), map.getCellAt(new Position(1, 0)).cellAt(Direction.LEFT));
     }
+
+    @Test
+    public void cellAtPos00HasSameCellMakingARide() {
+        Cell cell00 = map.getCellAt(new Position(0, 0));
+        Cell actual = cell00
+                .cellAt(Direction.RIGHT)
+                .cellAt(Direction.DOWN)
+                .cellAt(Direction.LEFT)
+                .cellAt(Direction.UP);
+        assertEquals(cell00, actual);
+    }
 }
