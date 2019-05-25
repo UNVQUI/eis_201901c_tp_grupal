@@ -5,4 +5,5 @@ public class ProtoMaxJr extends Enemy {
     public void wasKilledBy(Bomberman bomberman) {
         bomberman.activateWallsJump();
     }
+
 }
