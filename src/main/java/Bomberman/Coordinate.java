@@ -53,4 +53,10 @@ public class Coordinate {
 
         return Math.abs(inicio.getX() - this.getX()) + Math.abs(inicio.getY() - this.getY()) ;
     }
+
+    public Coordinate obtenerCoordenadas(Direction dir,int longitudCeldas){
+        Coordinate result = new Coordinate(this.getX(),this.getY());
+        dir.moveNCoordinate(result,longitudCeldas);
+        return result;
+    }
 }

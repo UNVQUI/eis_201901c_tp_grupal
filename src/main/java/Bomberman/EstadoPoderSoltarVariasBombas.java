@@ -7,4 +7,7 @@ public class EstadoPoderSoltarVariasBombas extends EstadoPoder {
     public void accionBomba(Juego juego){
 
     }
+
+    @Override
+    public boolean tienePoderSoltarVariasBombas(){return true;}
 }

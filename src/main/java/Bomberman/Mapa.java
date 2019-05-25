@@ -11,7 +11,7 @@ public class Mapa {
 
     //Crea un mapa por default de 5x5 con todas las celdas vacias
     public Mapa(){
-        this.mapa = this.crearUnMapa(5,5);
+        this.mapa = this.crearUnMapa(10,10);
     }
 
     private List<Celda> crearUnMapa(int largo,int alto){

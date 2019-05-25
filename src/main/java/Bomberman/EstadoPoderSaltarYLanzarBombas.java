@@ -6,4 +6,9 @@ public class EstadoPoderSaltarYLanzarBombas extends EstadoPoderLanzarBombas {
         super(alcance,velocidadExplosion);
     }
 
+    @Override
+    public boolean tienePoderSaltarPared(){return true;}
+
+    @Override
+    public boolean tienePoderLanzarBombas(){return true;}
 }

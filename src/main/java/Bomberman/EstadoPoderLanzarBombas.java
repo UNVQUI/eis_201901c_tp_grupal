@@ -14,4 +14,7 @@ public class EstadoPoderLanzarBombas extends EstadoPoder{
     public void accionBomba(Juego juego){
         juego.bombermanLanzaUnaBomba(alcance,velocidadExplosion);
     }
+
+    @Override
+    public boolean tienePoderLanzarBombas(){return true;}
 }

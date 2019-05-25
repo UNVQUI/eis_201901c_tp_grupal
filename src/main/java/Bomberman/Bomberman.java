@@ -29,4 +29,14 @@ public class Bomberman {
             this.miPoder = estadoPoder;
         }
     }
+
+    public boolean noTieneNingunPoder(){return this.miPoder.noTieneNingunPoder();}
+
+    public boolean tienePoderLanzarBombas(){return miPoder.tienePoderLanzarBombas();}
+
+    public boolean tienePoderSaltarPared(){return miPoder.tienePoderSaltarPared();}
+
+    public boolean tienePoderSaltarYLanzarBombas(){return miPoder.tienePoderSaltarYLanzarBombas();}
+
+    public boolean tienePoderSoltarVariasBombas(){return miPoder.tienePoderSoltarVariasBombas();}
 }

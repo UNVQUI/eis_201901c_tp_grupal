@@ -6,4 +6,7 @@ public class EstadoPoderSaltarPared extends EstadoPoder {
     public void accionBomba(Juego juego){
         juego.bombermanDejaUnaBomba();
     }
+
+    @Override
+    public boolean tienePoderSaltarPared(){return true;}
 }

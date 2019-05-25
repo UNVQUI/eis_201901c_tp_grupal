@@ -2,6 +2,7 @@ package Bomberman;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Juego {
 
@@ -47,16 +48,17 @@ public class Juego {
         this.posicionBomberman = coordenadaAIr;
     }
 
-    public void bombermanPonerBomba() {
+    public void bombermanAccionarBomba() {
         this.bomberman.accionBomba(this);
     }
 
     public void bombermanDejaUnaBomba() {
-        this.bombas.add(new Bomba(this.getPosicionBomberman(), this));
+        this.bombas.add(new Bomba(this.getPosicionBomberman(), this,3));
     }
 
     public void correnNTicks(int ticks) {
         this.bombas.forEach(bomba -> bomba.decrecerTicks(ticks));
+        this.bombas = this.bombas.stream().filter(b -> !b.yaExploto()).collect(Collectors.toList());
     }
 
     public void estallarBomba(Bomba bomba) {
@@ -79,7 +81,7 @@ public class Juego {
 
     }
 
-    public void cambiarDondeMiraBomberman(Direction dir){
+    public void setDondeMiraBomberman(Direction dir){
         //REFACTORIZAR
         if(!bomberman.siEstaMuerto()){
             this.dondeMiraBomberman = dir;
@@ -87,4 +89,15 @@ public class Juego {
 
     }
 
+    public boolean hayBombaEnCoordenada(Coordinate c){
+        return this.bombas.stream().anyMatch(b -> b.getCoordenada().equals(c));
+    }
+
+    public boolean noHayBombasActivas(){
+        return this.bombas.isEmpty();
+    }
+
+    public List<Bomba> getBombas(){
+        return this.bombas;
+    }
 }
