@@ -6,10 +6,10 @@ public class Bomba {
     private Juego juego;
     private int ticks;
 
-    public Bomba(Coordinate posicionBomba, Juego juego) {
+    public Bomba(Coordinate posicionBomba, Juego juego,int ticks){
         this.coordenada = posicionBomba;
         this.juego = juego;
-        this.ticks = 3;
+        this.ticks = ticks;
     }
 
     public void decrecerTicks(int t) {
@@ -22,4 +22,6 @@ public class Bomba {
     public Coordinate getCoordenada() {
         return this.coordenada;
     }
+
+    public boolean yaExploto(){return ticks <= 0;}
 }

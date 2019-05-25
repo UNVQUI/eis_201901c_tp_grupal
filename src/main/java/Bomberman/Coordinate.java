@@ -47,4 +47,16 @@ public class Coordinate {
     public int getY(){
         return y;
     }
+
+    public int longitudCon(Coordinate inicio){
+    //CANTIDAD DE COORDENADAS RECTAS QUE TIENE DE DISTANCIA CON UNA COORDENADA
+
+        return Math.abs(inicio.getX() - this.getX()) + Math.abs(inicio.getY() - this.getY()) ;
+    }
+
+    public Coordinate obtenerCoordenadas(Direction dir,int longitudCeldas){
+        Coordinate result = new Coordinate(this.getX(),this.getY());
+        dir.moveNCoordinate(result,longitudCeldas);
+        return result;
+    }
 }

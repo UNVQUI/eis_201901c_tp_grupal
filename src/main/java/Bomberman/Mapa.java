@@ -9,9 +9,9 @@ public class Mapa {
     //MAPA TIENE QUE POSEER POR LO MENOS 1 CELDA
     private List<Celda> mapa; //Lista de Celdas
 
-    //Crea un mapa por default de 5x5 con todas las celdas vacias
+    //Crea un mapa por default de 10x10 con todas las celdas vacias
     public Mapa(){
-        this.mapa = this.crearUnMapa(5,5);
+        this.mapa = this.crearUnMapa(10,10);
     }
 
     private List<Celda> crearUnMapa(int largo,int alto){
@@ -44,5 +44,48 @@ public class Mapa {
 
     public List<Celda> getCeldasAlRededorDe(Coordinate coordenada) {
         return this.mapa.stream().filter(c -> c.estaEnElRadio(coordenada, 3)).collect(Collectors.toList());
+    }
+
+    public List<Celda> getSegmentoDeCeldas(Direction dir,Coordinate inicio, int longitud){
+
+        List<Coordinate> segmento = this.getSegmento(dir,inicio,longitud);
+
+        return this.mapa.stream().filter(c -> c.estaEnElSegmento(segmento)).collect(Collectors.toList());
+    }
+
+    public List<Coordinate> getSegmento(Direction dir,Coordinate inicio,int longitud){
+        List<Coordinate> coordinates = new ArrayList<Coordinate>();
+
+        Coordinate nextCoord = inicio;
+
+        //REFACTOR CUANDO SE PUEDA
+        for(int i=0;i <= longitud;i++){
+
+            coordinates.add(nextCoord);
+
+            nextCoord = dir.giveNextCoordinate(nextCoord);
+        }
+
+        return coordinates;
+    }
+
+    public Celda obtenerCeldaMasLejanaDelSegmento(Coordinate inicio,List<Celda> celdas){
+        //REFACTOR SI SE PUEDE
+
+        Celda celdaMasLejana = celdas.get(0);
+        int longitudMasLarga = celdaMasLejana.getCoordenada().longitudCon(inicio);
+
+        int longTmp;
+
+        for(Celda c : celdas){
+            longTmp = c.getCoordenada().longitudCon(inicio);
+            if(longTmp > longitudMasLarga){
+                longitudMasLarga = longTmp ;
+                celdaMasLejana = c;
+            }
+
+        }
+
+        return celdaMasLejana;
     }
 }

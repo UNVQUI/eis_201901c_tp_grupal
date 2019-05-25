@@ -2,7 +2,9 @@ package Bomberman;
 
 public class Bomberman {
 
+    //REFACTOR SI SE LLEGA A UN ESTADOVIVO()
     private Boolean estaVivo;
+    private EstadoPoder miPoder = new EstadoPoderNoPuedeNada();
 
     public Bomberman () {
         this.estaVivo = true;
@@ -18,7 +20,23 @@ public class Bomberman {
 
     public void accionBomba(Juego juego) {
         if(this.estaVivo){
-            juego.bombermanDejaUnaBomba();
+            this.miPoder.accionBomba(juego);
         }
     }
+
+    public void obtenerPoder(EstadoPoder estadoPoder){
+        if(this.estaVivo) {
+            this.miPoder = estadoPoder;
+        }
+    }
+
+    public boolean noTieneNingunPoder(){return this.miPoder.noTieneNingunPoder();}
+
+    public boolean tienePoderLanzarBombas(){return miPoder.tienePoderLanzarBombas();}
+
+    public boolean tienePoderSaltarPared(){return miPoder.tienePoderSaltarPared();}
+
+    public boolean tienePoderSaltarYLanzarBombas(){return miPoder.tienePoderSaltarYLanzarBombas();}
+
+    public boolean tienePoderSoltarVariasBombas(){return miPoder.tienePoderSoltarVariasBombas();}
 }
