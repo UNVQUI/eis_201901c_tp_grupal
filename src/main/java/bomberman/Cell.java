@@ -6,6 +6,13 @@ import java.util.List;
 public class Cell {
 
     private List<CellEntity> entityList = new ArrayList<CellEntity>();
+    private GameMap map;
+
+    public Cell() {}
+
+    public Cell(GameMap map) {
+        this.map = map;
+    }
 
     public void put(CellEntity entity) {
         entityList.add(entity);
@@ -22,9 +29,21 @@ public class Cell {
         entityList.forEach(entity -> entity.interactWith(bomberman));
     }
 
-    private void remove(CellEntity entity) {
+    void remove(CellEntity entity) {
         entityList.remove(entity);
     }
 
     public List<CellEntity> getEntities(){ return entityList; }
+
+    public Cell cellAt(Direction direction) {
+        return map.getCellAt(direction.add(getPosition()));
+    }
+
+    private Position getPosition(){
+        return map.getPositionFrom(this);
+    }
+
+    public void burnFromExplosion() {
+        new ArrayList<>(entityList).forEach(cellEntity -> cellEntity.burnFromExplosion(this));
+    }
 }

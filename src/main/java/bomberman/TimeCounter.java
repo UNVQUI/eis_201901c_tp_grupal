@@ -9,10 +9,10 @@ public class TimeCounter {
         this.bomb = bomb;
     }
 
-    public void tick(){
+    public void tick(Cell cell){
         if (bomb.getTicksLimit()>0){
             tick--;
         }
-        bomb.explode();
+        bomb.explode(cell);
     }
 }
