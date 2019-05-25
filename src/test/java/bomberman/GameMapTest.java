@@ -17,4 +17,9 @@ public class GameMapTest {
     public void cellAtPos00HasCellAtPos10OnItsRight() {
         assertEquals(map.getCellAt(new Position(1, 0)), map.getCellAt(new Position(0, 0)).cellAt(Direction.RIGHT));
     }
+
+    @Test
+    public void cellAtPos10HasCellAtPos00OnItsLeft() {
+        assertEquals(map.getCellAt(new Position(0, 0)), map.getCellAt(new Position(1, 0)).cellAt(Direction.LEFT));
+    }
 }
