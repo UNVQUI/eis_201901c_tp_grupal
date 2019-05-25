@@ -1,5 +1,7 @@
 package bomberman;
 
+import bomberman.errors.CellEntityNotFound;
+import bomberman.errors.CellNotFound;
 import com.google.common.collect.HashBiMap;
 
 public class GameMap {
@@ -14,10 +16,18 @@ public class GameMap {
     }
 
     public Cell getCellAt(Position position) {
-        return map.get(position);
+        if (map.containsKey(position)) return map.get(position);
+        throw new CellNotFound();
     }
 
     public Position getPositionFrom(Cell cell) {
         return map.inverse().get(cell);
+    }
+
+    public Cell getEntityCell(CellEntity entity) {
+        return map.values().stream()
+                .filter(cell -> cell.has(entity))
+                .findFirst()
+                .orElseThrow(CellEntityNotFound::new);
     }
 }

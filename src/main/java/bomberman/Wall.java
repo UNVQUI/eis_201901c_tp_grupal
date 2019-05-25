@@ -8,4 +8,7 @@ public class Wall implements CellEntity{
 
     @Override
     public void interactWith(CellEntity anotherEntity) {}
+
+    @Override
+    public void burnFromExplosion(Cell cell) {}
 }

@@ -29,7 +29,7 @@ public class Cell {
         entityList.forEach(entity -> entity.interactWith(bomberman));
     }
 
-    private void remove(CellEntity entity) {
+    void remove(CellEntity entity) {
         entityList.remove(entity);
     }
 
@@ -41,5 +41,9 @@ public class Cell {
 
     private Position getPosition(){
         return map.getPositionFrom(this);
+    }
+
+    public void burnFromExplosion() {
+        new ArrayList<>(entityList).forEach(cellEntity -> cellEntity.burnFromExplosion(this));
     }
 }

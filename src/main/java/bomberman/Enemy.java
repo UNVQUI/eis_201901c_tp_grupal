@@ -19,6 +19,11 @@ public class Enemy implements CellEntity {
         }
     }
 
+    @Override
+    public void burnFromExplosion(Cell cell) {
+        cell.remove(this);
+    }
+
     public boolean isAlive (){return alive;}
 
     public void kill() {

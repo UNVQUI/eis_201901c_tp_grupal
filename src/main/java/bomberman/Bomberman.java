@@ -9,6 +9,11 @@ public class Bomberman implements CellEntity{
         actualCell.put(this);
     }
 
+    public Bomberman(Cell actualCell) {
+        this.actualCell = actualCell;
+        actualCell.put(this);
+    }
+
     public void moveTo(Cell contingentCell) {
         contingentCell.moveToHere(actualCell, this);
     }
@@ -29,12 +34,17 @@ public class Bomberman implements CellEntity{
     @Override
     public void interactWith(CellEntity anotherEntity) {}
 
+    @Override
+    public void burnFromExplosion(Cell cell) {}
+
     public void kill() {
         this.alive = false;
     }
 
-    public void dropBomb(Bomb bomb){
+    public Bomb dropBomb(){
+        Bomb bomb = new Bomb();
         actualCell.put(bomb);
+        return bomb;
     }
 
     public Cell getActualCell() {
