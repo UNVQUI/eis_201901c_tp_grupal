@@ -1,10 +1,9 @@
 package bomberman;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.collect.HashBiMap;
 
 public class GameMap {
-    private Map<Position, Cell> map = new HashMap<>();
+    private HashBiMap<Position, Cell> map = HashBiMap.create();
 
     public GameMap() {
         for (int x = 0; x < 5; x++) {
@@ -16,5 +15,9 @@ public class GameMap {
 
     public Cell getCellAt(Position position) {
         return map.get(position);
+    }
+
+    public Position getPositionFrom(Cell cell) {
+        return map.inverse().get(cell);
     }
 }

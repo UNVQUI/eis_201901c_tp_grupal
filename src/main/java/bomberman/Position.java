@@ -25,4 +25,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    Position add(Position position) {
+        return new Position(position.x + x, position.y + y);
+    }
 }
