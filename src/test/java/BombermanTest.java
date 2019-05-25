@@ -83,25 +83,45 @@ public class BombermanTest extends TestCase {
 
 
     @Test
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombasYMataUnEnemigoLanzandoleUnaBombaAlNorte(){
+        Enemigo protoMaxUnits = new ProtoMaxUnits();
+        Enemigo enemigo = new Enemigo();
+        Coordinate posicionBomberman = juego.getPosicionBomberman();
+        Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionBomberman);
+        Coordinate coordenadaAlSurDebomberman = new South().giveNextCoordinate(posicionBomberman);
+
+        //Obtiene el mapa y le pone a ProtoMaxUnits al norte de la celda actual de bomberman, luego coloca una bomba en la ubicacion actual de BomberMan
+        juego.getMapa().colocarItem(protoMaxUnits,coordenadaAlNorteDeBomberman);
+        juego.bombermanDejaUnaBomba();
+        //Explota la bomba al correr los 4 ticks
+        juego.correnNTicks(4);
+        //Coloca un enemigo al Sur de bomberman, y lanza una bomba que anteriormente obtuvo el poder al matar a ProtoMaxUnits
+        juego.getMapa().colocarItem(enemigo,coordenadaAlSurDebomberman);
+        juego.setDondeMiraBomberman(new South());
+        juego.bombermanLanzaUnaBomba(1,3);
+        juego.correnNTicks(3);
+
+        //Verifica que ProtoMaxUnits haya muerto(en el norte) y el enemigo tambien (en el sur)
+        assertTrue(juego.getMapa().getCelda(coordenadaAlSurDebomberman).estaVacio());
+        assertTrue(juego.getMapa().getCelda(coordenadaAlNorteDeBomberman).estaVacio());
+    }
+
+    @Test
     public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombas(){
-        //TODO arreglar test
         Enemigo protoMaxUnits = new ProtoMaxUnits();
         Enemigo enemigo = new Enemigo();
         Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
         Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionViejaDeBomberman);
-        Coordinate coordenadaAlSurDeBomberman = new South().giveNextCoordinate(posicionViejaDeBomberman);
 
         juego.getMapa().colocarItem(protoMaxUnits,coordenadaAlNorteDeBomberman);
-
         juego.bombermanDejaUnaBomba();
-        juego.getMapa().colocarItem(enemigo,new North().giveNextCoordinate(coordenadaAlSurDeBomberman));
         juego.correnNTicks(4);
-
+        juego.getMapa().colocarItem(enemigo,coordenadaAlNorteDeBomberman);
         juego.setDondeMiraBomberman(new North());
         juego.bombermanLanzaUnaBomba(1,3);
+        juego.correnNTicks(3);
 
         assertTrue(juego.getMapa().getCelda(coordenadaAlNorteDeBomberman).estaVacio());
-
     }
 
 }
