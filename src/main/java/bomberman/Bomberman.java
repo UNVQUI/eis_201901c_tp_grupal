@@ -1,9 +1,15 @@
 package bomberman;
 
+import bomberman.errors.PowerNotFound;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bomberman implements CellEntity{
 
     private Cell actualCell = new Cell();
     private Boolean alive = true;
+    private List<BagulaaPower> powers = new ArrayList<>();
 
     public Bomberman() {
         actualCell.put(this);
@@ -49,5 +55,27 @@ public class Bomberman implements CellEntity{
 
     public Cell getActualCell() {
         return actualCell;
+    }
+
+    public void getPower(BagulaaPower power) {
+        this.powers.add(power);
+    }
+
+    public Bomb dropBomb(Direction direction, int distance) {
+        if (!hasPower(new BagulaaPower())) {
+            throw new PowerNotFound();
+        }
+        Bomb bomb = new Bomb();
+        Cell directionCell = actualCell;
+        while (distance > 0) {
+            directionCell = directionCell.cellAt(direction);
+            distance -= 1;
+        }
+        directionCell.put(bomb);
+        return bomb;
+    }
+
+    public boolean hasPower(BagulaaPower newPower) {
+        return powers.stream().anyMatch(power -> power.equals(newPower));
     }
 }

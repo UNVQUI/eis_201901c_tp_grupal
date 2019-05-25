@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MapDef implements En {
@@ -21,7 +22,7 @@ public class MapDef implements En {
             gameMap = new GameMap();
             bomberman = new Bomberman(gameMap.getCellAt(new Position(0,0)));
         });
-        And("^Bomberman drops Bomb at-(\\d+),(\\d+)-$", (Integer x, Integer y) -> {
+        And("Bomberman drops Bomb at-{int},{int}-", (Integer x, Integer y) -> {
             bomberman.moveTo(gameMap.getCellAt(new Position(x, y)));
             bomb = bomberman.dropBomb();
         });
@@ -38,10 +39,19 @@ public class MapDef implements En {
         Then("{string} is destroyed", this::testEntityNotInMap);
         Then("{string} is dead", this::testEntityNotInMap);
 
-        Then("{string} is not destroyed", (String entityPointer) -> {
-            gameMap.getEntityCell(entities.get(entityPointer));
+        Then("{string} is not destroyed", (String entityPointer) ->
+                gameMap.getEntityCell(entities.get(entityPointer)));
+        When("Bomberman moves to-{int},{int}-", (Integer x, Integer y) ->
+                bomberman.moveTo(gameMap.getCellAt(new Position(x, y))));
+        Then("Bomberman has BagulaaPower", () ->
+                assertTrue(bomberman.hasPower(new BagulaaPower())));
+        And("Bomberman gets BagulaaPower", () ->
+                bomberman.getPower(new BagulaaPower()));
+        When("Bomberman throws Bomb to {word} -{int}- cells away as {word}",
+                (String direction, Integer distance, String entityPointer) -> {
+            bomb = bomberman.dropBomb(Direction.valueOf(direction), distance);
+            entities.put(entityPointer, bomb);
         });
-
     }
 
     public void testEntityNotInMap(String entityPointer) {
@@ -52,6 +62,8 @@ public class MapDef implements En {
         if(type.equals("Enemy")) return new Enemy();
         if(type.equals("MelaninWall")) return new MelaninWall();
         if(type.equals("SteelWall")) return new SteelWall();
+        if(type.equals("Bagulaa")) return new Bagulaa();
+        if(type.equals("BagulaaPower")) return new BagulaaPower();
         throw new RuntimeException(type + " Entity not defined in step definition");
     }
 }
