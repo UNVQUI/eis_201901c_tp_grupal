@@ -59,6 +59,23 @@ public class BombermanStepdefs {
         this.colocarUnItemYMoverloAUnaDireccion(new North(), new Enemigo());
     }
 
+    @When("^Bomberman intenta moverse al Sur habiendo un enemigo$")
+    public void bombermanIntentaMoverseAlSurHabiendoUnEnemigo() throws Throwable{
+        this.colocarUnItemYMoverloAUnaDireccion(new South(), new Enemigo());
+
+    }
+
+    @When("^Bomberman intenta moverse al Este habiendo un enemigo$")
+    public void bombermanIntentaMoverseAlEsteHabiendoUnEnemigo() throws Throwable {
+        this.colocarUnItemYMoverloAUnaDireccion(new East(), new Enemigo());
+
+    }
+
+    @When("^Bomberman intenta moverse al Oeste habiendo un enemigo$")
+    public void bombermanIntentaMoverseAlOesteHabiendoUnEnemigo() throws Throwable {
+        this.colocarUnItemYMoverloAUnaDireccion(new West(), new Enemigo());
+    }
+
     @Then("^Bomberman muere$")
     public void bombermanEstaMuerto() throws  Throwable {
         assertTrue(this.bomberman.siEstaMuerto());
@@ -272,5 +289,15 @@ public class BombermanStepdefs {
         }
     }
 
+    @And("^una pared de metal al Norte del bomberman$")
+    public void unaParedDeMetalAlNorteDelBomberman() {
+        Coordinate alNorteDelBomberman = new North().giveNextCoordinate(juego.getPosicionBomberman());
+        this.mapa.colocarItem(new ParedAcero(), alNorteDelBomberman);
+    }
 
+    @And("^Proto Max Jr al Sur del bomberman$")
+    public void protoMaxJrAlSurDelBomberman() {
+        Coordinate alSurDelBomberman = new South().giveNextCoordinate(juego.getPosicionBomberman());
+        this.mapa.colocarItem(protoMaxJr, alSurDelBomberman);
+    }
 }

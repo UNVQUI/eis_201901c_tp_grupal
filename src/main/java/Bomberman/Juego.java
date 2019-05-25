@@ -71,7 +71,7 @@ public class Juego {
         bomberman.obtenerPoder(poder.crearEstadoPoder());
     }
 
-    public void bombermanLanzaUnaBomba(int alcance, int velocidadExplosion){
+    public void bombermanLanzaUnaBomba(int alcance, int velocidadExplosion) {
 
         List<Celda> segmentoDeCeldas = this.mapa.getSegmentoDeCeldas(this.dondeMiraBomberman,this.posicionBomberman,alcance);
 
@@ -81,8 +81,9 @@ public class Juego {
 
     }
 
+
     public void setDondeMiraBomberman(Direction dir){
-        //REFACTORIZAR
+        //TODO REFACTORIZAR
         if(!bomberman.siEstaMuerto()){
             this.dondeMiraBomberman = dir;
         }

@@ -11,4 +11,14 @@ public class EstadoPoderSaltarYLanzarBombas extends EstadoPoderLanzarBombas {
 
     @Override
     public boolean tienePoderLanzarBombas(){return true;}
+
+    @Override
+    public boolean tienePoderSaltarYLanzarBombas(){return true;}
+
+    @Override
+    public void moverme( Item item ,Juego juego, Coordinate hacia) {
+        juego.setPosicionBomberman(hacia);
+    }
+
+
 }

@@ -40,7 +40,9 @@ public class Bomberman {
 
     public boolean tienePoderSoltarVariasBombas(){return miPoder.tienePoderSoltarVariasBombas();}
 
+
     public void moverse(Item item, Juego juego, Coordinate hacia) {
         miPoder.moverme(item,juego,hacia);
     }
+
 }
