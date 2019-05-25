@@ -17,4 +17,5 @@ public class PoderLanzarBombas extends Poder {
 
     @Override
     public boolean hayPoderLanzarBombas(){return true;}
+
 }

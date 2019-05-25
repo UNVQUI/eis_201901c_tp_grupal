@@ -60,4 +60,48 @@ public class BombermanTest extends TestCase {
         assertTrue(juego.getMapa().getCelda(coordenadaAlNorteDeBomberman).estaVacio());
     }
 
+    @Test
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeSaltarParedes(){
+        Enemigo protoMaxUnits = new ProtoMaxUnits();
+        Enemigo enemigo = new Enemigo();
+        Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
+        Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionViejaDeBomberman);
+        Coordinate coordenadaAlSurDeBomberman = new South().giveNextCoordinate(posicionViejaDeBomberman);
+
+        juego.getMapa().colocarItem(protoMaxUnits,coordenadaAlNorteDeBomberman);
+
+        juego.bombermanDejaUnaBomba();
+        juego.getMapa().colocarItem(new ParedAcero(),coordenadaAlSurDeBomberman);
+        juego.correnNTicks(4);
+
+        juego.moverBomberman(new South());
+
+        assertEquals(juego.getPosicionBomberman(),coordenadaAlSurDeBomberman);
+        assertTrue(juego.getMapa().getCelda(coordenadaAlNorteDeBomberman).estaVacio());
+
+    }
+
+
+    @Test
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombas(){
+        //TODO arreglar test
+        Enemigo protoMaxUnits = new ProtoMaxUnits();
+        Enemigo enemigo = new Enemigo();
+        Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
+        Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionViejaDeBomberman);
+        Coordinate coordenadaAlSurDeBomberman = new South().giveNextCoordinate(posicionViejaDeBomberman);
+
+        juego.getMapa().colocarItem(protoMaxUnits,coordenadaAlNorteDeBomberman);
+
+        juego.bombermanDejaUnaBomba();
+        juego.getMapa().colocarItem(enemigo,new North().giveNextCoordinate(coordenadaAlSurDeBomberman));
+        juego.correnNTicks(4);
+
+        juego.setDondeMiraBomberman(new North());
+        juego.bombermanLanzaUnaBomba(1,3);
+
+        assertTrue(juego.getMapa().getCelda(coordenadaAlNorteDeBomberman).estaVacio());
+
+    }
+
 }

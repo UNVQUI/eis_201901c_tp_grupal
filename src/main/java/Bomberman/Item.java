@@ -20,4 +20,6 @@ public abstract class Item {
     public boolean hayPoderSoltarVariasBombas(){return false;}
 
     public boolean hayEnemigo(){return false;}
+
+    public boolean hayPoderLanzarVariasBombas(){return false;};
 }

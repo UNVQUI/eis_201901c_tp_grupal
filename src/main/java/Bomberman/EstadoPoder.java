@@ -10,9 +10,10 @@ public abstract class EstadoPoder {
 
     public boolean tienePoderSaltarPared(){return false;}
 
-    public boolean tienePoderSaltarYLanzarBombas(){return this.tienePoderLanzarBombas() && this.tienePoderSaltarPared();}
+    public boolean tienePoderSaltarYLanzarBombas(){return false;}
 
     public boolean tienePoderSoltarVariasBombas(){return false;}
+
 
     public void moverme(Item item ,Juego juego, Coordinate hacia){
         item.bombermanSeMueve(juego,hacia);
