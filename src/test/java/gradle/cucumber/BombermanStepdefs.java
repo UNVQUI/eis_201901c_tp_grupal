@@ -1,10 +1,12 @@
 package gradle.cucumber;
 
+import cucumber.api.java.bs.A;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import Bomberman.*;
+import cucumber.api.java.en_scouse.An;
 import cucumber.api.java.mk_latn.No;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class BombermanStepdefs {
     private Juego juego;
     private Mapa mapa;
     private List<Celda> celdasAlRededorDeAlgo;
-
+    private ProtoMaxJr protoMaxJr = new ProtoMaxJr();
     @Given("^Un Juego con bomberman en una celda")
     public void crearJuegoMapaConBombermanEnUnaCeldaInicial(){
         juego = new Juego();
@@ -159,6 +161,21 @@ public class BombermanStepdefs {
     public void laBombaExplota(){
        assertTrue(this.juego.noHayBombasActivas());
 
+    }
+    @And("^una pared de metal al sur del bomberman")
+    public void ponerParedDeMetalAlSurDelBomberman(){
+        Coordinate alSurDelBomberman = new South().giveNextCoordinate(juego.getPosicionBomberman());
+        this.mapa.colocarItem(new ParedAcero(), alSurDelBomberman);
+    }
+    @And("^Proto Max Jr al norte del bomberman")
+    public void colocarProtoMaxAlNorteDelBomberman(){
+        Coordinate alNorteDelBomberman = new North().giveNextCoordinate(juego.getPosicionBomberman());
+        this.mapa.colocarItem(protoMaxJr, alNorteDelBomberman);
+    }
+    @And("^Proto Max Jr muere")
+    public void assertProtomaxMurio(){
+        Coordinate alNorteDelBomberman = new North().giveNextCoordinate(juego.getPosicionBomberman());
+        assertFalse(mapa.getCelda(alNorteDelBomberman).hayEnemigo());
     }
 
     private void bombermanPoneBombaYEstaRodeadoDe(Item item) {

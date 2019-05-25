@@ -57,6 +57,7 @@ public class BombermanTest extends TestCase {
         juego.moverBomberman(new South());
 
         assertEquals(juego.getPosicionBomberman(),coordenadaAlSurDeBomberman);
+        assertTrue(juego.getMapa().getCelda(coordenadaAlNorteDeBomberman).estaVacio());
     }
 
 }

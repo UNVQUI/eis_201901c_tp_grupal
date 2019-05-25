@@ -44,3 +44,14 @@ Feature: Bomberman Suelta Bombas
         When Bomberman lanza bomba mirando al Norte
         And Pasa "4" ticks
         Then La bomba explota
+
+#Prueba de aceptacion 4:
+     #Bomberman.Bomberman suelta bomba y esta alcanza a 'Proto Max Jr.' al morir, este suelta un poder que le permite a bomberman saltar todo tipo de pared.
+      Scenario: Bomberman lanza bomba y esta alcanza a proto max JR, al morir, bomberman puede saltar paredes
+         Given Un Juego con bomberman en una celda
+         And una pared de metal al sur del bomberman
+         And Proto Max Jr al norte del bomberman
+         When Bomberman lanza bomba mirando al Norte
+         And Pasa "4" ticks
+         Then Proto Max Jr muere
+         And Bomberman con poder "saltarPared"
