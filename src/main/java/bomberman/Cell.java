@@ -33,6 +33,10 @@ public class Cell {
     }
 
     public Cell cellAt(Direction direction) {
-        return map.getCellAt(new Position(1, 0));
+        return map.getCellAt(direction.add(getPosition()));
+    }
+
+    private Position getPosition(){
+        return map.getPositionFrom(this);
     }
 }
