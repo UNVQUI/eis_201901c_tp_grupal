@@ -1,13 +1,10 @@
 package gradle.cucumber;
 
-import cucumber.api.java.bs.A;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import Bomberman.*;
-import cucumber.api.java.en_scouse.An;
-import cucumber.api.java.mk_latn.No;
 
 import java.util.List;
 
@@ -121,21 +118,26 @@ public class BombermanStepdefs {
         assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
 
     }
-    @When("^Bomberman pone una bomba con \"([^\"]*)\" al lado$")
-    public void bombermanPoneUnaBombaConUnTipoDeEnemigoAlLado(String enemigoString)throws Throwable{
-        Enemigo enemigo = this.castEnemigo(enemigoString);
-        this.bombermanPoneBombaYEstaRodeadoDe(enemigo);
+    @And("^Esta \"([^\"]*)\" en la celda de al lado de bomberman (Este|Oeste|Sur|Norte)")
+    public void estaEnemigoEnLaCeldaDeAlLadoDeBomberman(String enemigoStr,String dirStr) throws Throwable{
+        Enemigo enemigo = this.castEnemigo(enemigoStr);
+        Direction dir = this.castDirection(dirStr);
+        this.bombermanTieneEnemigoAlLadoEnDireccion(dir,enemigo);
     }
-    @Then("^La Bomba explota donde estaba \"([^\"]*)\" soltando poder \"([^\"]*)\" en la celda")
-    public void seMuereEnemigoYDejaCeldaConPoder(String enemigoStr,String poderStr) throws Throwable{
-        Poder poder = this.castPoder(poderStr);
-        Enemigo enemigo= this.castEnemigo(enemigoStr);
-        Coordinate coordenadaDondeEstabaEnemigo = new North().giveNextCoordinate(juego.getPosicionBomberman());
+    @When("^Bomberman deja una bomba$")
+    public void bombermanPoneUnaBombaConUnTipoDeEnemigoAlLado(){
+        this.juego.bombermanDejaUnaBomba();
+    }
+    @Then("^La Bomba explota donde estaba \"([^\"]*)\" soltando poder \"([^\"]*)\" en la celda (Este|Oeste|Sur|Norte)$")
+    public void seMuereEnemigoYDejaCeldaConPoder(String enemigoStr,String poderStr,String dirStr) throws Throwable{
+        Direction dir = this.castDirection(dirStr);
+        Coordinate coordenadaDondeEstabaEnemigo = dir.giveNextCoordinate(juego.getPosicionBomberman());
         Celda celdaDondeEstabaEnemigo = this.mapa.getCelda(coordenadaDondeEstabaEnemigo);
+
 
         assertTrue(celdaDondeEstabaEnemigo.hayPoder());
         assertFalse(celdaDondeEstabaEnemigo.hayEnemigo());
-        assertTrue(celdaDondeEstabaEnemigo.hayPoderLanzarBombas());
+        this.castAssertHayPoderEspecificoEnCelda(celdaDondeEstabaEnemigo,poderStr);
 
     }
     @And("^La celda (Este|Oeste|Sur|Norte) donde esta bomberman hay poder \"([^\"]*)\"$")
@@ -171,7 +173,7 @@ public class BombermanStepdefs {
     public void bombermanLanzaBombaMirandoA(String dirStr) throws Throwable{
         Direction dir = this.castDirection(dirStr);
         this.juego.setDondeMiraBomberman(dir);
-        this.juego.bombermanAccionarBomba();
+        this.juego.bombermanAccionarLanzaBomba();
     }
 
     @Then("^La bomba se pone \"([^\"]*)\" celdas al (Este|Oeste|Sur|Norte) de la posicion de Bomberman$")
@@ -205,6 +207,11 @@ public class BombermanStepdefs {
         assertFalse(mapa.getCelda(alNorteDelBomberman).hayEnemigo());
     }
 
+    private void bombermanTieneEnemigoAlLadoEnDireccion(Direction dir,Enemigo enemigo) throws Exception{
+        Coordinate coordDelEnemigo = dir.giveNextCoordinate(this.juego.getPosicionBomberman());
+        this.mapa.colocarItem(enemigo,coordDelEnemigo);
+    }
+
     private void bombermanPoneBombaYEstaRodeadoDe(Item item) {
         Coordinate posicionActual = this.juego.getPosicionBomberman();
         this.mapa.colocarItemAlRededorDe(item, posicionActual);
@@ -213,7 +220,7 @@ public class BombermanStepdefs {
 
         assertFalse(this.checkearSiLasCeldasAlRededorDeAlgoEstanVacias());
 
-        this.juego.bombermanAccionarBomba();
+        this.juego.bombermanAccionarDejaBomba();
 
     }
 
@@ -274,6 +281,27 @@ public class BombermanStepdefs {
             default:
                 throw new IllegalStateException("Unexpected value: " + poder);
         }
+    }
+
+    private void castAssertHayPoderEspecificoEnCelda(Celda celda,String poderStr){
+
+        switch(poderStr) {
+            case "lanzarBombas":
+                assertTrue(celda.hayPoderLanzarBombas());
+                break;
+            case "saltarPared":
+                assertTrue(celda.hayPoderSaltarPared());
+                break;
+            case "saltarYLanzar":
+                assertTrue(celda.hayPoderSaltarYLanzar());
+                break;
+            case "soltarVariasBombas":
+                assertTrue(celda.hayPoderSoltarVariasBombas());
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + poderStr);
+        }
+
     }
 
     @And("^una pared de metal al Norte del bomberman$")

@@ -1,4 +1,5 @@
 import Bomberman.*;
+import cucumber.api.java.mk_latn.No;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ public class BombermanTest extends TestCase {
     }
 
     @Test
-    public void testWhenBombermanInCoordinate1x1yMovesToTheNorthenCellHisNewCoordinateIs1x2y() throws Exception{
+    public void testWhenBombermanInCoordinate1x1yMovesToTheNorthenCellHisNewCoordinateIs1x2y() {
 
         this.juego.moverBomberman(new North());
 
@@ -23,26 +24,26 @@ public class BombermanTest extends TestCase {
 
 
     @Test
-    public void testWhenBombermanInCoordinate1x1MovesToTheSouthernCellHisNewCoordinateIs1x0y() throws Exception{
+    public void testWhenBombermanInCoordinate1x1MovesToTheSouthernCellHisNewCoordinateIs1x0y() {
         this.juego.moverBomberman(new South());
 
         assertEquals(this.juego.getPosicionBomberman(),new Coordinate(1,0));
     }
     @Test
-    public void testWhenBombermanInCoordinate1x1MovesToTheEasternCellHisNewCoordinateIs2x1y() throws Exception{
+    public void testWhenBombermanInCoordinate1x1MovesToTheEasternCellHisNewCoordinateIs2x1y() {
         this.juego.moverBomberman(new East());
 
         assertEquals(this.juego.getPosicionBomberman(),new Coordinate(2,1));
     }
     @Test
-    public void testWhenBombermanInCoordinate1x1MovesToTheWesternCellHisNewCoordinateIs0x1y() throws Exception{
+    public void testWhenBombermanInCoordinate1x1MovesToTheWesternCellHisNewCoordinateIs0x1y() {
 
         this.juego.moverBomberman(new West());
 
         assertEquals(this.juego.getPosicionBomberman(),new Coordinate(0,1));
     }
     @Test
-    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanSaltaUnaPardDeMetal() throws Exception{
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxJrLuegoSeMueveDondeEstabaEsteEnemigoAhoraBombermanSaltarParedDeMetalAlIr2VecesAlSur() throws Exception{
         Enemigo protoMaxJr = new ProtoMaxJr();
         Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
         Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionViejaDeBomberman);
@@ -54,6 +55,9 @@ public class BombermanTest extends TestCase {
         juego.getMapa().colocarItem(new ParedAcero(),coordenadaAlSurDeBomberman);
         juego.correnNTicks(4);
 
+        juego.moverBomberman(new North());
+
+        juego.moverBomberman(new South());
         juego.moverBomberman(new South());
 
         assertEquals(juego.getPosicionBomberman(),coordenadaAlSurDeBomberman);
@@ -61,9 +65,8 @@ public class BombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeSaltarParedes()throws Exception{
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxUnitsYAhoraBombermanPuedeSaltarParedAlIr2VecesAlSur()throws Exception{
         Enemigo protoMaxUnits = new ProtoMaxUnits();
-        Enemigo enemigo = new Enemigo();
         Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
         Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionViejaDeBomberman);
         Coordinate coordenadaAlSurDeBomberman = new South().giveNextCoordinate(posicionViejaDeBomberman);
@@ -74,6 +77,11 @@ public class BombermanTest extends TestCase {
         juego.getMapa().colocarItem(new ParedAcero(),coordenadaAlSurDeBomberman);
         juego.correnNTicks(4);
 
+        //VA A BUSCAR EL PODER
+        juego.moverBomberman(new North());
+
+        //VA A SALTAR LA PARED
+        juego.moverBomberman(new South());
         juego.moverBomberman(new South());
 
         assertEquals(juego.getPosicionBomberman(),coordenadaAlSurDeBomberman);
@@ -107,7 +115,7 @@ public class BombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombas() throws Exception{
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxUnitsYAhoraBombermanPuedeLanzarBombas() throws Exception{
         Enemigo protoMaxUnits = new ProtoMaxUnits();
         Enemigo enemigo = new Enemigo();
         Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();

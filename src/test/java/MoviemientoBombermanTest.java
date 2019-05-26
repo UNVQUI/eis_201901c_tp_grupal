@@ -17,7 +17,7 @@ public class MoviemientoBombermanTest extends TestCase {
 
 
     @Test
-    public void testBombermanSeMueveAlNorte() throws Exception{
+    public void testBombermanSeMueveAlNorte() {
         Direction direction = new North();
 
         Coordinate posicionBomberman = this.juego.getPosicionBomberman();
@@ -29,7 +29,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSeMueveAlSur() throws Exception{
+    public void testBombermanSeMueveAlSur(){
         Direction direction = new South();
 
         Coordinate posicionBomberman = this.juego.getPosicionBomberman();
@@ -41,7 +41,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSeMueveAlEste() throws Exception{
+    public void testBombermanSeMueveAlEste() {
         Direction direction = new East();
 
         Coordinate posicionBomberman = this.juego.getPosicionBomberman();
@@ -53,7 +53,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSeMueveAlOeste() throws Exception{
+    public void testBombermanSeMueveAlOeste() {
         Direction direction = new West();
 
         Coordinate posicionBomberman = this.juego.getPosicionBomberman();

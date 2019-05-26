@@ -59,8 +59,6 @@ public class Celda {
 
     public boolean hayPoderLanzarBombas(){return this.item.hayPoderLanzarBombas();}
 
-    public boolean hayPoderLanzarVariasBombas(){return this.item.hayPoderLanzarVariasBombas();}
-
     public boolean hayPoderSaltarPared(){return this.item.hayPoderSaltarPared();}
 
     public boolean hayPoderSaltarYLanzar(){return this.item.hayPoderSaltarYLanzar();}

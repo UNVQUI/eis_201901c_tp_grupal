@@ -19,10 +19,15 @@ public class Bomberman {
         this.estaVivo = false;
     }
 
-    public void accionBomba(Juego juego) {
+    public void accionDejaBomba(Juego juego) {
         if(this.estaVivo){
-            this.miPoder.accionBomba(juego);
+            this.miPoder.accionDejaBomba(juego);
         }
+    }
+
+    public void accionLanzaBomba(Juego juego){
+        if(this.estaVivo)
+            this.miPoder.accionLanzaBomba(juego);
     }
 
     public void obtenerPoder(EstadoPoder estadoPoder){

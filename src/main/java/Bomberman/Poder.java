@@ -26,7 +26,5 @@ public abstract class Poder extends Item {
     @Override
     public boolean hayPoderSoltarVariasBombas(){return false;}
 
-    @Override
-    public boolean hayPoderLanzarVariasBombas(){return false;}
 }
 

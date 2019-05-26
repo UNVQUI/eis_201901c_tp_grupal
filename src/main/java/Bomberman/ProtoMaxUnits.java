@@ -9,7 +9,6 @@ public class ProtoMaxUnits extends Enemigo {
 
         @Override
         public void explote(Celda celda, Juego juego) {
-            juego.darPoderABomberman(this.poder);
-            celda.setItem(new Vacio());
+            celda.setItem(this.poder);
         }
     }

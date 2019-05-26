@@ -2,7 +2,9 @@ package Bomberman;
 
 public abstract class EstadoPoder {
 
-    public abstract void accionBomba(Juego juego);
+    public void accionDejaBomba(Juego juego){}
+
+    public void accionLanzaBomba(Juego juego){}
 
     public boolean noTieneNingunPoder(){return false;}
 

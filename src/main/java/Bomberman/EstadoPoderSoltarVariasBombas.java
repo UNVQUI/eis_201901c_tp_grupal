@@ -1,13 +1,19 @@
 package Bomberman;
 
-public class EstadoPoderSoltarVariasBombas extends EstadoPoder {
-    //TODO SUELTA 4 BOMBAS AL REDEDOR DE BOMBERMAN SUPUESTAMENTE ENTENDI
+public class EstadoPoderSoltarVariasBombas extends EstadoPoderLanzarBombas {
+
+    public EstadoPoderSoltarVariasBombas(int alcance,int velocidadExplosion){
+        super(alcance,velocidadExplosion);
+    }
 
     @Override
-    public void accionBomba(Juego juego){
-
+    public void accionDejaBomba(Juego juego){
+        juego.bombermanDejaUnaBomba();
     }
 
     @Override
     public boolean tienePoderSoltarVariasBombas(){return true;}
+
+    @Override
+    public boolean tienePoderLanzarBombas(){return false;}
 }
