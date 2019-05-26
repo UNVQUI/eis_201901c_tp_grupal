@@ -6,7 +6,10 @@ import bomberman.errors.CellEntityNotFound;
 import cucumber.api.java8.En;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -70,6 +73,29 @@ public class MapDef implements En {
         });
         Then("Bomberman is at-{int},{int}-", (Integer x, Integer y) -> {
             assertEquals(new Position(x, y),gameMap.getPositionFrom(bomberman));
+        });
+        When("Bomberman drops Bomb at-{int},{int}- as {word}", (Integer x, Integer y, String entityPointer) -> {
+            Bomb bomb = bomberman.dropBomb(gameMap.getCellAt(new Position(x,y)));
+                entities.put(entityPointer, bomb);
+        });
+        And("drops another Bomb at-{int},{int}- as {word}", (Integer x, Integer y, String entityPointer) -> {
+            Bomb bomb = bomberman.dropBomb(gameMap.getCellAt(new Position(x,y)));
+            entities.put(entityPointer, bomb);
+        });
+        Then("entity {word} is at-{int},{int}-", (String entityPointer, Integer x, Integer y) -> {
+            assertEquals(new Position(x, y),gameMap.getPositionFrom(entities.get(entityPointer)));
+        });
+        And("{int} ticks passes for all bombs and explodes", (Integer ticks) -> {
+            List<Bomb> bombs = entities.values().stream().filter(entity-> entity.getClass().equals(Bomb.class)).map(entity -> (Bomb)entity).collect(Collectors.toList());
+
+            bombs.forEach(bomb-> {
+                bomb.tick(gameMap.getEntityCell(bomb));
+                bomb.tick(gameMap.getEntityCell(bomb));
+                bomb.tick(gameMap.getEntityCell(bomb));
+            });
+        });
+        Then("entity {word} is not at-{int},{int}-", (String entityPointer, Integer x, Integer y) -> {
+            assertFalse(gameMap.getCellAt(new Position(x,y)).has(entities.get(entityPointer)));
         });
     }
 

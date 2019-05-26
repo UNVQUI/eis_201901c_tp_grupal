@@ -7,12 +7,15 @@ public class TimeCounter {
 
     public TimeCounter(Bomb bomb){
         this.bomb = bomb;
+        this.tick = bomb.getTicksLimit();
     }
 
     public void tick(Cell cell){
-        if (bomb.getTicksLimit()>0){
+        if (tick > 0){
             tick--;
         }
-        bomb.explode(cell);
+        else{
+            bomb.explode(cell);}
+
     }
 }
