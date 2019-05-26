@@ -28,9 +28,6 @@ public class Bomberman implements CellEntity{
     @Override
     public void interactWith(CellEntity anotherEntity) {}
 
-    @Override
-    public void burnFromExplosion(Cell cell) {}
-
     public void kill() {
         this.alive = false;
     }

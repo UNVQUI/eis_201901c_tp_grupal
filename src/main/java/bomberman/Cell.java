@@ -1,5 +1,6 @@
 package bomberman;
 
+import bomberman.attributes.Burnable;
 import bomberman.attributes.SolidEntity;
 
 import java.util.ArrayList;
@@ -50,6 +51,10 @@ public class Cell {
     }
 
     public void burnFromExplosion() {
-        new ArrayList<>(entityList).forEach(cellEntity -> cellEntity.burnFromExplosion(this));
+        new ArrayList<>(entityList)
+                .stream()
+                .filter(entity -> Burnable.class.isAssignableFrom(entity.getClass()))
+                .map(entity -> (Burnable) entity)
+                .forEach(cellEntity -> cellEntity.burnFromExplosion(this));
     }
 }

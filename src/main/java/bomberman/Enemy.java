@@ -1,6 +1,8 @@
 package bomberman;
 
-public class Enemy implements CellEntity {
+import bomberman.attributes.Burnable;
+
+public class Enemy implements CellEntity, Burnable {
     @Override
     public void interactWith(CellEntity anotherEntity) {
         if(Bomberman.class.isAssignableFrom(anotherEntity.getClass())) {

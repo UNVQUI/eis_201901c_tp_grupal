@@ -12,7 +12,4 @@ public class Power implements CellEntity {
         if(Bomberman.class.isAssignableFrom(anotherEntity.getClass()))
             ((Bomberman) anotherEntity).getPower(this);
     }
-
-    @Override
-    public void burnFromExplosion(Cell cell) {}
 }
