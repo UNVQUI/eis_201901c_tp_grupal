@@ -13,9 +13,6 @@ public class Bomb implements CellEntity {
         this.counter = new TimeCounter(this);
     }
 
-    @Override
-    public void interactWith(CellEntity anotherEntity) {}
-
     public void explode(Cell cell){
         cell.burnFromExplosion();
         for (Direction direction : Direction.values()) {

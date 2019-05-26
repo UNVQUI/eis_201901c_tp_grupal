@@ -1,5 +1,3 @@
 package bomberman.attributes;
 
-public interface CellEntity {
-    public void interactWith(CellEntity anotherEntity);
-}
+public interface CellEntity {}

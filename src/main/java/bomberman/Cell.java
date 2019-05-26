@@ -2,10 +2,12 @@ package bomberman;
 
 import bomberman.attributes.Burnable;
 import bomberman.attributes.CellEntity;
+import bomberman.attributes.Interactible;
 import bomberman.attributes.SolidEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cell {
 
@@ -30,18 +32,21 @@ public class Cell {
         if (blocksMovement()) return;
         origin.remove(bomberman);
         this.put(bomberman);
-        entityList.forEach(entity -> entity.interactWith(bomberman));
+        entitiesInteractWith(bomberman);
+    }
+
+    private void entitiesInteractWith(CellEntity bomberman) {
+        assignableEntities(Interactible.class)
+            .forEach(entity -> entity.interactWith(bomberman));
     }
 
     boolean blocksMovement() {
-        return entityList.stream().map(CellEntity::getClass).anyMatch(SolidEntity.class::isAssignableFrom);
+        return !assignableEntities(SolidEntity.class).isEmpty();
     }
 
     void remove(CellEntity entity) {
         entityList.remove(entity);
     }
-
-    public List<CellEntity> getEntities(){ return entityList; }
 
     public Cell cellAt(Direction direction) {
         return map.getCellAt(direction.add(getPosition()));
@@ -52,10 +57,15 @@ public class Cell {
     }
 
     public void burnFromExplosion() {
-        new ArrayList<>(entityList)
-                .stream()
-                .filter(entity -> Burnable.class.isAssignableFrom(entity.getClass()))
-                .map(entity -> (Burnable) entity)
-                .forEach(cellEntity -> cellEntity.burnFromExplosion(this));
+        assignableEntities(Burnable.class)
+            .forEach(burnable -> burnable.burnFromExplosion(this));
+    }
+
+    <T> List<T> assignableEntities(Class<T> klass){
+        return entityList
+            .stream()
+            .filter(entity -> klass.isAssignableFrom(entity.getClass()))
+            .map(klass::cast)
+            .collect(Collectors.toList());
     }
 }
