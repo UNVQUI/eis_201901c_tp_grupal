@@ -77,8 +77,8 @@ public class ProtoMaxUnitsPowerTest {
         bomb2.tick(map.getEntityCell(bomb2));
         bomb2.tick(map.getEntityCell(bomb2)); //BOOM
 
-        assertFalse(map.getCellAt(new Position(2, 1)).getEntities().contains(enemy1));
-        assertFalse(map.getCellAt(new Position(2, 1)).getEntities().contains(enemy2));
+        assertFalse(map.getCellAt(new Position(2, 1)).has(enemy1));
+        assertFalse(map.getCellAt(new Position(2, 1)).has(enemy2));
     }
 
 
