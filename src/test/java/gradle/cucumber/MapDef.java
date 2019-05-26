@@ -73,6 +73,8 @@ public class MapDef implements En {
         if(type.equals("BagulaaPower")) return new BagulaaPower();
         if(type.equals("ProtoMaxJr")) return new ProtoMaxJr();
         if(type.equals("ProtoMaxJrPower")) return new ProtoMaxJrPower();
+        if(type.equals("ProtoMaxUnits")) return new ProtoMaxUnits();
+        if(type.equals("ProtoMaxUnitsPower")) return new ProtoMaxUnitsPower();
         throw new RuntimeException(type + " Entity not defined in step definition");
     }
 }

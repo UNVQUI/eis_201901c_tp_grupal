@@ -43,7 +43,7 @@ public class Bomberman implements CellEntity{
     }
 
     public Bomb dropBomb(Cell currentCell, Direction direction, int distance) {
-        if (!hasPower(new BagulaaPower())) {
+        if (!hasPower(new BagulaaPower()) && !hasPower(new ProtoMaxUnitsPower())) {
             throw new PowerNotFound();
         }
         Bomb bomb = new Bomb();
@@ -61,7 +61,7 @@ public class Bomberman implements CellEntity{
     }
 
     public void jumpTo(Cell currentCell, Direction oneDirection) {
-        if (!hasPower(new ProtoMaxJrPower())) {
+        if (!hasPower(new ProtoMaxJrPower()) && !hasPower(new ProtoMaxUnitsPower())) {
             throw new PowerNotFound();
         }
         Cell destinyCell = currentCell.cellAt(oneDirection).cellAt(oneDirection);
