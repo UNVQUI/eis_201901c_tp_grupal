@@ -3,6 +3,8 @@ package bomberman;
 import bomberman.attributes.CellEntity;
 import bomberman.attributes.Interactible;
 
+import java.util.Arrays;
+
 public class Power implements CellEntity, Interactible {
     @Override
     public boolean equals(Object o) {
@@ -10,8 +12,13 @@ public class Power implements CellEntity, Interactible {
         return o != null && getClass() == o.getClass();
     }
 
+    InteractionExecuter interactions = new InteractionExecuter(
+            Arrays.asList(
+                    new Interaction<>(Bomberman.class, bomberman -> bomberman.getPower(this))
+            )
+    );
+
     public void interactWith(CellEntity anotherEntity) {
-        if(Bomberman.class.isAssignableFrom(anotherEntity.getClass()))
-            ((Bomberman) anotherEntity).getPower(this);
+        interactions.execute(anotherEntity);
     }
 }

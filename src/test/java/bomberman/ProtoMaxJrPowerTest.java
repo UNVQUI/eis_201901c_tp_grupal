@@ -22,7 +22,7 @@ public class ProtoMaxJrPowerTest {
     @Test
     public void bombermanGetsProtoMaxJrPowerJumpToRightAndLandsOnCell_2_0() {
         bomberman.getPower(power);
-        map.getCellAt(new Position(1, 0)).put(new Wall());
+        map.getCellAt(new Position(1, 0)).put(new SteelWall());
         bomberman.jumpTo(map.getEntityCell(bomberman), Direction.RIGHT);
 
         Position newPos = new Position(2, 0);
