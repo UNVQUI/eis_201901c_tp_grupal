@@ -68,6 +68,18 @@ Feature: Bomberman powers
     And Time passes and Bomb explodes
     Then "enemy" is dead
 
+  Scenario: Bomberman throws Bomb far away and kills enemy
+    Given Initial map
+    And Bomberman gets ProtoMaxUnitsPower
+    And place Enemy at-1,2- as "enemy1_2"
+    And place Enemy at-1,2- as "enemy1_3"
+    When Bomberman throws Bomb to DOWN -2- cells away as bomb1
+    And other throws Bomb DOWN -3- cells away as bomb2
+    And time passes for bomb1 and explodes
+    And time passes for bomb2 and explodes
+    Then "enemy1_2" is dead
+    And "enemy1_3" is dead
+
   Scenario: Bomberman jumpt to the Right trough the wall to the next free cell
     Given Initial map
     And Bomberman gets ProtoMaxUnitsPower
