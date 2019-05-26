@@ -1,4 +1,5 @@
 Feature: Bomberman Moviendose
+#Prueba de Aceptacion 1:
 
     Scenario: Bomberman se mueve a la celda Norte
        Given Un Juego con bomberman en una celda

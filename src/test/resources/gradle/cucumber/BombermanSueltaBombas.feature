@@ -1,5 +1,6 @@
 Feature: Bomberman Suelta Bombas
-    
+#Prueba de Aceptacion 2:
+
      Scenario: Bomberman pone una bomba y destruye paredes de melamina
         Given Un Juego con bomberman en una celda
         When Bomberman pone una bomba rodeado de paredes de melamina
@@ -46,7 +47,12 @@ Feature: Bomberman Suelta Bombas
         And Pasa "4" ticks
         Then La bomba explota
 
+
+
 #Prueba de aceptacion 4:
+
+#ESTA MAL PORQUE NO AGARRA EL PODER Y HABRIA QUE SUBDIVIDIRLO EN VARIOS SCENARIOS
+#----------------------------------------------------------
      #Bomberman.Bomberman suelta bomba y esta alcanza a 'Proto Max Jr.' al morir, este suelta un poder que le permite a bomberman saltar toddo tipo de pared.
       #Scenario: Bomberman lanza bomba y esta alcanza a proto max JR, al morir, bomberman puede saltar paredes
        #  Given Un Juego con bomberman en una celda
@@ -56,6 +62,9 @@ Feature: Bomberman Suelta Bombas
          #And Pasa "4" ticks
          #Then Proto Max Jr muere
          #And Bomberman con poder "saltarPared"
+#----------------------------------------------------------
+
+
 
 #FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
      Scenario: Bomberman pone una bomba y mata a "ProtoMaxJr" que entra en su onda expansiva
@@ -71,8 +80,13 @@ Feature: Bomberman Suelta Bombas
         When Bomberman se mueve sobre esa celda Sur
         Then Bomberman obtiene el poder "saltarPared"
 
+
 #Prueba de aceptacion 5:
    #Bomberman.Bomberman suelta bomba y esta alcanza a 'Proto-Max Units' al morir, este suelta un poder que le permite a bomberman saltar o lanzar varias bombas al mismo tiempo.
+
+
+#ESTA MAL PORQUE NO AGARRA EL PODER Y HABRIA QUE SUBDIVIDIRLO EN VARIOS SCENARIOS
+#----------------------------------------------------------
    #Scenario: Bomberman lanza bomba y esta alcanza a proto max JR, al morir, bomberman puede saltar paredes o lanzar varias bombas al mismo tiempo
       #Given Un Juego con bomberman en una celda
       #And una pared de metal al Norte del bomberman
@@ -81,8 +95,9 @@ Feature: Bomberman Suelta Bombas
       #And Pasa "4" ticks
       #Then Proto Max Units muere
       #And Bomberman con poder "saltarYLanzar"
+#----------------------------------------------------------
 
-#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
+
      Scenario: Bomberman pone una bomba y mata a "ProtoMaxUnits" que entra en su onda expansiva
          Given Un Juego con bomberman en una celda
          And Esta "ProtoMaxUnits" en la celda de al lado de bomberman Este
@@ -96,11 +111,17 @@ Feature: Bomberman Suelta Bombas
         When Bomberman se mueve sobre esa celda Oeste
         Then Bomberman obtiene el poder "saltarYLanzar"
 
+#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
+
 
 #Prueba de aceptacion 6:
-#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
+
+#COMO NO EXISTE ENEMIGO QUE DROPEE ESTE PODER NO AGREGO SCENARIO QUE UN ENEMIGO DROPEA ESTE PODER
+
      Scenario: Bomberman se mueve en una celda donde hay poder "soltarVariasBombas" y cambia su poder
         Given Un Juego con bomberman en una celda
         And La celda Este donde esta bomberman hay poder "soltarVariasBombas"
         When Bomberman se mueve sobre esa celda Este
         Then Bomberman obtiene el poder "soltarVariasBombas"
+
+#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
