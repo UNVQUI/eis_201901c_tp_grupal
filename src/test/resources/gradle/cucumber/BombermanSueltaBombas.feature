@@ -51,7 +51,7 @@ Feature: Bomberman Suelta Bombas
 
 #Prueba de aceptacion 4:
 
-#ESTA MAL PORQUE NO AGARRA EL PODER Y HABRIA QUE SUBDIVIDIRLO EN VARIOS SCENARIOS
+#ESTA MAL PORQUE BOMBERMAN NO AGARRA EL PODER DE LA CELDA DONDE MUERE EL ENEMIGO Y HABRIA QUE SUBDIVIDIRLO EN VARIOS SCENARIOS
 #----------------------------------------------------------
      #Bomberman.Bomberman suelta bomba y esta alcanza a 'Proto Max Jr.' al morir, este suelta un poder que le permite a bomberman saltar toddo tipo de pared.
       #Scenario: Bomberman lanza bomba y esta alcanza a proto max JR, al morir, bomberman puede saltar paredes
@@ -85,7 +85,7 @@ Feature: Bomberman Suelta Bombas
    #Bomberman.Bomberman suelta bomba y esta alcanza a 'Proto-Max Units' al morir, este suelta un poder que le permite a bomberman saltar o lanzar varias bombas al mismo tiempo.
 
 
-#ESTA MAL PORQUE NO AGARRA EL PODER Y HABRIA QUE SUBDIVIDIRLO EN VARIOS SCENARIOS
+#ESTA MAL PORQUE BOMBERMAN NO AGARRA EL PODER DE LA CELDA DONDE MUERE EL ENEMIGO Y HABRIA QUE SUBDIVIDIRLO EN VARIOS SCENARIOS
 #----------------------------------------------------------
    #Scenario: Bomberman lanza bomba y esta alcanza a proto max JR, al morir, bomberman puede saltar paredes o lanzar varias bombas al mismo tiempo
       #Given Un Juego con bomberman en una celda
