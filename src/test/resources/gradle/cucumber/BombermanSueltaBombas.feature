@@ -116,12 +116,17 @@ Feature: Bomberman Suelta Bombas
 
 #Prueba de aceptacion 6:
 
-#COMO NO EXISTE ENEMIGO QUE DROPEE ESTE PODER NO AGREGO SCENARIO QUE UN ENEMIGO DROPEA ESTE PODER
+#NOTAS(BORRAR UNA VEZ QUE SE TERMINE DE HACER LOS SCENARIOS):
+    #BOMBERMAN SUELTA O LANZA BOMBAS (ej. juego.bombermanAccionarBomba() segun su poder va a lanzar o soltar)
+    #juego.bombermanAccionarBomba(),juego.moverBomberman(new North()), juego.bombermanAccionarBomba(),juego.moverBomberman(new North()), juego.bombermanAccionarBomba()
+    #SOLTARIA 3 Bombas una arriba de la otra (SI EXISTEN CASILLEROS)
+    #SI ENTRE MEDIO DE ESOS METODOS METES juego.correnNTicks(3) VAN EXPLOTANDO LAS BOMBAS QUE SE VAN PONIENDO EN LA LISTA DE BOMBAS DEL JUEGO!!
+    #CREAR SCENARIOS QUE TESTEEN ESO.
 
-     Scenario: Bomberman se mueve en una celda donde hay poder "soltarVariasBombas" y cambia su poder
-        Given Un Juego con bomberman en una celda
-        And La celda Este donde esta bomberman hay poder "soltarVariasBombas"
-        When Bomberman se mueve sobre esa celda Este
-        Then Bomberman obtiene el poder "soltarVariasBombas"
+    #CREAR SCENARIOS DONDE BOMBERMAN NO TIENE PODER Y SUELTA N BOMBAS (DONDE HAY CASOS QUE ESTA ESTALLE SEGUN LOS TICKS QUE VAN PASANDO
+    #CREAR SCENARIOS DONDE BOMBERMAN TIENE CUALQUIER PODER QUE HAGA Q LANZE N BOMBAS
 
-#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
+
+#TESTIAR BOMBERMAN CUANDO BOMBERMAN SUELTA N BOMBAS Y CHEQUEAR QUE ESTEN EN LA LISTA DE BOMBAS
+
+#TESTIAR BOMBERMAN CUANDO BOMBERMAN LANZA N BOMBAS Y CHEQUEAR QUE ESTEN EN LA LISTA DE BOMBAS

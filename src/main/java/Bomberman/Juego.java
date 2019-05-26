@@ -50,12 +50,8 @@ public class Juego {
         this.posicionBomberman = coordenadaAIr;
     }
 
-    public void bombermanAccionarDejaBomba() {
-        this.bomberman.accionDejaBomba(this);
-    }
-
-    public void bombermanAccionarLanzaBomba() {
-        this.bomberman.accionLanzaBomba(this);
+    public void bombermanAccionarBomba() {
+        this.bomberman.accionBomba(this);
     }
 
     public void bombermanDejaUnaBomba() {
