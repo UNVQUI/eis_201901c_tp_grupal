@@ -14,14 +14,15 @@ public class BagulaaPowerTest {
     @Before
     public void setUp() {
         map = new GameMap();
-        bomberman = new Bomberman(map.getCellAt(new Position(0, 0)));
+        bomberman = new Bomberman();
+        map.getCellAt(new Position(0, 0)).put(bomberman);
         power = new BagulaaPower();
     }
 
     @Test
     public void bombermanGetsBagulaaPowerAndThrowsABombTwoCellsToRight() {
         bomberman.getPower(power);
-        Bomb bomb = bomberman.dropBomb(Direction.RIGHT, 2);
+        Bomb bomb = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
 
         Position newPos = new Position(2, 0);
         Position expectedPos = map.getPositionFrom(map.getEntityCell(bomb));
@@ -30,6 +31,6 @@ public class BagulaaPowerTest {
 
     @Test(expected = PowerNotFound.class)
     public void bombermanThrowsABombTwoCellsToRightButHeDoesNotHaveBagulaaPower() {
-        bomberman.dropBomb(Direction.RIGHT, 2);
+        bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
     }
 }

@@ -35,7 +35,7 @@ public class CellTest {
     @Test
     public void movingBombermanInAnCellWithAWallShouldNotMoveIt() {
         cell.put(wall);
-        bomberman.moveTo(cell);
+        bomberman.moveTo(new Cell(), cell);
         assertFalse(cell.has(bomberman));
     }
 }
