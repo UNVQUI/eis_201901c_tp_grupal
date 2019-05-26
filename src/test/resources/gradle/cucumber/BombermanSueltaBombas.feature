@@ -47,7 +47,18 @@ Feature: Bomberman Suelta Bombas
         And Pasa "4" ticks
         Then La bomba explota
 
+     Scenario: Bomberman lanza bomba a 4 celdas al Oeste y esta se queda en la posicion de bomberman al no existir celdas al Oeste
+        Given Un Juego con bomberman en una celda
+        And Bomberman se mueve hacia el Oeste
+        And Bomberman con poder "lanzarBombas"
+        When Bomberman lanza bomba mirando al Oeste
+        Then La bomba se pone en la celda que esta bomberman
 
+     Scenario: Bomberman con poder "lanzarBombas" lanza bomba a 4 celdas de longitud al Oeste y esta alcanza la celda proxima mas lejana al Oeste
+        Given Un Juego con bomberman en una celda
+        And Bomberman con poder "lanzarBombas"
+        When Bomberman lanza bomba mirando al Oeste
+        Then La bomba se pone "1" celdas al Oeste de la posicion de Bomberman
 
 #Prueba de aceptacion 4:
 
