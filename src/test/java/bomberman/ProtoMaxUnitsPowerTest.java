@@ -14,7 +14,8 @@ public class ProtoMaxUnitsPowerTest {
     @Before
     public void setUp() {
         map = new GameMap();
-        bomberman = new Bomberman(map.getCellAt(new Position(0, 0)));
+        bomberman = new Bomberman();
+        map.getCellAt(new Position(0, 0)).put(bomberman);
         power = new ProtoMaxUnitsPower();
     }
 
@@ -22,7 +23,7 @@ public class ProtoMaxUnitsPowerTest {
     public void bombermanGetsProtoMaxUnitsPowerJumpToRightAndLandsOnCell_2_0() {
         bomberman.getPower(power);
         map.getCellAt(new Position(1, 0)).put(new Wall());
-        bomberman.jumpTo(Direction.RIGHT);
+        bomberman.jumpTo(map.getEntityCell(bomberman), Direction.RIGHT);
 
         Position newPos = new Position(2, 0);
         Position expectedPos = map.getPositionFrom(bomberman);
@@ -32,7 +33,7 @@ public class ProtoMaxUnitsPowerTest {
     @Test
     public void bombermanGetsProtoMaxUnitsPowerAndThrowsABombTwoCellsToRight() {
         bomberman.getPower(power);
-        Bomb bomb = bomberman.dropBomb(Direction.RIGHT, 2);
+        Bomb bomb = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
 
         Position newPos = new Position(2, 0);
         Position expectedPos = map.getPositionFrom(map.getEntityCell(bomb));
@@ -41,11 +42,11 @@ public class ProtoMaxUnitsPowerTest {
 
     @Test(expected = PowerNotFound.class)
     public void bombermanJumpsToRightButHeDoesNotHaveProtoMaxUnitsPower() {
-        bomberman.jumpTo(Direction.RIGHT);
+        bomberman.jumpTo(map.getEntityCell(bomberman), Direction.RIGHT);
     }
 
     @Test(expected = PowerNotFound.class)
     public void bombermanThrowsABombTwoCellsToRightButHeDoesNotHaveProtoMaxUnitsPower() {
-        bomberman.dropBomb(Direction.RIGHT, 2);
+        bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
     }
 }

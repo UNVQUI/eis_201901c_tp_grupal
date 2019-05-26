@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BombermanMovementStepdefs {
     Bomberman bomberman = new Bomberman();
+    Cell actualCell = new Cell();
     Cell contingentCell = new Cell();
 
     @Given("Empty contingent cell")
@@ -19,7 +20,7 @@ public class BombermanMovementStepdefs {
 
     @When("Bomberman moves to contingent cell")
     public void BombermanMovesToContingentCell() {
-        bomberman.moveTo(contingentCell);
+        bomberman.moveTo(actualCell, contingentCell);
     }
 
     @Then("Bomberman has moved to contingent cell")

@@ -20,11 +20,12 @@ public class MapDef implements En {
     public MapDef() {
         Given("^Initial map$", () -> {
             gameMap = new GameMap();
-            bomberman = new Bomberman(gameMap.getCellAt(new Position(0,0)));
+            bomberman = new Bomberman();
+            gameMap.getCellAt(new Position(0, 0)).put(bomberman);
         });
         And("Bomberman drops Bomb at-{int},{int}-", (Integer x, Integer y) -> {
-            bomberman.moveTo(gameMap.getCellAt(new Position(x, y)));
-            bomb = bomberman.dropBomb();
+            bomberman.moveTo(gameMap.getEntityCell(bomberman), gameMap.getCellAt(new Position(x, y)));
+            bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman));
         });
         And("place {word} at-{int},{int}- as {string}", (String thing, Integer x, Integer y, String entityPointer) -> {
             CellEntity entity = getCellEntityFromString(thing);
@@ -42,18 +43,18 @@ public class MapDef implements En {
         Then("{string} is not destroyed", (String entityPointer) ->
                 gameMap.getEntityCell(entities.get(entityPointer)));
         When("Bomberman moves to-{int},{int}-", (Integer x, Integer y) ->
-                bomberman.moveTo(gameMap.getCellAt(new Position(x, y))));
+                bomberman.moveTo(gameMap.getEntityCell(bomberman), gameMap.getCellAt(new Position(x, y))));
         Then("Bomberman has {word}", (String thing) ->
                 assertTrue(bomberman.hasPower(getCellEntityFromString(thing))));
         And("Bomberman gets {word}", (String thing) ->
                 bomberman.getPower(getCellEntityFromString(thing)));
         When("Bomberman throws Bomb to {word} -{int}- cells away as {word}",
                 (String direction, Integer distance, String entityPointer) -> {
-            bomb = bomberman.dropBomb(Direction.valueOf(direction), distance);
+            bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman), Direction.valueOf(direction), distance);
             entities.put(entityPointer, bomb);
         });
         When("Bomberman jump to {word}", (String direction) -> {
-            bomberman.jumpTo(Direction.valueOf(direction));
+            bomberman.jumpTo(gameMap.getEntityCell(bomberman), Direction.valueOf(direction));
         });
         Then("Bomberman is at-{int},{int}-", (Integer x, Integer y) -> {
             assertEquals(new Position(x, y),gameMap.getPositionFrom(bomberman));

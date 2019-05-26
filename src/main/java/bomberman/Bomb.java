@@ -15,15 +15,7 @@ public class Bomb implements CellEntity{
     }
 
     @Override
-    public boolean blocksMovement() {
-        return false;
-    }
-
-    @Override
     public void interactWith(CellEntity anotherEntity) {}
-
-    @Override
-    public void burnFromExplosion(Cell cell) {}
 
     public void explode(Cell cell){
         cell.burnFromExplosion();

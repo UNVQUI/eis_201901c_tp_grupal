@@ -1,5 +1,8 @@
 package bomberman;
 
+import bomberman.attributes.Burnable;
+import bomberman.attributes.SolidEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +33,7 @@ public class Cell {
     }
 
     boolean blocksMovement() {
-        return entityList.stream().anyMatch(CellEntity::blocksMovement);
+        return entityList.stream().map(CellEntity::getClass).anyMatch(SolidEntity.class::isAssignableFrom);
     }
 
     void remove(CellEntity entity) {
@@ -48,6 +51,10 @@ public class Cell {
     }
 
     public void burnFromExplosion() {
-        new ArrayList<>(entityList).forEach(cellEntity -> cellEntity.burnFromExplosion(this));
+        new ArrayList<>(entityList)
+                .stream()
+                .filter(entity -> Burnable.class.isAssignableFrom(entity.getClass()))
+                .map(entity -> (Burnable) entity)
+                .forEach(cellEntity -> cellEntity.burnFromExplosion(this));
     }
 }

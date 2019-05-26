@@ -8,14 +8,8 @@ public class Power implements CellEntity {
     }
 
     @Override
-    public boolean blocksMovement() { return false; }
-
-    @Override
     public void interactWith(CellEntity anotherEntity) {
         if(Bomberman.class.isAssignableFrom(anotherEntity.getClass()))
             ((Bomberman) anotherEntity).getPower(this);
     }
-
-    @Override
-    public void burnFromExplosion(Cell cell) {}
 }
