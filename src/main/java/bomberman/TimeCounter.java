@@ -2,20 +2,16 @@ package bomberman;
 
 public class TimeCounter {
 
-    Bomb bomb;
-    int tick;
+    private Bomb bomb;
+    private int tick;
 
-    public TimeCounter(Bomb bomb){
+    public TimeCounter(Bomb bomb) {
         this.bomb = bomb;
         this.tick = bomb.getTicksLimit();
     }
 
-    public void tick(Cell cell){
-        if (tick > 0){
-            tick--;
-        }
-        else{
-            bomb.explode(cell);}
-
+    public void tick(Cell cell) {
+        tick--;
+        if (tick == 0) bomb.explode(cell);
     }
 }

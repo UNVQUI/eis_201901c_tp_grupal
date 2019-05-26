@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Cell {
 
-    private List<CellEntity> entityList = new ArrayList<CellEntity>();
+    private List<CellEntity> entityList = new ArrayList<>();
     private GameMap map;
 
     public Cell() {}

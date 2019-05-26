@@ -1,5 +1,3 @@
 package bomberman;
 
-public class BagulaaPower extends Power {
-
-}
+public class BagulaaPower extends Power {}

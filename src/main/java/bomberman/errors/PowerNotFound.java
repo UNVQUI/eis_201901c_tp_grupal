@@ -1,4 +1,3 @@
 package bomberman.errors;
 
-public class PowerNotFound extends RuntimeException {
-}
+public class PowerNotFound extends RuntimeException {}

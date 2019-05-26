@@ -1,4 +1,3 @@
 package bomberman.attributes;
 
-public interface SolidEntity {
-}
+public interface SolidEntity {}

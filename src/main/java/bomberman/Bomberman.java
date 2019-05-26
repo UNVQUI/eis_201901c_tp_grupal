@@ -18,9 +18,7 @@ public class Bomberman implements CellEntity {
         to.moveToHere(from, this);
     }
 
-    public boolean isIn(Cell otherCell) {
-        return otherCell.has(this);
-    }
+    public boolean isIn(Cell otherCell) { return otherCell.has(this); }
 
     public boolean isAlive() {
         return alive;
@@ -30,20 +28,15 @@ public class Bomberman implements CellEntity {
         this.alive = false;
     }
 
-    public Bomb dropBomb(Cell currentCell){
+    public Bomb dropBomb(Cell currentCell) {
         Bomb bomb = new Bomb();
         currentCell.put(bomb);
         return bomb;
     }
 
-    public void getPower(CellEntity power) {
-        this.powers.add(power);
-    }
-
     public Bomb dropBomb(Cell currentCell, Direction direction, int distance) {
-        if (!hasPower(new BagulaaPower()) && !hasPower(new ProtoMaxUnitsPower())) {
+        if (!hasPower(new BagulaaPower()) && !hasPower(new ProtoMaxUnitsPower()))
             throw new PowerNotFound();
-        }
         Bomb bomb = new Bomb();
         Cell directionCell = currentCell;
         while (distance > 0) {
@@ -54,18 +47,19 @@ public class Bomberman implements CellEntity {
         return bomb;
     }
 
+    public void getPower(CellEntity power) {
+        this.powers.add(power);
+    }
+
     public boolean hasPower(CellEntity newPower) {
         return powers.stream().anyMatch(power -> power.equals(newPower));
     }
 
     public void jumpTo(Cell currentCell, Direction oneDirection) {
-        if (!hasPower(new ProtoMaxJrPower()) && !hasPower(new ProtoMaxUnitsPower())) {
+        if (!hasPower(new ProtoMaxJrPower()) && !hasPower(new ProtoMaxUnitsPower()))
             throw new PowerNotFound();
-        }
         Cell destinyCell = currentCell.cellAt(oneDirection).cellAt(oneDirection);
-        if (destinyCell.blocksMovement()) {
-            throw new CouldNotJump();
-        }
+        if (destinyCell.blocksMovement()) throw new CouldNotJump();
         moveTo(currentCell, destinyCell);
     }
 }
