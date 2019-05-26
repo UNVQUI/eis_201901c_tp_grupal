@@ -19,17 +19,11 @@ public class Bomberman {
         this.estaVivo = false;
     }
 
-    public void accionDejaBomba(Juego juego) {
+    public void accionBomba(Juego juego) {
         if(this.estaVivo){
-            this.miPoder.accionDejaBomba(juego);
+            this.miPoder.accionBomba(juego);
         }
     }
-
-    public void accionLanzaBomba(Juego juego){
-        if(this.estaVivo)
-            this.miPoder.accionLanzaBomba(juego);
-    }
-
     public void obtenerPoder(EstadoPoder estadoPoder){
         if(this.estaVivo) {
             this.miPoder = estadoPoder;
@@ -43,8 +37,6 @@ public class Bomberman {
     public boolean tienePoderSaltarPared(){return miPoder.tienePoderSaltarPared();}
 
     public boolean tienePoderSaltarYLanzarBombas(){return miPoder.tienePoderSaltarYLanzarBombas();}
-
-    public boolean tienePoderSoltarVariasBombas(){return miPoder.tienePoderSoltarVariasBombas();}
 
 
     public void moverse(Item item, Juego juego, Coordinate hacia) throws Exception{
