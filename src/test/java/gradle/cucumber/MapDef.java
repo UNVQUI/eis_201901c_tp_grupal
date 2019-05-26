@@ -37,6 +37,13 @@ public class MapDef implements En {
             bomb.tick(gameMap.getEntityCell(bomb));
             bomb.tick(gameMap.getEntityCell(bomb)); //BOOM
         });
+        When("time passes for {word} and explodes", (String entityPointer) -> {
+            Bomb entityBomb = (Bomb)entities.get(entityPointer);
+            Cell cell = gameMap.getEntityCell(entityBomb);
+            entityBomb.tick(cell);
+            entityBomb.tick(cell);
+            entityBomb.tick(cell); //BOOM
+        });
         Then("{string} is destroyed", this::testEntityNotInMap);
         Then("{string} is dead", this::testEntityNotInMap);
 
@@ -53,6 +60,11 @@ public class MapDef implements En {
             bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman), Direction.valueOf(direction), distance);
             entities.put(entityPointer, bomb);
         });
+        And("other throws Bomb {word} -{int}- cells away as {word}",
+                (String direction, Integer distance, String entityPointer) -> {
+                    Bomb bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman), Direction.valueOf(direction), distance);
+                    entities.put(entityPointer, bomb);
+                });
         When("Bomberman jump to {word}", (String direction) -> {
             bomberman.jumpTo(gameMap.getEntityCell(bomberman), Direction.valueOf(direction));
         });
