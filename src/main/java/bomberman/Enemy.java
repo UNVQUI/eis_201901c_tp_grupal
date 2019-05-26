@@ -1,6 +1,7 @@
 package bomberman;
 
 import bomberman.attributes.Burnable;
+import bomberman.attributes.CellEntity;
 
 public class Enemy implements CellEntity, Burnable {
     @Override

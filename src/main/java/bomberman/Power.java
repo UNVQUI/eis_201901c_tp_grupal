@@ -1,5 +1,7 @@
 package bomberman;
 
+import bomberman.attributes.CellEntity;
+
 public class Power implements CellEntity {
     @Override
     public boolean equals(Object o) {

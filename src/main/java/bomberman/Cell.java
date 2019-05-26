@@ -1,6 +1,7 @@
 package bomberman;
 
 import bomberman.attributes.Burnable;
+import bomberman.attributes.CellEntity;
 import bomberman.attributes.SolidEntity;
 
 import java.util.ArrayList;
