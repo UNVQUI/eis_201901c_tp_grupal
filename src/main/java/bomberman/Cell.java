@@ -1,5 +1,7 @@
 package bomberman;
 
+import bomberman.attributes.SolidEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class Cell {
     }
 
     boolean blocksMovement() {
-        return entityList.stream().anyMatch(CellEntity::blocksMovement);
+        return entityList.stream().map(CellEntity::getClass).anyMatch(SolidEntity.class::isAssignableFrom);
     }
 
     void remove(CellEntity entity) {

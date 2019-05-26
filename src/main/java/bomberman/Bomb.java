@@ -15,11 +15,6 @@ public class Bomb implements CellEntity{
     }
 
     @Override
-    public boolean blocksMovement() {
-        return false;
-    }
-
-    @Override
     public void interactWith(CellEntity anotherEntity) {}
 
     @Override

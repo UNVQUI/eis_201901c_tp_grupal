@@ -1,11 +1,8 @@
 package bomberman;
 
-public class Wall implements CellEntity{
-    @Override
-    public boolean blocksMovement() {
-        return true;
-    }
+import bomberman.attributes.SolidEntity;
 
+public class Wall implements CellEntity, SolidEntity {
     @Override
     public void interactWith(CellEntity anotherEntity) {}
 
