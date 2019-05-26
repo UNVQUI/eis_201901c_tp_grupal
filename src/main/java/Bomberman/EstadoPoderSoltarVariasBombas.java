@@ -14,6 +14,4 @@ public class EstadoPoderSoltarVariasBombas extends EstadoPoderLanzarBombas {
     @Override
     public boolean tienePoderSoltarVariasBombas(){return true;}
 
-    @Override
-    public boolean tienePoderLanzarBombas(){return false;}
 }

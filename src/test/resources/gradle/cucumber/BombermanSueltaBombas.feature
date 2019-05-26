@@ -57,6 +57,7 @@ Feature: Bomberman Suelta Bombas
          #Then Proto Max Jr muere
          #And Bomberman con poder "saltarPared"
 
+#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
      Scenario: Bomberman pone una bomba y mata a "ProtoMaxJr" que entra en su onda expansiva
          Given Un Juego con bomberman en una celda
          And Esta "ProtoMaxJr" en la celda de al lado de bomberman Sur
@@ -64,7 +65,11 @@ Feature: Bomberman Suelta Bombas
          And Pasa "3" ticks
          Then La Bomba explota donde estaba "ProtoMaxJr" soltando poder "saltarPared" en la celda Sur
 
-
+     Scenario: Bomberman se mueve en una celda donde hay poder "saltarPared" y cambia su poder
+        Given Un Juego con bomberman en una celda
+        And La celda Sur donde esta bomberman hay poder "saltarPared"
+        When Bomberman se mueve sobre esa celda Sur
+        Then Bomberman obtiene el poder "saltarPared"
 
 #Prueba de aceptacion 5:
    #Bomberman.Bomberman suelta bomba y esta alcanza a 'Proto-Max Units' al morir, este suelta un poder que le permite a bomberman saltar o lanzar varias bombas al mismo tiempo.
@@ -77,9 +82,25 @@ Feature: Bomberman Suelta Bombas
       #Then Proto Max Units muere
       #And Bomberman con poder "saltarYLanzar"
 
+#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
      Scenario: Bomberman pone una bomba y mata a "ProtoMaxUnits" que entra en su onda expansiva
          Given Un Juego con bomberman en una celda
          And Esta "ProtoMaxUnits" en la celda de al lado de bomberman Este
          When Bomberman deja una bomba
          And Pasa "3" ticks
          Then La Bomba explota donde estaba "ProtoMaxUnits" soltando poder "saltarYLanzar" en la celda Este
+
+     Scenario: Bomberman se mueve en una celda donde hay poder "saltarYLanzar" y cambia su poder
+        Given Un Juego con bomberman en una celda
+        And La celda Oeste donde esta bomberman hay poder "saltarYLanzar"
+        When Bomberman se mueve sobre esa celda Oeste
+        Then Bomberman obtiene el poder "saltarYLanzar"
+
+
+#Prueba de aceptacion 6:
+#FALTARIA TESTIAR LOS EFECTOS DE BOMBERMAN CON ESTE PODER
+     Scenario: Bomberman se mueve en una celda donde hay poder "soltarVariasBombas" y cambia su poder
+        Given Un Juego con bomberman en una celda
+        And La celda Este donde esta bomberman hay poder "soltarVariasBombas"
+        When Bomberman se mueve sobre esa celda Este
+        Then Bomberman obtiene el poder "soltarVariasBombas"

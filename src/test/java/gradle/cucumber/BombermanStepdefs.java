@@ -152,16 +152,13 @@ public class BombermanStepdefs {
         Direction dir = this.castDirection(dirStr);
         this.juego.moverBomberman(dir);
     }
-    @Then("^Bomberman obtiene el poder \"lanzarBombas\"$")
-    public void bombermanObtieneElPoderDeseado() throws Throwable{
+    @Then("^Bomberman obtiene el poder \"([^\"]*)\"$")
+    public void bombermanObtieneElPoderDeseado(String poderStr) throws Throwable{
 
-        assertTrue(bomberman.tienePoderLanzarBombas());
-        assertFalse(bomberman.noTieneNingunPoder());
-        assertFalse(bomberman.tienePoderSaltarPared());
-        assertFalse(bomberman.tienePoderSaltarYLanzarBombas());
-        assertFalse(bomberman.tienePoderSoltarVariasBombas());
+        this.castAssertBombermanTieneEstadoPoder(bomberman,poderStr);
 
     }
+
     @And("^Bomberman con poder \"([^\"]*)\"$")
     public void ponerPoderEnBomberman(String poderStr) throws Throwable{
         Poder poder = this.castPoder(poderStr);
@@ -276,7 +273,7 @@ public class BombermanStepdefs {
                 return new PoderSaltarPared();
             case "saltarYLanzar":
                 return new PoderSaltarYLanzar();
-            case "SoltarVariasBombas":
+            case "soltarVariasBombas":
                 return new PoderSoltarVariasBombas();
             default:
                 throw new IllegalStateException("Unexpected value: " + poder);
@@ -302,6 +299,43 @@ public class BombermanStepdefs {
                 throw new IllegalStateException("Unexpected value: " + poderStr);
         }
 
+    }
+
+
+    private void castAssertBombermanTieneEstadoPoder(Bomberman bomberman, String poderStr) {
+
+        switch(poderStr) {
+            case "lanzarBombas":
+                assertTrue(bomberman.tienePoderLanzarBombas());
+                assertFalse(bomberman.noTieneNingunPoder());
+                assertFalse(bomberman.tienePoderSaltarPared());
+                assertFalse(bomberman.tienePoderSaltarYLanzarBombas());
+                assertFalse(bomberman.tienePoderSoltarVariasBombas());
+                break;
+            case "saltarPared":
+                assertFalse(bomberman.tienePoderLanzarBombas());
+                assertFalse(bomberman.noTieneNingunPoder());
+                assertTrue(bomberman.tienePoderSaltarPared());
+                assertFalse(bomberman.tienePoderSaltarYLanzarBombas());
+                assertFalse(bomberman.tienePoderSoltarVariasBombas());
+                break;
+            case "saltarYLanzar":
+                assertTrue(bomberman.tienePoderLanzarBombas());
+                assertFalse(bomberman.noTieneNingunPoder());
+                assertTrue(bomberman.tienePoderSaltarPared());
+                assertTrue(bomberman.tienePoderSaltarYLanzarBombas());
+                assertFalse(bomberman.tienePoderSoltarVariasBombas());
+                break;
+            case "soltarVariasBombas":
+                assertTrue(bomberman.tienePoderLanzarBombas());
+                assertFalse(bomberman.noTieneNingunPoder());
+                assertFalse(bomberman.tienePoderSaltarPared());
+                assertFalse(bomberman.tienePoderSaltarYLanzarBombas());
+                assertTrue(bomberman.tienePoderSoltarVariasBombas());
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + poderStr);
+        }
     }
 
     @And("^una pared de metal al Norte del bomberman$")
