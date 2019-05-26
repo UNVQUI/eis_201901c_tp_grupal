@@ -1,9 +1,9 @@
 package gradle.cucumber;
 
 import bomberman.*;
+import bomberman.attributes.CellEntity;
 import bomberman.errors.CellEntityNotFound;
 import cucumber.api.java8.En;
-import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;

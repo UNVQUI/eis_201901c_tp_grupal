@@ -1,5 +1,6 @@
 package bomberman;
 
+import bomberman.attributes.CellEntity;
 import bomberman.errors.CellEntityNotFound;
 import bomberman.errors.CellNotFound;
 import com.google.common.collect.HashBiMap;

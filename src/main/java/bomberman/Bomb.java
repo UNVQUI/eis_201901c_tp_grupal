@@ -1,10 +1,9 @@
 package bomberman;
 
+import bomberman.attributes.CellEntity;
 import bomberman.errors.CellNotFound;
 
-import java.util.Arrays;
-
-public class Bomb implements CellEntity{
+public class Bomb implements CellEntity {
 
     private TimeCounter counter;
     private int ticksLimit;
@@ -13,9 +12,6 @@ public class Bomb implements CellEntity{
         this.ticksLimit = 3;
         this.counter = new TimeCounter(this);
     }
-
-    @Override
-    public void interactWith(CellEntity anotherEntity) {}
 
     public void explode(Cell cell){
         cell.burnFromExplosion();

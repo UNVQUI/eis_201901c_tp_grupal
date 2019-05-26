@@ -1,12 +1,13 @@
 package bomberman;
 
+import bomberman.attributes.CellEntity;
 import bomberman.errors.CouldNotJump;
 import bomberman.errors.PowerNotFound;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bomberman implements CellEntity{
+public class Bomberman implements CellEntity {
 
     private Boolean alive = true;
     private List<CellEntity> powers = new ArrayList<>();
@@ -24,9 +25,6 @@ public class Bomberman implements CellEntity{
     public boolean isAlive() {
         return alive;
     }
-
-    @Override
-    public void interactWith(CellEntity anotherEntity) {}
 
     public void kill() {
         this.alive = false;

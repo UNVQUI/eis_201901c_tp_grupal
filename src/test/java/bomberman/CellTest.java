@@ -15,7 +15,7 @@ public class CellTest {
     public void setUp(){
         cell = new Cell();
         bomberman = new Bomberman();
-        wall = new Wall();
+        wall = new SteelWall();
         enemy = new Enemy();
     }
 
