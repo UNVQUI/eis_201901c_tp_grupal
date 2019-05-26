@@ -69,3 +69,5 @@ public class Bomberman implements CellEntity {
         moveTo(currentCell, destinyCell);
     }
 }
+
+    

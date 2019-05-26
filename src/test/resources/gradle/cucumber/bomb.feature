@@ -30,6 +30,21 @@ Feature: bomb drop
     When Time passes and Bomb explodes
     Then "enemy" is not destroyed
 
+   Scenario: bomberman drops as many bombs as wanted
+     Given Initial map
+     When Bomberman drops Bomb at-0,0- as bomb1
+     And drops another Bomb at-0,0- as bomb2
+     Then entity bomb1 is at-0,0-
+     And entity bomb2 is at-0,0-
+
+   Scenario: Bombs dropped by bomberman, explodes n ticks after they were dropped
+     Given Initial map
+     When Bomberman drops Bomb at-0,0- as bomb1
+     And drops another Bomb at-0,0- as bomb2
+     And 3 ticks passes for all bombs and explodes
+     Then entity bomb1 is not at-0,0-
+     And entity bomb2 is not at-0,0-
+
 
 
 

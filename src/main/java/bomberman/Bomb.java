@@ -24,9 +24,9 @@ public class Bomb implements CellEntity {
                     wavelength -= 1;
                     directionCell.burnFromExplosion();
                 }
-            } catch (CellNotFound error) {
-            }
+            } catch (CellNotFound error) { }
         }
+        cell.remove(this);
     }
 
     public void tick(Cell cell){
