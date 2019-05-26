@@ -13,6 +13,14 @@ public class Bomb implements CellEntity {
         this.counter = new TimeCounter(this);
     }
 
+    public int getTicksLimit() {
+        return ticksLimit;
+    }
+
+    public void tick(Cell cell){
+        counter.tick(cell);
+    }
+
     public void explode(Cell cell){
         cell.burnFromExplosion();
         for (Direction direction : Direction.values()) {
@@ -24,16 +32,8 @@ public class Bomb implements CellEntity {
                     wavelength -= 1;
                     directionCell.burnFromExplosion();
                 }
-            } catch (CellNotFound error) { }
+            } catch (CellNotFound error) {}
         }
         cell.remove(this);
-    }
-
-    public void tick(Cell cell){
-        counter.tick(cell);
-    }
-
-    public int getTicksLimit() {
-        return ticksLimit;
     }
 }

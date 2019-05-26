@@ -1,4 +1,3 @@
 package bomberman;
 
-public class ProtoMaxUnitsPower extends Power  {
-}
+public class ProtoMaxUnitsPower extends Power  {}

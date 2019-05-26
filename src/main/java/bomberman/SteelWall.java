@@ -1,4 +1,3 @@
 package bomberman;
 
-public class SteelWall extends Wall {
-}
+public class SteelWall extends Wall {}
