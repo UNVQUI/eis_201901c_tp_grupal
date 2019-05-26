@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pablop94/eis_201901c_tp_grupal.svg?branch=master)](https://travis-ci.org/pablop94/eis_201901c_tp_grupal)
+
 ## Objetivos del TP grupal
 tEjercitar la escritura de código en ambientes colaborativos utilizando una metodología de diseño guiada por pruebas ejecutanto un flujo de trabajo que facilite la integración frecuente de código.
 
@@ -13,12 +15,12 @@ tEjercitar la escritura de código en ambientes colaborativos utilizando una met
 
 ### Integrantes
 
-Nro | Nombre | Legajo | Mail
-----|--------|--------|------
-1   |        |        |
-2   |        |        |
-3   |        |        |
-4   |        |        |
+Nro | Nombre          | Legajo | Mail
+----|-----------------|--------|------
+1   |Bogdan Matuszyczk|        | bogdan.utn@gmail.com
+2   |Fernando Blanco  |        | ferblanco@gmail.com
+3   |Florencia Otarola|        | florencia.otarola@gmail.com
+4   |Pablo Pissi      |        | pablopissi@gmail.com
     
 ### Entrega
 
