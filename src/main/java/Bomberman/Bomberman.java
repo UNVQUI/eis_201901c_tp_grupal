@@ -4,9 +4,10 @@ public class Bomberman {
 
     //REFACTOR SI SE LLEGA A UN ESTADOVIVO()
     private Boolean estaVivo;
-    private EstadoPoder miPoder = new EstadoPoderNoPuedeNada();
+    private EstadoPoder miPoder ;
 
     public Bomberman () {
+        this.miPoder = new EstadoPoderNoPuedeNada();
         this.estaVivo = true;
     }
 
@@ -18,10 +19,15 @@ public class Bomberman {
         this.estaVivo = false;
     }
 
-    public void accionBomba(Juego juego) {
+    public void accionDejaBomba(Juego juego) {
         if(this.estaVivo){
-            this.miPoder.accionBomba(juego);
+            this.miPoder.accionDejaBomba(juego);
         }
+    }
+
+    public void accionLanzaBomba(Juego juego){
+        if(this.estaVivo)
+            this.miPoder.accionLanzaBomba(juego);
     }
 
     public void obtenerPoder(EstadoPoder estadoPoder){
@@ -41,8 +47,19 @@ public class Bomberman {
     public boolean tienePoderSoltarVariasBombas(){return miPoder.tienePoderSoltarVariasBombas();}
 
 
-    public void moverse(Item item, Juego juego, Coordinate hacia) {
-        miPoder.moverme(item,juego,hacia);
+    public void moverse(Item item, Juego juego, Coordinate hacia) throws Exception{
+        if(estaVivo){
+            miPoder.moverme(item,juego,hacia);
+        }
+    }
+
+    public Direction cambiarDondeMira(Direction dir){
+        //TODO REFACTOR DE NULL A EXCEPTION ESTAMUERTOBOMBERMAN()
+        if(estaVivo){
+            return dir;
+        }
+
+        return null;
     }
 
 }

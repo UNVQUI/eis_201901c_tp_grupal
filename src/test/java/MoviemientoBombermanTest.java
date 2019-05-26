@@ -17,7 +17,7 @@ public class MoviemientoBombermanTest extends TestCase {
 
 
     @Test
-    public void testBombermanSeMueveAlNorte(){
+    public void testBombermanSeMueveAlNorte() {
         Direction direction = new North();
 
         Coordinate posicionBomberman = this.juego.getPosicionBomberman();
@@ -41,7 +41,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSeMueveAlEste(){
+    public void testBombermanSeMueveAlEste() {
         Direction direction = new East();
 
         Coordinate posicionBomberman = this.juego.getPosicionBomberman();
@@ -53,7 +53,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSeMueveAlOeste(){
+    public void testBombermanSeMueveAlOeste() {
         Direction direction = new West();
 
         Coordinate posicionBomberman = this.juego.getPosicionBomberman();
@@ -65,7 +65,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanMuereAlMoverseAlNorteHabiendoEnemigo(){
+    public void testBombermanMuereAlMoverseAlNorteHabiendoEnemigo() throws Exception{
 
         Direction direction = new North();
 
@@ -79,7 +79,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanMuereAlMoverseAlSurHabiendoEnemigo(){
+    public void testBombermanMuereAlMoverseAlSurHabiendoEnemigo() throws Exception{
 
         Direction direction = new South();
 
@@ -93,7 +93,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanMuereAlMoverseAlEsteHabiendoEnemigo(){
+    public void testBombermanMuereAlMoverseAlEsteHabiendoEnemigo() throws Exception{
 
         Direction direction = new East();
 
@@ -107,7 +107,7 @@ public class MoviemientoBombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanMuereAlMoverseAlOesteHabiendoEnemigo(){
+    public void testBombermanMuereAlMoverseAlOesteHabiendoEnemigo() throws Exception {
 
         Direction direction = new West();
 
@@ -119,5 +119,17 @@ public class MoviemientoBombermanTest extends TestCase {
         this.juego.moverBomberman(direction);
 
         assertTrue(this.juego.getBomberman().siEstaMuerto());
+    }
+
+    @Test
+    public void testBombermanSeMueveAlOesteYCambiaSuPosicionPeroLuegoAlMoverseAlOesteOtraVezEsteNoCambiaSuPosicionAlQuererSalirDelMapa(){
+        Direction direction = new West();
+        Coordinate oldCoord = this.juego.getPosicionBomberman();
+        this.juego.moverBomberman(direction);
+        assertNotSame(oldCoord,this.juego.getPosicionBomberman());
+
+        oldCoord = this.juego.getPosicionBomberman();
+        this.juego.moverBomberman(direction);
+        assertEquals(oldCoord,this.juego.getPosicionBomberman());
     }
 }

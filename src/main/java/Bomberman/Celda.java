@@ -17,7 +17,7 @@ public class Celda {
         this.item = item;
     }
 
-    public void moverABomberman(Juego juego, Coordinate hacia) {
+    public void moverABomberman(Juego juego, Coordinate hacia)  throws Exception{
         juego.getBomberman().moverse(this.item,juego,hacia);
     }
 
@@ -58,8 +58,6 @@ public class Celda {
     public boolean hayPoder(){ return this.item.hayPoder();}
 
     public boolean hayPoderLanzarBombas(){return this.item.hayPoderLanzarBombas();}
-
-    public boolean hayPoderLanzarVariasBombas(){return this.item.hayPoderLanzarVariasBombas();}
 
     public boolean hayPoderSaltarPared(){return this.item.hayPoderSaltarPared();}
 

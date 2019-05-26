@@ -3,7 +3,7 @@ package Bomberman;
 public class EstadoPoderSaltarPared extends EstadoPoder {
 
     @Override
-    public void accionBomba(Juego juego){
+    public void accionDejaBomba(Juego juego){
         juego.bombermanDejaUnaBomba();
     }
 
@@ -12,6 +12,6 @@ public class EstadoPoderSaltarPared extends EstadoPoder {
 
     @Override
     public void moverme( Item item ,Juego juego, Coordinate hacia) {
-        juego.setPosicionBomberman(hacia);
+        item.saltarPared(juego,hacia);
     }
 }

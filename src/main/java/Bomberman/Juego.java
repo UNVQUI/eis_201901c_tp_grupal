@@ -28,15 +28,17 @@ public class Juego {
         return bomberman;
     }
 
-    public void moverBomberman(Direction dir){
-        //REFACTOR SI SE LLEGA
-        if(! this.bomberman.siEstaMuerto()){
-            Coordinate nextCoord = dir.giveNextCoordinate(this.getPosicionBomberman());
+    public void moverBomberman(Direction dir) {
+
+        Coordinate nextCoord = dir.giveNextCoordinate(this.getPosicionBomberman());
+        try {
             this.mapa.getCelda(nextCoord).moverABomberman(this, nextCoord);
+        }catch (Exception e){
+            //TODO| NO HACE NADA ES DECIR QUE BOMBERMAN NO CAMBIA SU POSICION.
         }
     }
 
-    public Celda getCeldaBomberman(){
+    public Celda getCeldaBomberman() throws Exception{
         return this.mapa.getCelda(this.posicionBomberman);
     }
 
@@ -48,8 +50,12 @@ public class Juego {
         this.posicionBomberman = coordenadaAIr;
     }
 
-    public void bombermanAccionarBomba() {
-        this.bomberman.accionBomba(this);
+    public void bombermanAccionarDejaBomba() {
+        this.bomberman.accionDejaBomba(this);
+    }
+
+    public void bombermanAccionarLanzaBomba() {
+        this.bomberman.accionLanzaBomba(this);
     }
 
     public void bombermanDejaUnaBomba() {
@@ -83,10 +89,7 @@ public class Juego {
 
 
     public void setDondeMiraBomberman(Direction dir){
-        //TODO REFACTORIZAR
-        if(!bomberman.siEstaMuerto()){
-            this.dondeMiraBomberman = dir;
-        }
+        dondeMiraBomberman = this.bomberman.cambiarDondeMira(dir);
 
     }
 
@@ -96,5 +99,9 @@ public class Juego {
 
     public boolean noHayBombasActivas(){
         return this.bombas.isEmpty();
+    }
+
+    public void setItemEnCeldaBomberman(Item item) throws Exception{
+        this.getCeldaBomberman().setItem(new Vacio());
     }
 }

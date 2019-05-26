@@ -30,11 +30,15 @@ public class Mapa {
         }
     }
 
-    public Celda getCelda(Coordinate c){
-        return this.mapa.stream().filter(celda -> celda.esLaCoordenadaCorrecta(c)).findFirst().get();
+    public Celda getCelda(Coordinate c) throws ExcepcionTeFuisteDelMapa{
+        try{
+            return this.mapa.stream().filter(celda -> celda.esLaCoordenadaCorrecta(c)).findFirst().get();
+        }catch (Exception e){
+            throw new ExcepcionTeFuisteDelMapa();
+        }
     }
 
-    public void colocarItem(Item item, Coordinate coordenada) {
+    public void colocarItem(Item item, Coordinate coordenada) throws Exception{
         this.getCelda(coordenada).setItem(item);
     }
 

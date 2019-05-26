@@ -17,7 +17,7 @@ public class EstadoPoderSaltarYLanzarBombas extends EstadoPoderLanzarBombas {
 
     @Override
     public void moverme( Item item ,Juego juego, Coordinate hacia) {
-        juego.setPosicionBomberman(hacia);
+        item.saltarPared(juego,hacia);
     }
 
 
