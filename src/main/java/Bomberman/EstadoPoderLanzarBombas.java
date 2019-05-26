@@ -2,8 +2,8 @@ package Bomberman;
 
 public class EstadoPoderLanzarBombas extends EstadoPoder{
 
-    int alcance;
-    int velocidadExplosion;
+    private int alcance;
+    private int velocidadExplosion;
 
     public EstadoPoderLanzarBombas(int alcance,int velocidadExplosion){
         this.alcance = alcance;

@@ -14,7 +14,7 @@ public class BombermanTest extends TestCase {
     }
 
     @Test
-    public void testWhenBombermanInCoordinate1x1yMovesToTheNorthenCellHisNewCoordinateIs1x2y(){
+    public void testWhenBombermanInCoordinate1x1yMovesToTheNorthenCellHisNewCoordinateIs1x2y() throws Exception{
 
         this.juego.moverBomberman(new North());
 
@@ -23,26 +23,26 @@ public class BombermanTest extends TestCase {
 
 
     @Test
-    public void testWhenBombermanInCoordinate1x1MovesToTheSouthernCellHisNewCoordinateIs1x0y(){
+    public void testWhenBombermanInCoordinate1x1MovesToTheSouthernCellHisNewCoordinateIs1x0y() throws Exception{
         this.juego.moverBomberman(new South());
 
         assertEquals(this.juego.getPosicionBomberman(),new Coordinate(1,0));
     }
     @Test
-    public void testWhenBombermanInCoordinate1x1MovesToTheEasternCellHisNewCoordinateIs2x1y(){
+    public void testWhenBombermanInCoordinate1x1MovesToTheEasternCellHisNewCoordinateIs2x1y() throws Exception{
         this.juego.moverBomberman(new East());
 
         assertEquals(this.juego.getPosicionBomberman(),new Coordinate(2,1));
     }
     @Test
-    public void testWhenBombermanInCoordinate1x1MovesToTheWesternCellHisNewCoordinateIs0x1y(){
+    public void testWhenBombermanInCoordinate1x1MovesToTheWesternCellHisNewCoordinateIs0x1y() throws Exception{
 
         this.juego.moverBomberman(new West());
 
         assertEquals(this.juego.getPosicionBomberman(),new Coordinate(0,1));
     }
     @Test
-    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanSaltaUnaPardDeMetal(){
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanSaltaUnaPardDeMetal() throws Exception{
         Enemigo protoMaxJr = new ProtoMaxJr();
         Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
         Coordinate coordenadaAlNorteDeBomberman = new North().giveNextCoordinate(posicionViejaDeBomberman);
@@ -61,7 +61,7 @@ public class BombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeSaltarParedes(){
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeSaltarParedes()throws Exception{
         Enemigo protoMaxUnits = new ProtoMaxUnits();
         Enemigo enemigo = new Enemigo();
         Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();
@@ -83,7 +83,7 @@ public class BombermanTest extends TestCase {
 
 
     @Test
-    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombasYMataUnEnemigoLanzandoleUnaBombaAlNorte(){
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombasYMataUnEnemigoLanzandoleUnaBombaAlNorte() throws Exception{
         Enemigo protoMaxUnits = new ProtoMaxUnits();
         Enemigo enemigo = new Enemigo();
         Coordinate posicionBomberman = juego.getPosicionBomberman();
@@ -107,7 +107,7 @@ public class BombermanTest extends TestCase {
     }
 
     @Test
-    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombas(){
+    public void testBombermanSueltaUnaBombaYMataAProtoMaxYAhoraBombermanPuedeLanzarBombas() throws Exception{
         Enemigo protoMaxUnits = new ProtoMaxUnits();
         Enemigo enemigo = new Enemigo();
         Coordinate posicionViejaDeBomberman = juego.getPosicionBomberman();

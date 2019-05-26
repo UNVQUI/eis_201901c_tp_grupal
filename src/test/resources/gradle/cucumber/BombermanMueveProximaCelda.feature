@@ -5,6 +5,12 @@ Feature: Bomberman Moviendose
        When Bomberman se mueve hacia la celda vacia Norte
        Then Bomberman cambia su posicion
 
+    Scenario: Bomberman se mueve dos veces a la celda Este y se lanza excepcion fuera del mapa
+       Given Un Juego con bomberman en una celda
+       When Bomberman se mueve hacia la celda vacia Oeste
+       And Bomberman se mueve hacia el Oeste
+       Then Bomberman se queda en el lugar
+
     Scenario: Bomberman no se puede mover habiendo una celda con una pared al Norte
        Given Un Juego con bomberman en una celda
        When Bomberman intenta moverse al Norte habiendo una pared

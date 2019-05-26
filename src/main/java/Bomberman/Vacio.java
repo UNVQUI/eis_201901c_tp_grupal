@@ -11,7 +11,6 @@ public class Vacio extends Item {
     public boolean estaVacio() {
         return true;
     }
-
     @Override
     public void explote(Celda celda, Juego juego){
 

@@ -17,7 +17,7 @@ public class Celda {
         this.item = item;
     }
 
-    public void moverABomberman(Juego juego, Coordinate hacia) {
+    public void moverABomberman(Juego juego, Coordinate hacia)  throws Exception{
         juego.getBomberman().moverse(this.item,juego,hacia);
     }
 

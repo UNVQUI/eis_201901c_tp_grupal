@@ -15,7 +15,7 @@ public abstract class EstadoPoder {
     public boolean tienePoderSoltarVariasBombas(){return false;}
 
 
-    public void moverme(Item item ,Juego juego, Coordinate hacia){
+    public void moverme(Item item ,Juego juego, Coordinate hacia)  throws Exception{
         item.bombermanSeMueve(juego,hacia);
     }
 
