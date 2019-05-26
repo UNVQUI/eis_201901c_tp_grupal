@@ -74,15 +74,9 @@ public class Juego {
     }
 
     public void bombermanLanzaUnaBomba(int alcance, int velocidadExplosion) {
-
         List<Celda> segmentoDeCeldas = this.mapa.getSegmentoDeCeldas(this.dondeMiraBomberman,this.posicionBomberman,alcance);
-        Coordinate dondeCaeBomba = new Coordinate(this.posicionBomberman.getX(),this.posicionBomberman.getY());
-        if(! segmentoDeCeldas.isEmpty()){
-            dondeCaeBomba = mapa.obtenerCeldaMasLejanaDelSegmento(this.posicionBomberman,segmentoDeCeldas).getCoordenada();
-        }
-
+        Coordinate dondeCaeBomba = mapa.obtenerCeldaMasLejanaDelSegmento(this.posicionBomberman,segmentoDeCeldas).getCoordenada();
         this.bombas.add(new Bomba(dondeCaeBomba,this,velocidadExplosion));
-
     }
 
 
