@@ -1,13 +1,23 @@
 package bomberman;
 
 import bomberman.attributes.Burnable;
+import bomberman.attributes.CellEntity;
+import bomberman.attributes.Interactible;
 
-public class Enemy implements CellEntity, Burnable {
-    @Override
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+
+public class Enemy implements CellEntity, Burnable, Interactible {
+
+    InteractionExecuter interactions = new InteractionExecuter(
+        Arrays.asList(
+            new Interaction<>(Bomberman.class, Bomberman::kill)
+        )
+    );
+
     public void interactWith(CellEntity anotherEntity) {
-        if(Bomberman.class.isAssignableFrom(anotherEntity.getClass())) {
-            ((Bomberman)anotherEntity).kill();
-        }
+        interactions.execute(anotherEntity);
     }
 
     @Override

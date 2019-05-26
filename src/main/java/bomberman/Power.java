@@ -1,15 +1,24 @@
 package bomberman;
 
-public class Power implements CellEntity {
+import bomberman.attributes.CellEntity;
+import bomberman.attributes.Interactible;
+
+import java.util.Arrays;
+
+public class Power implements CellEntity, Interactible {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         return o != null && getClass() == o.getClass();
     }
 
-    @Override
+    InteractionExecuter interactions = new InteractionExecuter(
+            Arrays.asList(
+                    new Interaction<>(Bomberman.class, bomberman -> bomberman.getPower(this))
+            )
+    );
+
     public void interactWith(CellEntity anotherEntity) {
-        if(Bomberman.class.isAssignableFrom(anotherEntity.getClass()))
-            ((Bomberman) anotherEntity).getPower(this);
+        interactions.execute(anotherEntity);
     }
 }
