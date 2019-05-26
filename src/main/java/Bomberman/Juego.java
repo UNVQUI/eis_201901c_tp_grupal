@@ -47,7 +47,7 @@ public class Juego {
     }
 
     public void setPosicionBomberman(Coordinate coordenadaAIr){
-        this.posicionBomberman = coordenadaAIr;
+            this.posicionBomberman = coordenadaAIr;
     }
 
     public void bombermanAccionarBomba() {
@@ -76,8 +76,10 @@ public class Juego {
     public void bombermanLanzaUnaBomba(int alcance, int velocidadExplosion) {
 
         List<Celda> segmentoDeCeldas = this.mapa.getSegmentoDeCeldas(this.dondeMiraBomberman,this.posicionBomberman,alcance);
-
-        Coordinate dondeCaeBomba = mapa.obtenerCeldaMasLejanaDelSegmento(this.posicionBomberman,segmentoDeCeldas).getCoordenada();
+        Coordinate dondeCaeBomba = new Coordinate(this.posicionBomberman.getX(),this.posicionBomberman.getY());
+        if(! segmentoDeCeldas.isEmpty()){
+            dondeCaeBomba = mapa.obtenerCeldaMasLejanaDelSegmento(this.posicionBomberman,segmentoDeCeldas).getCoordenada();
+        }
 
         this.bombas.add(new Bomba(dondeCaeBomba,this,velocidadExplosion));
 
@@ -100,4 +102,5 @@ public class Juego {
     public void setItemEnCeldaBomberman(Item item) throws Exception{
         this.getCeldaBomberman().setItem(new Vacio());
     }
+
 }

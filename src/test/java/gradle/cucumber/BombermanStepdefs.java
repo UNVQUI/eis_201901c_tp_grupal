@@ -221,6 +221,12 @@ public class BombermanStepdefs {
 
     }
 
+    @Then("^La bomba se pone en la celda que esta bomberman$")
+    public void assertBombaSePoneEnLaCeldaQueEstaBomberman(){
+        assertFalse(this.juego.noHayBombasActivas());
+        assertTrue(this.juego.hayBombaEnCoordenada(this.juego.getPosicionBomberman()));
+    }
+
     private boolean checkearSiLasCeldasAlRededorDeAlgoEstanVacias() {
         return this.celdasAlRededorDeAlgo.stream().allMatch( c -> c.estaVacio());
     }
