@@ -15,10 +15,11 @@ tEjercitar la escritura de código en ambientes colaborativos utilizando una met
 
 Nro | Nombre | Legajo | Mail
 ----|--------|--------|------
-1   |        |        |
-2   |        |        |
-3   |        |        |
-4   |        |        |
+1   |  Franco Neira      |    37845    | neira.franco.ariel@gmail.com
+2   |   Esteban Cicovich   |  37093      |estebancicovich@hotmail.com
+3   |   Nicolas Raño     |   39026     |nicodiablo22@hotmail.com 
+4   |     Marcos Rodriguez   |     32687   |mer.marcosr@gmail.com
+5 | Brian Craig | 32202 | briancraigok@gmail.com
     
 ### Entrega
 
