@@ -1,4 +1,4 @@
-## Objetivos del TP grupal
+﻿## Objetivos del TP grupal
 tEjercitar la escritura de código en ambientes colaborativos utilizando una metodología de diseño guiada por pruebas ejecutanto un flujo de trabajo que facilite la integración frecuente de código.
 
 ### Lo que se espera
@@ -15,10 +15,10 @@ tEjercitar la escritura de código en ambientes colaborativos utilizando una met
 
 Nro | Nombre | Legajo | Mail
 ----|--------|--------|------
-1   |        |        |
-2   |        |        |
-3   |        |        |
-4   |        |        |
+1   |   Marcelo Leonel Martos     | 20666        | martos.marcelo@gmail.com
+2   |   Eric Jorge Arnez Inochea  | 26806        | ericarnez@gmail.com
+3   |   Andres David Dominguez    |              | addominguez19@ucatolica.edu.co
+4   |  	Julian Elias Bernal       | 34002        | bernaljuliane@gmail.com
     
 ### Entrega
 
