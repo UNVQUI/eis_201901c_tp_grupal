@@ -5,6 +5,10 @@ import bomberman.errors.CellEntityNotFound;
 import bomberman.errors.CellNotFound;
 import com.google.common.collect.HashBiMap;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class GameMap {
     private HashBiMap<Position, Cell> map = HashBiMap.create();
 
@@ -33,5 +37,17 @@ public class GameMap {
                 .filter(cell -> cell.has(entity))
                 .findFirst()
                 .orElseThrow(CellEntityNotFound::new);
+    }
+
+    public void tick() {
+        map.values().forEach(Cell::tick);
+    }
+
+    <T> List<T> assignableEntities(Class<T> klass) {
+        return map.values()
+            .stream()
+            .map(cell -> cell.assignableEntities(klass))
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
     }
 }

@@ -4,9 +4,9 @@ Feature: Bomberman powers
   #/** Bagulaa *****************************************************************************/
   Scenario: explosion kills Bagulaa
     Given Initial map
-    And Bomberman drops Bomb at-0,0-
+    And Bomberman drops Bomb as "bomb"
     And place Bagulaa at-2,0- as "bagulaa"
-    When Time passes and Bomb explodes
+    When 3 Tick passes
     Then "bagulaa" is dead
 
   Scenario: Bomberman gets BagulaaPower
@@ -20,16 +20,16 @@ Feature: Bomberman powers
     And Bomberman gets BagulaaPower
     And place Enemy at-2,0- as "enemy"
     When Bomberman throws Bomb to RIGHT -2- cells away as "bomb"
-    And Time passes and Bomb explodes
+    And 3 Tick passes
     Then "enemy" is dead
 
   #/****************************************************************************************/
   #/** ProtoMaxJr **************************************************************************/
   Scenario: explosion kills ProtoMaxJr
     Given Initial map
-    And Bomberman drops Bomb at-0,0-
+    And Bomberman drops Bomb as "bomb"
     And place ProtoMaxJr at-2,0- as "protoMaxJr"
-    When Time passes and Bomb explodes
+    When 3 Tick passes
     Then "protoMaxJr" is dead
 
   Scenario: Bomberman gets ProtoMaxJrPower
@@ -49,9 +49,9 @@ Feature: Bomberman powers
   #/** ProtoMaxUnits ***********************************************************************/
   Scenario: explosion kills ProtoMaxUnits
     Given Initial map
-    And Bomberman drops Bomb at-0,0-
+    And Bomberman drops Bomb as "bomb"
     And place ProtoMaxUnits at-2,0- as "protoMaxUnits"
-    When Time passes and Bomb explodes
+    When 3 Tick passes
     Then "protoMaxUnits" is dead
 
   Scenario: Bomberman gets ProtoMaxJrPower
@@ -65,7 +65,7 @@ Feature: Bomberman powers
     And Bomberman gets ProtoMaxUnitsPower
     And place Enemy at-0,2- as "enemy"
     When Bomberman throws Bomb to DOWN -2- cells away as "bomb"
-    And Time passes and Bomb explodes
+    And 3 Tick passes
     Then "enemy" is dead
 
   Scenario: Bomberman throws Bomb far away and kills enemy
@@ -74,9 +74,8 @@ Feature: Bomberman powers
     And place Enemy at-1,2- as "enemy1_2"
     And place Enemy at-1,2- as "enemy1_3"
     When Bomberman throws Bomb to DOWN -2- cells away as bomb1
-    And other throws Bomb DOWN -3- cells away as bomb2
-    And time passes for bomb1 and explodes
-    And time passes for bomb2 and explodes
+    And Bomberman throws Bomb to DOWN -2- cells away as bomb2
+    And 3 Tick passes
     Then "enemy1_2" is dead
     And "enemy1_3" is dead
 

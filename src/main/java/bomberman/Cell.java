@@ -1,9 +1,6 @@
 package bomberman;
 
-import bomberman.attributes.Burnable;
-import bomberman.attributes.CellEntity;
-import bomberman.attributes.Interactible;
-import bomberman.attributes.SolidEntity;
+import bomberman.attributes.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,5 +64,9 @@ public class Cell {
             .filter(entity -> klass.isAssignableFrom(entity.getClass()))
             .map(klass::cast)
             .collect(Collectors.toList());
+    }
+
+    public void tick() {
+        assignableEntities(Tickeable.class).forEach(tickeable -> tickeable.tick(this));
     }
 }

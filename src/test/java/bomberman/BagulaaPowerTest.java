@@ -22,7 +22,7 @@ public class BagulaaPowerTest {
     @Test
     public void bombermanGetsBagulaaPowerAndThrowsABombTwoCellsToRight() {
         bomberman.getPower(power);
-        Bomb bomb = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
+        Bomb bomb = bomberman.dropBomb(map, Direction.RIGHT, 2);
 
         Position newPos = new Position(2, 0);
         Position expectedPos = map.getPositionFrom(map.getEntityCell(bomb));
@@ -31,6 +31,6 @@ public class BagulaaPowerTest {
 
     @Test(expected = PowerNotFound.class)
     public void bombermanThrowsABombTwoCellsToRightButHeDoesNotHaveBagulaaPower() {
-        bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
+        bomberman.dropBomb(map, Direction.RIGHT, 2);
     }
 }
