@@ -3,6 +3,7 @@ package gradle.cucumber;
 import bomberman.*;
 import bomberman.attributes.CellEntity;
 import bomberman.errors.CellEntityNotFound;
+import bomberman.errors.PowerNotFound;
 import cucumber.api.java8.En;
 
 import java.util.HashMap;
@@ -17,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class MapDef implements En {
     GameMap gameMap;
     Bomberman bomberman;
-    Bomb bomb;
     Map<String, CellEntity> entities = new HashMap<>();
 
     public MapDef() {
@@ -26,32 +26,11 @@ public class MapDef implements En {
             bomberman = new Bomberman();
             gameMap.getCellAt(new Position(0, 0)).put(bomberman);
         });
-        And("Bomberman drops Bomb at-{int},{int}-", (Integer x, Integer y) -> {
-            bomberman.moveTo(gameMap.getEntityCell(bomberman), gameMap.getCellAt(new Position(x, y)));
-            bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman));
-        });
         And("place {word} at-{int},{int}- as {string}", (String thing, Integer x, Integer y, String entityPointer) -> {
             CellEntity entity = getCellEntityFromString(thing);
             entities.put(entityPointer, entity);
             gameMap.getCellAt(new Position(x, y)).put(entity);
         });
-        When("^Time passes and Bomb explodes$", () -> {
-            bomb.tick(gameMap.getEntityCell(bomb));
-            bomb.tick(gameMap.getEntityCell(bomb));
-            bomb.tick(gameMap.getEntityCell(bomb)); //BOOM
-        });
-        When("time passes for {word} and explodes", (String entityPointer) -> {
-            Bomb entityBomb = (Bomb)entities.get(entityPointer);
-            Cell cell = gameMap.getEntityCell(entityBomb);
-            entityBomb.tick(cell);
-            entityBomb.tick(cell);
-            entityBomb.tick(cell); //BOOM
-        });
-        Then("{string} is destroyed", this::testEntityNotInMap);
-        Then("{string} is dead", this::testEntityNotInMap);
-
-        Then("{string} is not destroyed", (String entityPointer) ->
-                gameMap.getEntityCell(entities.get(entityPointer)));
         When("Bomberman moves to-{int},{int}-", (Integer x, Integer y) ->
                 bomberman.moveTo(gameMap.getEntityCell(bomberman), gameMap.getCellAt(new Position(x, y))));
         Then("Bomberman has {word}", (String thing) ->
@@ -60,42 +39,33 @@ public class MapDef implements En {
                 bomberman.getPower(getCellEntityFromString(thing)));
         When("Bomberman throws Bomb to {word} -{int}- cells away as {word}",
                 (String direction, Integer distance, String entityPointer) -> {
-            bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman), Direction.valueOf(direction), distance);
+            Bomb bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman), Direction.valueOf(direction), distance);
             entities.put(entityPointer, bomb);
         });
-        And("other throws Bomb {word} -{int}- cells away as {word}",
-                (String direction, Integer distance, String entityPointer) -> {
-                    Bomb bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman), Direction.valueOf(direction), distance);
-                    entities.put(entityPointer, bomb);
-                });
         When("Bomberman jump to {word}", (String direction) -> {
             bomberman.jumpTo(gameMap.getEntityCell(bomberman), Direction.valueOf(direction));
         });
         Then("Bomberman is at-{int},{int}-", (Integer x, Integer y) -> {
             assertEquals(new Position(x, y),gameMap.getPositionFrom(bomberman));
         });
-        When("Bomberman drops Bomb at-{int},{int}- as {word}", (Integer x, Integer y, String entityPointer) -> {
-            Bomb bomb = bomberman.dropBomb(gameMap.getCellAt(new Position(x,y)));
-                entities.put(entityPointer, bomb);
-        });
-        And("drops another Bomb at-{int},{int}- as {word}", (Integer x, Integer y, String entityPointer) -> {
-            Bomb bomb = bomberman.dropBomb(gameMap.getCellAt(new Position(x,y)));
+        When("Bomberman drops Bomb as {word}", (String entityPointer) -> {
+            Bomb bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman));
             entities.put(entityPointer, bomb);
         });
+        Then("{string} is destroyed", this::testEntityNotInMap);
+        Then("{string} is dead", this::testEntityNotInMap);
+        Then("{string} is not destroyed", (String entityPointer) ->
+                gameMap.getEntityCell(entities.get(entityPointer)));
         Then("entity {word} is at-{int},{int}-", (String entityPointer, Integer x, Integer y) -> {
             assertEquals(new Position(x, y),gameMap.getPositionFrom(entities.get(entityPointer)));
         });
-        And("{int} ticks passes for all bombs and explodes", (Integer ticks) -> {
-            List<Bomb> bombs = entities.values().stream().filter(entity-> entity.getClass().equals(Bomb.class)).map(entity -> (Bomb)entity).collect(Collectors.toList());
-
-            bombs.forEach(bomb-> {
-                bomb.tick(gameMap.getEntityCell(bomb));
-                bomb.tick(gameMap.getEntityCell(bomb));
-                bomb.tick(gameMap.getEntityCell(bomb));
-            });
-        });
         Then("entity {word} is not at-{int},{int}-", (String entityPointer, Integer x, Integer y) -> {
             assertFalse(gameMap.getCellAt(new Position(x,y)).has(entities.get(entityPointer)));
+        });
+        When("{int} Tick passes", (Integer times) -> {
+        });
+        And("Bomberman can't drop bomb", () -> {
+            assertThrows(PowerNotFound.class, () -> bomberman.dropBomb(gameMap.getEntityCell(bomberman)));
         });
     }
 
