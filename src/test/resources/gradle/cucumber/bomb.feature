@@ -30,11 +30,11 @@ Feature: bomb drop
     When 3 Tick passes
     Then "enemy" is not destroyed
 
-  Scenario: bomberman drops as many bombs as wanted with ProtoMaxUnits
+  Scenario: bomberman drops as many bombs as wanted with ProtoMaxUnitsPower
     Given Initial map
-    And Bomberman gets ProtoMaxUnits
-    And Bomberman drops Bomb as "bomb1"
-    And Bomberman drops Bomb as "bomb2"
+    And Bomberman gets ProtoMaxUnitsPower
+    And Bomberman drops Bomb as bomb1
+    And Bomberman drops Bomb as bomb2
     Then entity bomb1 is at-0,0-
     And entity bomb2 is at-0,0-
 

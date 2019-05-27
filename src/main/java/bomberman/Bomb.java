@@ -1,9 +1,10 @@
 package bomberman;
 
 import bomberman.attributes.CellEntity;
+import bomberman.attributes.Tickeable;
 import bomberman.errors.CellNotFound;
 
-public class Bomb implements CellEntity {
+public class Bomb implements CellEntity, Tickeable {
 
     private TimeCounter counter;
     private int ticksLimit;

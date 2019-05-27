@@ -28,17 +28,24 @@ public class Bomberman implements CellEntity {
         this.alive = false;
     }
 
-    public Bomb dropBomb(Cell currentCell) {
+    public Bomb dropBomb(GameMap gameMap) {
+        ensureEnoughPowerToDropBomb(gameMap);
         Bomb bomb = new Bomb();
-        currentCell.put(bomb);
+        gameMap.getEntityCell(this).put(bomb);
         return bomb;
     }
 
-    public Bomb dropBomb(Cell currentCell, Direction direction, int distance) {
+    private void ensureEnoughPowerToDropBomb(GameMap gameMap) {
+        if(!hasPower(new ProtoMaxUnitsPower()) && !gameMap.assignableEntities(Bomb.class).isEmpty())
+            throw new PowerNotFound();
+    }
+
+    public Bomb dropBomb(GameMap gameMap, Direction direction, int distance) {
+        ensureEnoughPowerToDropBomb(gameMap);
         if (!hasPower(new BagulaaPower()) && !hasPower(new ProtoMaxUnitsPower()))
             throw new PowerNotFound();
         Bomb bomb = new Bomb();
-        Cell directionCell = currentCell;
+        Cell directionCell = gameMap.getEntityCell(this);
         while (distance > 0) {
             directionCell = directionCell.cellAt(direction);
             distance -= 1;

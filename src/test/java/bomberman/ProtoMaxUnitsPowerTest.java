@@ -34,7 +34,7 @@ public class ProtoMaxUnitsPowerTest {
     @Test
     public void bombermanGetsProtoMaxUnitsPowerAndThrowsABombTwoCellsToRight() {
         bomberman.getPower(power);
-        Bomb bomb = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
+        Bomb bomb = bomberman.dropBomb(map, Direction.RIGHT, 2);
 
         Position newPos = new Position(2, 0);
         Position expectedPos = map.getPositionFrom(map.getEntityCell(bomb));
@@ -44,8 +44,8 @@ public class ProtoMaxUnitsPowerTest {
     @Test
     public void bombermanGetsProtoMaxUnitsPowerAndThrow2BombsTwoAndTreeCellsToRight() {
         bomberman.getPower(power);
-        Bomb bomb1 = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
-        Bomb bomb2 = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 3);
+        Bomb bomb1 = bomberman.dropBomb(map, Direction.RIGHT, 2);
+        Bomb bomb2 = bomberman.dropBomb(map, Direction.RIGHT, 3);
 
         Position expectedPos1 = new Position(2, 0);
         Position expectedPos2 = new Position(3, 0);
@@ -67,8 +67,8 @@ public class ProtoMaxUnitsPowerTest {
         assertEquals(new Position(2, 1), map.getPositionFrom(map.getEntityCell(enemy1)));
         assertEquals(new Position(3, 1), map.getPositionFrom(map.getEntityCell(enemy2)));
 
-        Bomb bomb1 = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
-        Bomb bomb2 = bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 3);
+        Bomb bomb1 = bomberman.dropBomb(map, Direction.RIGHT, 2);
+        Bomb bomb2 = bomberman.dropBomb(map, Direction.RIGHT, 3);
 
         bomb1.tick(map.getEntityCell(bomb1));
         bomb1.tick(map.getEntityCell(bomb1));
@@ -89,6 +89,6 @@ public class ProtoMaxUnitsPowerTest {
 
     @Test(expected = PowerNotFound.class)
     public void bombermanThrowsABombTwoCellsToRightButHeDoesNotHaveProtoMaxUnitsPower() {
-        bomberman.dropBomb(map.getEntityCell(bomberman), Direction.RIGHT, 2);
+        bomberman.dropBomb(map, Direction.RIGHT, 2);
     }
 }

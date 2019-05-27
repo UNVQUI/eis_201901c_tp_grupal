@@ -39,7 +39,7 @@ public class MapDef implements En {
                 bomberman.getPower(getCellEntityFromString(thing)));
         When("Bomberman throws Bomb to {word} -{int}- cells away as {word}",
                 (String direction, Integer distance, String entityPointer) -> {
-            Bomb bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman), Direction.valueOf(direction), distance);
+            Bomb bomb = bomberman.dropBomb(gameMap, Direction.valueOf(direction), distance);
             entities.put(entityPointer, bomb);
         });
         When("Bomberman jump to {word}", (String direction) -> {
@@ -49,7 +49,7 @@ public class MapDef implements En {
             assertEquals(new Position(x, y),gameMap.getPositionFrom(bomberman));
         });
         When("Bomberman drops Bomb as {word}", (String entityPointer) -> {
-            Bomb bomb = bomberman.dropBomb(gameMap.getEntityCell(bomberman));
+            Bomb bomb = bomberman.dropBomb(gameMap);
             entities.put(entityPointer, bomb);
         });
         Then("{string} is destroyed", this::testEntityNotInMap);
@@ -63,9 +63,12 @@ public class MapDef implements En {
             assertFalse(gameMap.getCellAt(new Position(x,y)).has(entities.get(entityPointer)));
         });
         When("{int} Tick passes", (Integer times) -> {
+            for (int i = 0; i < times; i++) {
+                gameMap.tick();
+            }
         });
         And("Bomberman can't drop bomb", () -> {
-            assertThrows(PowerNotFound.class, () -> bomberman.dropBomb(gameMap.getEntityCell(bomberman)));
+            assertThrows(PowerNotFound.class, () -> bomberman.dropBomb(gameMap));
         });
     }
 
